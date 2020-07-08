@@ -11,7 +11,7 @@ Watchlist
 Asset/Stock Search
 Login Page
 
-Screenshots
+Screenshots located on Google Docs
 
 Dashboard + Portfolio
 Link: https://robinhood.com/ 
@@ -20,20 +20,9 @@ Link: https://robinhood.com/
 Asset/Stock Detail
 Link: https://robinhood.com/stocks/TPOR
 
-Top
-
-Middle
-
-
-
-
-
-Bottom
-
 
 Watchlist
 Link: User Specific
-
 
 Asset/Stock Search 
 Link: Search Bar and Search is available on Every Screen

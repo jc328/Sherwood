@@ -1,39 +1,36 @@
 # Group 5- Robinhood
 
-Robinhood 
+__Robinhood__
 https://robinhood.com/
 
-Initial Feature List
+## Initial Feature List
 Required
-Dashboard + Portfolio
-Asset/Stock Detail
-Watchlist
-Asset/Stock Search
-Login Page
+* Dashboard + Portfolio
+* Asset/Stock Detail
+* Watchlist
+* Asset/Stock Search
+* Login Page
 
-Screenshots located on Google Docs
+_Screenshots located on Google Docs & in Wiki_
 
-Dashboard + Portfolio
+__Checkout Our Wiki__: https://github.com/jc328/TeamProject/wiki
+
+__Dashboard + Portfolio__
 Link: https://robinhood.com/ 
 
-
-Asset/Stock Detail
+__Asset/Stock Detail__
 Link: https://robinhood.com/stocks/TPOR
 
-
-Watchlist
+__Watchlist__
 Link: User Specific
 
-Asset/Stock Search 
+__Asset/Stock Search__ 
 Link: Search Bar and Search is available on Every Screen
 
-
-Login Page
+__Login Page__
 Link: https://robinhood.com/login
 
-WIP: https://docs.google.com/document/d/1pwnhIbuxtIBV964lzJUCQE3PX-V2UVuI_Ix75pibUck/edit?usp=sharing
-
-Checkout Our Wiki: https://github.com/jc328/TeamProject/wiki
+__WIP__: https://docs.google.com/document/d/1pwnhIbuxtIBV964lzJUCQE3PX-V2UVuI_Ix75pibUck/edit?usp=sharing
 
 
 

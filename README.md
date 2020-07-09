@@ -1,5 +1,8 @@
 # Group 5- Robinhood
 
+![Robinhood](https://camo.githubusercontent.com/ec79a67426447a3d0d8bfecde54e24d5a99dbfc5/68747470733a2f2f752e6375626575706c6f61642e636f6d2f6161726f6e6b796c652f53637265656e53686f74323032303037303861742e706e67)
+
+
 __Robinhood__
 https://robinhood.com/
 

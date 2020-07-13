@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "per-env",
+    "start:development": "nodemon app.js",
+    "start:production": "./bin/www"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +19,8 @@
     "pg": "^8.3.0",
     "pug": "^3.0.0",
     "sequelize": "^5.22.3",
-    "sequelize-cli": "^5.5.1"
+    "sequelize-cli": "^5.5.1",
+    "per-env": "^0.1.0.2"
   },
   "devDependencies": {
     "morgan": "^1.10.0",

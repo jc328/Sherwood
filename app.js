@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -21,7 +23,7 @@ app.get('/', asyncHandler(async (req, res) => {
 
 
 
-const port = 8080;
+const port = Number.parseInt(process.env.PORT, 10) || 8081;;
 
 app.listen(port, () => {
   console.log(`Listening on port:${port}...`);

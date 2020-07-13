@@ -6,7 +6,7 @@
   "scripts": {
     "start": "per-env",
     "start:development": "nodemon app.js",
-    "start:production": "./bin/www"
+    "start:production": "./app.js"
   },
   "keywords": [],
   "author": "",

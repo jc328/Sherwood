@@ -1,0 +1,129 @@
+#green {
+    height: 940px;
+    width: 100%;
+    background-color: rgb(195,245,60);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+.grid-c {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1px 1fr;
+    /* background-color: magenta; */
+    margin: 0px; 
+}
+.phone-c {
+    height: 400px;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 0;
+    grid-row-end: 3;
+    
+
+}
+.green-phone {
+    /* height: 50%; */
+    width: 400px;
+    position: absolute;
+    z-index: 2;
+    
+}
+.phone-video {
+    /* height: 50%; */
+    width: 400px;
+    object-fit: contain;
+    pointer-events: none;
+    position: absolute;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+}
+.green__title-c {
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    overflow: hidden;
+    flex-wrap: wrap;
+    grid-column-start: 0;
+    grid-column-end: 1;
+    grid-row-start: 0;
+    grid-row-end: 3;
+    height: 100%;
+    margin-left: 30px;
+    /* background-color: lightskyblue; */
+    max-width: 500px;
+    margin-right: 30px;
+}
+.green__title__p {
+    font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 72px;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+.green__title__p-2 {
+    font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 72px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+.green__slogan {
+    font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px;
+    letter-spacing: -0.24px;
+    text-decoration: unset;
+    color: #040d14;
+    margin-top: 0px;
+}
+.sign-b {
+    min-width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* top: 0px; */
+    height: 48px;
+    /* background-color: indigo;  */
+    /* z-index: 4; */
+}
+.nav__sign-nup-b-c {
+    min-width: 150px;
+    /* position: fixed; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+.nav__sign-nup-b-c__sig-nup{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 36px;
+    height: 48px;
+    border-radius: 24px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-family: "Capsule Sans Text",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: -0.25px;
+    /* margin-right: 15px; */
+    /* position: fixed; */
+
+
+}

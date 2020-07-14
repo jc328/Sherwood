@@ -6,6 +6,5 @@ footer {
 .footer-c {
     min-height: 800px;
     min-width: 100%;
-    background-color: grey;
-    border: 3px solid blue;
+    background-color: rgb(22, 22, 22);
 }

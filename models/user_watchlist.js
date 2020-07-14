@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'user_watchlists_id'
     }
 
-    User_Watchlist.belongstoMany(models.Stock, columnMapping)
+    User_Watchlist.belongsToMany(models.Stock, columnMapping)
   };
   return User_Watchlist;
 };

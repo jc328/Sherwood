@@ -1,0 +1,51 @@
+/* NOT IN use */
+
+body{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.loginImage{
+  display:flex;
+  flex-direction: column;
+  background-image: url('../images/loginPage.png');
+  width: 50%;
+  height: 100vh;
+} 
+
+.form__container{
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 50%;
+}
+
+form{
+  /* display: flex; */
+  align-self: flex-end;
+}
+
+.form__head{
+  font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-weight: bold;
+}
+
+.inputBox__inner{
+  margin-top: 5px;
+  background-color: #E8F0FE;
+  width: 100%;
+}
+
+button{
+  background-color: #2FC802;
+  color: #F8FDF9;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  height: 50px;
+  width: 100px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.inputBox__forgot{
+  color: #2FC802;
+}

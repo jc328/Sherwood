@@ -1,18 +1,6 @@
-body {
-    margin: 0; 
-    height: 100%;
-    overflow-x: hidden;
-}
-#main {
-    height: 3000px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-}
+
 #black {
-    height: 530px;
+    height: 650px;
     width: 100%;
     background-color: black;
     display: flex;
@@ -20,7 +8,7 @@ body {
     align-items: center;
 }
 .black-c {
-    height: 500px;
+    height: 610px;
     width: 100%;
     background-color: black;
     display: flex;
@@ -125,7 +113,26 @@ body {
     width: 250px;
     background-image: url(/images/phoneTrailing.png);
     background-size: 250px 500px;
-    border: 1px solid purple;
+}
+.margin-left-transition {
+    transition-property: margin-left;
+    transition-duration: 0.5s;
+}
+.swipe-left {
+    margin-left: -1600px;
+}
+.warp-right {
+    margin-left: 1600px;
+}
+.margin-top-transition {
+    transition-property: margin-top;
+    transition-duration: 0.4s;
+}
+.swipe-top {
+    margin-top: -1600px;
+}
+.warp-bottom {
+    margin-top: 1600px;
 }
 .phone-screen1 {
     background-image: url(/images/phoneTrailing.png);
@@ -158,6 +165,28 @@ body {
     color: white;
     letter-spacing: -0.1px;
 }
+.black__circles {
+    min-height: 30px;
+    min-width: 120px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* background-color: rosybrown; */
+    position: absolute;
+    bottom: -50px;
+    left: 15px;
+
+}
+.black__circles__1 {
+     height: 15px;
+     width: 15px;
+     border: 2px solid rgb(255, 255, 255);
+     border-radius: 50%;
+}
+.white {
+    background-color: white;
+}
+
 
 
 

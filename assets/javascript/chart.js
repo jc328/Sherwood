@@ -10,14 +10,17 @@ async function drawBasic() {
         })
     const price = await priceRequest.json()
 
-    document.getElementById('current-price-span')
-        .innerHTML = `$ ${price}`
+    const priceDisplay = document.getElementById('current-price-span')
+
+    priceDisplay.innerHTML = `$ ${price}`
 
     const intradayPriceRequest = await fetch(`/api/chart/intraday-prices/${currentStock}`, {
         method: 'get',
         headers: { 'Content-Type': 'application/json' }
         })
     const intradayPrice = await intradayPriceRequest.json()
+
+    // console.log(intradayPrice)
 
     // console.log(intradayPrice);
     let rows = new Array();
@@ -30,45 +33,46 @@ async function drawBasic() {
             rows.push([[hour, minutes, 0], price.average]);
         }
     })
-    console.log(rows);
 
     let data = new google.visualization.DataTable();
     data.addColumn('timeofday', 'Time of Day');
     data.addColumn('number', 'Price');
 
-    data.addRows(rows)
-    // data.addRows([
-    // [0, 0],   [1, 10],  [2, 23],  [3, 17],  [4, 18],  [5, 9],
-    // [6, 11],  [7, 27],  [8, 33],  [9, 40],  [10, 32], [11, 35],
-    // [12, 30], [13, 40], [14, 42], [15, 47], [16, 44], [17, 48],
-    // [18, 52], [19, 54], [20, 42], [21, 55], [22, 56], [23, 57],
-    // [24, 60], [25, 50], [26, 52], [27, 51], [28, 49], [29, 53],
-    // [30, 55], [31, 60], [32, 61], [33, 59], [34, 62], [35, 65],
-    // [36, 62], [37, 58], [38, 55], [39, 61], [40, 64], [41, 65],
-    // [42, 63], [43, 66], [44, 67], [45, 69], [46, 69], [47, 70],
-    // [48, 72], [49, 68], [50, 66], [51, 65], [52, 67], [53, 70],
-    // [54, 71], [55, 72], [56, 73], [57, 75], [58, 70], [59, 68],
-    // [60, 64], [61, 60], [62, 65], [63, 67], [64, 68], [65, 69],
-    // [66, 70], [67, 72], [68, 75], [69, 80]
-    // ]);
+    data.addRows(rows);
 
     let options = {
-        chartArea: {
-            height: '80%'
-        },
         scaleType: 'log',
         width: 680,
-        height: 200,
+        height: 300,
         hAxis: {
-            title: 'Time'
+            display: 'none'
         },
         vAxis: {
-            title: 'Price'
+            display: 'none'
         },
-        focusTarget: 'category'
+        focusTarget: 'category',
+        crosshair: {
+            orientation: 'vertical',
+            trigger: 'focus'
+        },
     };
 
     let chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 
+    function changePrice(data, row) {
+
+        const selectedPrice = chart.getChartLayoutInterface().getVAxisValue(row).toFixed(2);
+        // console.log(selectedTime, selectedPrice)
+        if (selectedPrice) {
+            priceDisplay.innerHTML = `$ ${selectedPrice}`
+        }
+    }
+
+
+
     chart.draw(data, options);
+    google.visualization.events.addListener(chart, 'onmouseover', (event) => {
+        changePrice(data, event.row);
+    });
+
 }

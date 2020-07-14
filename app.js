@@ -42,8 +42,6 @@ app.get('/api/chart/price/:id(\\w+)', asyncHandler(async (req, res) => {
   res.json(price)
 }));
 
-// /stock/{symbol}/intraday-prices
-
 app.get('/api/chart/intraday-prices/:id(\\w+)', asyncHandler(async (req, res) => {
   const stockSymbol = req.params.id;
   const intradayPriceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/intraday-prices?token=${token}`, {

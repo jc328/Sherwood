@@ -1,0 +1,174 @@
+@media screen and (min-width: 1024px) {
+        .nav__products-c *,
+    .nav__learn-c *,
+    .nav__support-c *,
+    .nav__loggin-c *,
+    #inbetween-space,
+    .nav__sign-nup-c *,
+    .eqx-c *,
+    .green__title__p,
+    #balloons {
+        visibility: visible;
+    }
+    .eqx-c *,
+    .green__title__p-2,
+    #party-shapes {
+    
+        visibility: hidden;
+    }
+    .grid-c {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1px 1fr;
+    }
+    .intro {
+        height: 530px;
+    }
+    .intro__c {
+        top: -80px;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .nav__products-c *,
+    .nav__learn-c *,
+    .nav__support-c *,
+    .nav__loggin-c *,
+    #inbetween-space,
+    .nav__sign-nup-c *,
+    .green__title__p,
+    #balloons,
+    .black-c__nav {
+        visibility: hidden;
+    }
+    .eqx-c *,
+    .green__title__p-2,
+    #party-shapes {
+    
+        visibility: visible;
+    }
+    .grid-c {
+    grid-template-columns: 1fr ;
+    grid-template-rows: 1fr 1fr;
+    }
+    .green__title-c {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    justify-content: center;
+    align-content: center;
+    max-width: 100%;
+    margin: 0px 30px 0px 30px;
+    overflow: visible;
+    }
+    .phone-c {
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        /* position: absolute; */
+        /* top: 350px; */
+    }
+    .nav__sign-nup-b-c {
+        margin-top: -120px;
+    }
+    .green__slogan {
+        position: relative;
+        top: -80px;
+        
+    }
+    .green-phone {
+        width: 60%;
+    }
+    .phone-video {
+        width: 60%;
+    }
+    .intro__c__args-c {
+        flex-direction: column;
+    }
+    .args-c-1,
+    .args-c-2,
+    .args-c-3 {
+        width: 93%;
+    }
+    .intro {
+        height: 750px;
+        /* background-color: darkmagenta; */
+    }
+    .black-c {
+        flex-direction: column;
+        /* align-items: flex-start; */
+    }
+    .black-c__phone {
+        min-height: 300px;
+        width: 150px;
+        background-size: 150px 300px;
+        position: relative;
+        top: -120px;
+    }
+    .black-c__learn-as__span {
+        font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 44px;
+        letter-spacing: -0.36px;
+
+    }
+    .black-c__learn-as__p {
+    
+    }
+    .black-c__learn-as {
+        width: 87%;
+        margin-left: 0px;
+    }
+
+}
+@media screen and (max-width: 764px) {
+    .green__title__p-2 {
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 40px;
+    position: absolute;
+    top: 70px;
+    left: 30px;
+    }
+    .nav__sign-nup-b-c {
+        visibility: hidden;
+    }
+        .green__slogan {
+        position: relative;
+        top: -150px;
+        font-size: 21px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 28px;
+        letter-spacing: -0.21px;
+    }
+        .green-phone {
+        width: 100%;
+    }
+        .phone-video {
+        width: 100%;
+    }
+    .phone-c {
+        position: absolute;
+        top: 350px;
+        height: 80%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+    .intro__c {
+        margin-top: 90px;
+    }
+    .intro {
+        height: 800px;
+    }
+
+}

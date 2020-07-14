@@ -20,8 +20,6 @@ async function drawBasic() {
         })
     const intradayPrice = await intradayPriceRequest.json()
 
-    // console.log(intradayPrice)
-
     // console.log(intradayPrice);
     let rows = new Array();
     intradayPrice.forEach((price) => {

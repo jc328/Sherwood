@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'user_id'
     }
 
-    User.belongstoMany(models.Stock, columnMapping);
+    User.belongsToMany(models.Stock, columnMapping);
     User.hasMany(models.User_Watchlist, { foreignKey: 'user_id'});
   };
   return User;

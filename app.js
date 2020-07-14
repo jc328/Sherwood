@@ -4,6 +4,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const csurf = require('csurf');
+const { Stock } = require('./models')
 
 const app = express();
 
@@ -23,9 +24,13 @@ app.get('/', asyncHandler(async (req, res) => {
   res.render('landingPage');
 }));
 
+app.get('/chart/:id(\\w+)', asyncHandler(async (req, res) => {
+  const symbolFromURL = req.params.id;
+  const stock = await Stock.findOne({where: {symbol: symbolFromURL}});
+  res.render('chart', stock)
+}));
 
-
-const port = Number.parseInt(process.env.PORT, 10) || 8081;;
+const port = Number.parseInt(process.env.PORT, 10) || 8080;;
 
 app.listen(port, () => {
   console.log(`Listening on port:${port}...`);

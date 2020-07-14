@@ -5,6 +5,8 @@ html(lang="en")
       meta(name="viewport", content="width=device-width, initial-scale=1.0")
       script(type="module" src="./javascript/landingPage.js")
       link(href="./css/style.css" rel="stylesheet")
+      link(href="./css/landingPageNavBar.css" rel="stylesheet")
+      link(href="./css/landingPageGreenPhone.css" rel="stylesheet")
       title Sherwood Wealth Services
     body
       div#main
@@ -57,18 +59,33 @@ html(lang="en")
               p.break-text-c__c__text  Make unlimited commission-free trades in stocks, ETFs, and options with Robinhood Financial, as well as buy and sell cryptocurrencies with Robinhood Crypto. See our fee schedule to learn more about cost.   
         
         div.intro 
+          img#party-shapes(src="./images/partyshapes.png", alt="")
           div.intro__c   
             p.intro__c__title Introducing Fractional Shares 
             p.intro__c__pitch Invest in thousands of stocks with as little as $1.
-            div.intro__c__args-c
-              div
-                p
-              div
-                p
-              div
-                p
-              
-          //- img(src="2x__c933308e212fc01d9353f801698d17cd.png", alt="", srcset="")
+            div.intro__c__args-c 
+              div.args-c-1
+                p.args-c-1__p Invest Any Amount 
+                p.args-c-1__p-text Choose how much you want to invest, and we’ll convert from dollars to parts of a whole share.
+              div.args-c-2 
+                p.args-c-2__p Build a Balanced Portfolio 
+                p.args-c-2__p-text Customize your portfolio with pieces of different companies and funds to help reduce risk.
+              div.args-c-3
+                p.args-c-3__p Trade in Real Time 
+                p.args-c-3__p-text Trades placed during market hours are executed at that time, so you’ll always know the share price.
+              img#balloons(src="./images/2x__c933308e212fc01d9353f801698d17cd.png", alt="", srcset="")
+            form(action="/", method="post")
+              input(type="hidden" name="_csurf" value="token")
+              div.early
+                input.early__input(type="text" name="earlyAccessSubmit" placeholder="name@email.com" required) 
+                div.early__access
+                  div.early__access-c
+                    a.early__access-c__early-access Get Early Access
+            div.disclosure          
+              <svg fill="none" height="28" viewBox="0 0 24 24" width="28" class="disclosure__svg"><circle cx="12" cy="12" r="11" stroke="#6f787e" stroke-width="2"></circle><path d="M11.232 18H13.056V9.52H11.232V18ZM11.2 8.128H13.088V6.32H11.2V8.128Z" fill="#6f787e"></path></svg>  
+              span.disclosure__text Fractional Shares Disclosure        
+            
+               
             
             
       //- h1 Sessions - #{title}

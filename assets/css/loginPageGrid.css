@@ -1,0 +1,91 @@
+body{
+  font-family: "Capsule Sans Text", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.1px;
+  line-height: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+/* .loginPage__container{
+  display: grid;
+} */
+
+.loginImage{
+  display: grid;
+  grid-column: 1 / 2;
+  grid-row: 1 / 5;
+  background-image: url('../images/loginPage.png');
+  background-position: center;
+  background-size: cover;
+  min-width: 50%;
+  min-height: 100%;
+  /* height: 100%; */
+} 
+
+
+.form__container{
+  display: grid;
+  grid-column: 2 / 3;
+  grid-row: 0 / 4;
+  min-width: 50%;
+  /* margin-left: 50px;
+  margin-top: 50px; */
+}
+
+form{
+  margin-left: 50px;
+}
+
+.form__head {
+  display:grid;
+  color: rgb(4,13,20);
+  font-family: var(--rh__type-palette__type15__stack);
+  /* font-size: var(--rh__type-palette__type15__font-size); */
+  font-size: 23px;
+  font-style: normal;
+  font-weight: var(--rh__type-palette__type15__font-weight);
+  line-height: var(--rh__type-palette__type15__line-height);
+  letter-spacing: var(--rh__type-palette__type15__letter-spacing);
+  text-decoration: unset;
+  margin-bottom: 30px;
+  /* font-weight: bold; */
+}
+
+.inputBox__inner{
+  margin: 5px;
+  padding: 12px;
+  background-color: #E8F0FE;
+  width: 75%;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  line-height: 1.5em;
+  border-color:rgb(245, 248, 250);
+  outline: 0;
+  transition-property: border-color;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+  box-sizing: border-box;
+  overflow: visible;
+  font-size: 100%;
+  /* margin: 0; */
+}
+
+button{
+  background-color: #2FC802;
+  color: #F8FDF9;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  height: 50px;
+  width: 100px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.inputBox__forgot{
+  color: #2FC802;
+}

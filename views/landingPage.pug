@@ -7,6 +7,10 @@ html(lang="en")
       link(href="./css/style.css" rel="stylesheet")
       link(href="./css/landingPageNavBar.css" rel="stylesheet")
       link(href="./css/landingPageGreenPhone.css" rel="stylesheet")
+      link(href="./css/landingPageBreak.css" rel="stylesheet")
+      link(href="./css/landingPageIntro.css" rel="stylesheet")
+      link(href="./css/landingPageMediaScreens.css" rel="stylesheet")
+      
       title Sherwood Wealth Services
     body
       div#main
@@ -56,7 +60,10 @@ html(lang="en")
           div#break-text-centering
             p.break-text-c__title Break Free from Commission <br> Fees
             div.break-text-c__c
-              p.break-text-c__c__text  Make unlimited commission-free trades in stocks, ETFs, and options with Robinhood Financial, as well as buy and sell cryptocurrencies with Robinhood Crypto. See our fee schedule to learn more about cost.   
+              p.break-text-c__c__text  Make unlimited commission-free trades in stocks, ETFs, and options with Robinhood Financial, as well as buy and sell cryptocurrencies with Robinhood Crypto. See our fee schedule to learn more about cost. 
+              div.commission-disclosure          
+                <svg fill="none" height="28" viewBox="0 0 24 24" width="28" class="commission-disclosure__svg"><circle cx="12" cy="12" r="11" stroke="#6f787e" stroke-width="2"></circle><path d="M11.232 18H13.056V9.52H11.232V18ZM11.2 8.128H13.088V6.32H11.2V8.128Z" fill="#6f787e"></path></svg>  
+                span.commission-disclosure__text Commissions Disclosure   
         
         div.intro 
           img#party-shapes(src="./images/partyshapes.png", alt="")
@@ -81,11 +88,38 @@ html(lang="en")
                 div.early__access
                   div.early__access-c
                     a.early__access-c__early-access Get Early Access
-            div.disclosure          
-              <svg fill="none" height="28" viewBox="0 0 24 24" width="28" class="disclosure__svg"><circle cx="12" cy="12" r="11" stroke="#6f787e" stroke-width="2"></circle><path d="M11.232 18H13.056V9.52H11.232V18ZM11.2 8.128H13.088V6.32H11.2V8.128Z" fill="#6f787e"></path></svg>  
-              span.disclosure__text Fractional Shares Disclosure        
+            div.fractional-disclosure          
+              <svg fill="none" height="28" viewBox="0 0 24 24" width="28" class="fractional-disclosure__svg"><circle cx="12" cy="12" r="11" stroke="#6f787e" stroke-width="2"></circle><path d="M11.232 18H13.056V9.52H11.232V18ZM11.2 8.128H13.088V6.32H11.2V8.128Z" fill="#6f787e"></path></svg>  
+              span.fractional-disclosure__text Fractional Shares Disclosure        
+        
+        div#black
+          div.black-c
+            //- nav.black-c__nav
+            nav.black-c__nav
+              button.black-c__up(type="button")
+                div(class="black-c__up__middle")
+                  svg#black__up__arrow(fill="#545d61" height="100%" viewBox="0 0 28 28" width="100%" xmlns="http://www.w3.org/2000/svg")
+                    path(clip-rule="evenodd" d="M22.3021 16.1979L24.3645 14.1355L14 3.771L3.63544 14.1355L5.69783 16.1979L12.5417 9.3541L12.5417 24.5001L15.4583 24.5001L15.4583 9.35414L22.3021 16.1979Z" fill-rule="evenodd")
+              ul.black-c__ul(class="css-1avoduh-VerticalSectionPicker")
+                li.black-c__li(class="css-uewl2b")
+                  button#learnButton.black-c__button(type="button" class="css-1rxznos-UnstyledButton-VerticalSectionPickerLabel")
+                    span.black-c__button___span(class="css-sapxaa") Learn
+                li.black-c__li(class="css-uewl2b")
+                  button#manageButton.black-c__button(type="button" class="css-1rxznos-UnstyledButton-VerticalSectionPickerLabel")
+                    span.black-c__button___span(class="css-1f9vn4") Manage
+                li.black-c__li(class="css-1itv5e3")
+                  button#cusomiseButton.black-c__button(type="button")
+                    span.black-c__button___span(class="css-1f9vn4") Customize
+                button.black-c__down(type="button")
+                  div.black-c__down__middle(class="css-vut8v3-Icon")
+                    svg#black__down__arrow(fill="#545d61" height="100%" viewBox="0 0 28 28" width="100%" xmlns="http://www.w3.org/2000/svg")
+                      path(clip-rule="evenodd" d="M5.69789 11.8021L3.6355 13.8645L14 24.229L24.3646 13.8645L22.3022 11.8021L15.4583 18.6459L15.4583 3.49993L12.5417 3.49993L12.5417 18.6459L5.69789 11.8021Z" fill-rule="evenodd")
+            div.black-c__phone
+            div.black-c__learn-as
+              span.black-c__learn-as__span Learn As You Grow
+              p.black-c__learn-as__p Our goal is to make investing in financial markets more affordable, more intuitive, and more fun, no matter how much experience you have (or don’t have).
             
-               
+
             
             
       //- h1 Sessions - #{title}

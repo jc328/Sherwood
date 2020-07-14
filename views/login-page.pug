@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    script(type="module" src="./javascript/landingPage.js")
+    link(href="./css/loginPageGrid.css" rel="stylesheet")
+    title= title 
+  body
+    div.loginImage
+    div.loginPage__container
+    div.form__container
+      form(action="/landing-Page", method="post")
+        input(type="hidden" name="_csrf" value=token)
+        label.form__head Welcome to Sherwood Wealth Services
+        div.inputBox
+          label Email or username
+          div
+            input(class='inputBox__inner' type='text' name='username')
+        div.inputBox
+          label Password
+          div
+            input(class='inputBox__inner' type='password' name='password')
+        div.inputBox
+          p.inputBox__forgot Forgot your username or password?
+        div
+          button(type="submit") Sign In

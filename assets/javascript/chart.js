@@ -1,9 +1,3 @@
-const express = require('express');
-const app = express();
-const router = express.Router();
-
-router.use('https://sandbox.iexapis.com/')
-
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawBasic);
 

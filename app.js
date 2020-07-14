@@ -1,9 +1,10 @@
 #! /usr/bin/env node
-
+const token = 'Tsk_52c6de67190f4fb7aa10ae91d4c9dd5c';
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const csurf = require('csurf');
+const fetch = require('node-fetch');
 
 const { Stock } = require('./models');
 
@@ -29,8 +30,37 @@ app.get('/landing-page', asyncHandler(async (req, res) => {
   res.render('landing-page');
 }));
 
-app.get('/chart', asyncHandler(async (req, res) => {
-  res.render('chart')
+app.get('/api/chart/price/:id(\\w+)', asyncHandler(async (req, res) => {
+  const stockSymbol = req.params.id;
+  const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${token}`, {
+    method: 'get',
+    body: JSON.stringify(res.body),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  const price = await priceRequest.json();
+
+  res.json(price)
+}));
+
+// /stock/{symbol}/intraday-prices
+
+app.get('/api/chart/intraday-prices/:id(\\w+)', asyncHandler(async (req, res) => {
+  const stockSymbol = req.params.id;
+  const intradayPriceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/intraday-prices?token=${token}`, {
+    method: 'get',
+    body: JSON.stringify(res.body),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  const intradayPrices = await intradayPriceRequest.json();
+
+  res.json(intradayPrices)
+}));
+
+app.get('/chart/:id(\\w+)', asyncHandler(async (req, res) => {
+  const stockSymbol = req.params.id;
+  const stock = await Stock.findOne({ where: { symbol: stockSymbol }});
+
+  res.render('chart', { stockSymbol })
 }));
 
 const port = Number.parseInt(process.env.PORT, 10) || 8080;

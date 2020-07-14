@@ -8,4 +8,8 @@ html(lang="en")
         title Chart Test
     body
         div#chart_div
-         p
+
+        div#current-price
+            p #{stockSymbol}'S CURRENT PRICE:
+                span(id="current-price-span")
+        input(type="hidden", name="currentStock" value=stockSymbol)

@@ -7,7 +7,11 @@ const csurf = require('csurf');
 const fetch = require('node-fetch');
 
 const { Stock } = require('./models');
+const finnhub = require('finnhub');
 
+const api_key = finnhub.ApiClient.instance.authentications['api_key'];
+api_key.apiKey = "bs6u9h7rh5rdv3m40reg"
+const finnhubClient = new finnhub.DefaultApi()
 const app = express();
 
 const csrfProtection = csurf({ cookie : true });
@@ -19,7 +23,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended : false }));
 
 app.get('/', asyncHandler(async (req, res) => {
-  res.send('HOME');
+  res.render('landingPage');
 }));
 
 app.get('/login-page', asyncHandler(async (req, res) => {
@@ -38,9 +42,36 @@ app.get('/api/chart/price/:id(\\w+)', asyncHandler(async (req, res) => {
     headers: { 'Content-Type': 'application/json' }
   })
   const price = await priceRequest.json();
-
   res.json(price)
 }));
+app.get('/search', asyncHandler(async (req, res) => {
+  finnhubClient.companyProfile2({'symbol': 'DIS'}, (error, data, response) => {
+    finnhubClient.companyNews("AAPL", "2020-06-01", "2020-07-14", (error, news, response) => {
+      if (error) {
+          console.error(error);
+      } else {
+          // let breakingNews = news[0]
+          res.render('searchbar', {data, news})
+      }
+  });
+  });
+}))
+
+app.post('/search', asyncHandler(async (req, res) => {
+
+  finnhubClient.companyProfile2({'symbol': req.body.search}, (error, data, response) => {
+    finnhubClient.companyNews(req.body.search, "2020-06-01", "2020-07-14", (error, news, response) => {
+      if (error) {
+          console.error(error);
+      } else {
+          // let breakingNews = news[0]
+          res.render('searchbar', {data, news})
+      }
+  });
+  });
+}))
+
+
 
 app.get('/api/chart/intraday-prices/:id(\\w+)', asyncHandler(async (req, res) => {
   const stockSymbol = req.params.id;

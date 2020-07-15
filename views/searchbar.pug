@@ -1,0 +1,45 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(href="./css/searchbar.css" rel="stylesheet")
+    script(type="module" src="./javascript/searchBar.js")
+    title Dashboard Search Bar
+  body
+    div
+      form(action='/search' method='post')
+        div
+          input(
+            class='searchBar'
+            type='text'
+            name='search'
+            placeholder='Search'
+            autocomplete='off'
+          )
+    div
+      img(src=data.logo)
+      h4= `Stock Name: ${data.name}`
+      h4= `Website: ${data.weburl}`
+      //- p Summary
+      h4= `Industry: ${data.finnhubIndustry}`
+      h4= `Market Cap: ${data.marketCapitalization} Million`
+    div
+      h4= `Shares Outstanding: ${data.shareOutstanding}`
+      h4= `IPO Date: ${data.ipo}`
+      h4= `Country: ${data.country}`
+      h4= `Phone: ${data.phone}`
+      //- h4 Dividend Yield
+      //- h4 Average Volume
+    div
+      h3= news[0].headline
+      p= news[0].summary
+      p= href=news[0].url
+    div
+      h3= news[1].headline
+      p= news[1].summary
+      p= news[1].url
+    div
+      h3= news[2].headline
+      p= news[2].summary
+      p= news[2].url

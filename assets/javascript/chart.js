@@ -32,6 +32,7 @@ async function drawBasic() {
             rows.push([[hour, minutes, 0], formattedPrice, label]);
         }
     })
+
     console.log(intradayPrice)
     let data = new google.visualization.DataTable();
     data.addColumn('timeofday', '');

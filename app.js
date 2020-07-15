@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 const token = 'Tsk_52c6de67190f4fb7aa10ae91d4c9dd5c';
-const actualToken = 'pk_832bd29aebd64807a159915dae90a5e5'
+
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');

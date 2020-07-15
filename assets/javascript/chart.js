@@ -20,7 +20,6 @@ async function drawBasic() {
         })
     const intradayPrice = await intradayPriceRequest.json()
 
-    // console.log(intradayPrice);
     let rows = new Array();
     intradayPrice.forEach((price) => {
         let fullTime = price.minute;
@@ -58,15 +57,12 @@ async function drawBasic() {
     let chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 
     function changePrice(data, row) {
-
+        // TODO: Fix price, it is currently off slightly
         const selectedPrice = chart.getChartLayoutInterface().getVAxisValue(row).toFixed(2);
-        // console.log(selectedTime, selectedPrice)
         if (selectedPrice) {
             priceDisplay.innerHTML = `$ ${selectedPrice}`
         }
     }
-
-
 
     chart.draw(data, options);
     google.visualization.events.addListener(chart, 'onmouseover', (event) => {

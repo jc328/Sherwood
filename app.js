@@ -34,16 +34,6 @@ app.get('/landing-page', asyncHandler(async (req, res) => {
   res.render('landing-page');
 }));
 
-app.get('/api/chart/price/:id(\\w+)', asyncHandler(async (req, res) => {
-  const stockSymbol = req.params.id;
-  const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${token}`, {
-    method: 'get',
-    body: JSON.stringify(res.body),
-    headers: { 'Content-Type': 'application/json' }
-  })
-  const price = await priceRequest.json();
-  res.json(price)
-}));
 app.get('/search', asyncHandler(async (req, res) => {
   finnhubClient.companyProfile2({'symbol': 'DIS'}, (error, data, response) => {
     finnhubClient.companyNews("AAPL", "2020-06-01", "2020-07-14", (error, news, response) => {
@@ -71,7 +61,16 @@ app.post('/search', asyncHandler(async (req, res) => {
   });
 }))
 
-
+app.get('/api/chart/price/:id(\\w+)', asyncHandler(async (req, res) => {
+  const stockSymbol = req.params.id;
+  const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${token}`, {
+    method: 'get',
+    body: JSON.stringify(res.body),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  const price = await priceRequest.json();
+  res.json(price)
+}));
 
 app.get('/api/chart/intraday-prices/:id(\\w+)', asyncHandler(async (req, res) => {
   const stockSymbol = req.params.id;

@@ -1,0 +1,7 @@
+div.google-visualization-tooltip {
+    display:none
+}
+
+div.google-visualization-tooltip > ul > li > span {
+    font-family: cursive;
+}

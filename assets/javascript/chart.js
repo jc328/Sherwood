@@ -8,7 +8,7 @@ async function drawBasic() {
         method: 'get',
         headers: { 'Content-Type': 'application/json' }
         })
-    const price = await priceRequest.json()
+    const price = await priceRequest.json();
 
     const priceDisplay = document.getElementById('current-price-span')
 
@@ -25,32 +25,51 @@ async function drawBasic() {
         let fullTime = price.minute;
         let hour = parseInt(fullTime.split(':')[0]);
         let minutes = parseInt(fullTime.split(':')[1]);
-
-        if (minutes % 5 === 0 && price.average !== null) {
-            rows.push([[hour, minutes, 0], price.average]);
+        let label = price.label;
+        // rows.push([[hour, minutes, 0], price.average, label]);
+        if (minutes % 5 === 0 && price.average) {
+            let formattedPrice = parseFloat(price.average.toFixed(2));
+            rows.push([[hour, minutes, 0], formattedPrice, label]);
         }
     })
-
+    console.log(intradayPrice)
     let data = new google.visualization.DataTable();
-    data.addColumn('timeofday', 'Time of Day');
-    data.addColumn('number', 'Price');
+    data.addColumn('timeofday', '');
+    data.addColumn('number', '');
+    data.addColumn({type: 'string', role: 'tooltip'})
 
     data.addRows(rows);
 
     let options = {
+        tooltip: {
+            isHtml: true,
+            ignoreBounds: true,
+            trigger: 'both',
+            style: 'css'
+        },
         scaleType: 'log',
+        chartArea: {
+            left: 0,
+            top: 0,
+            width: '100%',
+            height: '100%'
+        },
         width: 680,
         height: 300,
         hAxis: {
-            display: 'none'
+            textPosition: 'none'
         },
         vAxis: {
-            display: 'none'
+            textPosition: 'none'
         },
         focusTarget: 'category',
         crosshair: {
             orientation: 'vertical',
-            trigger: 'focus'
+            trigger: 'focus',
+            color: 'grey'
+        },
+        legend: {
+            position: 'none'
         },
     };
 
@@ -58,8 +77,9 @@ async function drawBasic() {
 
     function changePrice(data, row) {
         // TODO: Fix price, it is currently off slightly
-        const selectedPrice = chart.getChartLayoutInterface().getVAxisValue(row).toFixed(2);
-        if (selectedPrice) {
+        const selectedTime= data.cache[row][0].We;
+        const selectedPrice = data.cache[row][1].We;
+        if (selectedPrice && selectedTime) {
             priceDisplay.innerHTML = `$ ${selectedPrice}`
         }
     }

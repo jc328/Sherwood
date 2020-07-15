@@ -9,9 +9,12 @@ html(lang="en")
 
         title Chart Test
     body
-        div#chart_div
-
-        div#current-price
-            p #{stockSymbol}'S PRICE:
+        div#chart-wrapper
+            div#current-price
+                span(id="current-company-name")= companyName
+                br
                 span(id="current-price-span")
+            div#chart_div
+
+
         input(type="hidden", name="currentStock" value=stockSymbol)

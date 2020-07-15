@@ -6,48 +6,14 @@ setInterval(async function() {
 }, 300000);
 
 async function drawBasic() {
-    let currentStock = document.getElementsByName("currentStock")[0].value;
+    const balanceDisplay = document.getElementById('current-balance__text');
 
-    const priceDisplay = document.getElementById('current-price-span');
+    balanceDisplay.innerHTML = 'oop';
 
-    // const priceRequest = await fetch(`/api/chart/price/${currentStock}`, {
-    //     method: 'get',
-    //     headers: { 'Content-Type': 'application/json' }
-    //     })
-    // const recentPrice = await priceRequest.json();
-
-    // priceDisplay.innerHTML = `$ ${recentPrice.toFixed(2)}`
-
-    const intradayPriceRequest = await fetch(`/api/chart/intraday-prices/${currentStock}`, {
-        method: 'get',
-        headers: { 'Content-Type': 'application/json' }
-        })
-    const intradayPrice = await intradayPriceRequest.json()
-
-    let rows = new Array();
-    intradayPrice.forEach((price) => {
-        let fullTime = price.minute;
-        let hour = parseInt(fullTime.split(':')[0]);
-        let minutes = parseInt(fullTime.split(':')[1]);
-        let label = price.label;
-        if (minutes % 5 === 0 && price.average) {
-            let formattedPrice = parseFloat(price.average.toFixed(2));
-            rows.push([[hour, minutes, 0], formattedPrice, label]);
-        }
-    })
-
-    let ratio;
-    if (rows.length < 100) {
-        ratio = String((rows.length / 78) * 100).concat('%');
-    } else {
-        ratio = '100%'
-    }
-    console.log(rows.length)
-
+    //TODO REFACTOR FOR PORTFOLIO
     let lastRowPrice = rows[rows.length - 1][1];
     let firstRowPrice = rows[0][1];
     let lineColor = (lastRowPrice > firstRowPrice) ? "#00C805" : "#E64800";
-    console.log(lineColor)
 
     let data = new google.visualization.DataTable();
     data.addColumn('timeofday', '');
@@ -99,6 +65,7 @@ async function drawBasic() {
     let chart = new google.visualization.LineChart(document.getElementById('chart_div'));
     chart.draw(data, options);
 
+    // TODO REFACTOR FOR PORTFOLIO
     function changePrice(data, row) {
         const selectedTime = data.cache[row][0].We;
         const selectedPrice = data.cache[row][1].We;

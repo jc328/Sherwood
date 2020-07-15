@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const csurf = require('csurf');
 const fetch = require('node-fetch');
 
-const { Stock } = require('./models');
+const { User, Transaction, Stock } = require('./models');
 const finnhub = require('finnhub');
 
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
@@ -90,9 +90,30 @@ app.get('/api/chart/intraday-prices/:id(\\w+)', asyncHandler(async (req, res) =>
 
 app.get('/chart/:id(\\w+)', asyncHandler(async (req, res) => {
   const stockSymbol = req.params.id;
-  const stock = await Stock.findOne({ where: { symbol: stockSymbol }});
+  // const stock = await Stock.findOne({ where: { symbol: stockSymbol }});
+  const companyInfoRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/company?token=${token}`, {
+    method: 'get',
+    body: JSON.stringify(res.body),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  const companyInfo = await companyInfoRequest.json();
+  const companyName = companyInfo.companyName;
 
-  res.render('chart', { stockSymbol })
+  res.render('chart', { stockSymbol, companyName })
+}));
+
+app.get('/api/transactions/:id(\\d+)', asyncHandler(async (req, res) => {
+  const userId = req.params.id;
+  const userTransactions = await Transaction.findAll({ where: {
+    user_id: userId
+  }});
+
+  res.json(userTransactions);
+}));
+
+app.get('/portfolio-chart', asyncHandler(async (req, res) => {
+  // const user = await User.findByPk(1);
+  res.render('portfolio-chart');
 }));
 
 const port = Number.parseInt(process.env.PORT, 10) || 8080;

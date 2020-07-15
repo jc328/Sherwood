@@ -3,3 +3,16 @@
   width: 400px;
   margin: 25px;
 }
+
+.searchbarDrop {
+  /* position: absolute; */
+  width: 400px;
+  overflow: hidden;
+  background-image: none;
+  border: none;
+  margin: 25px;
+}
+
+input::-webkit-calendar-picker-indicator {
+  display: none;
+}

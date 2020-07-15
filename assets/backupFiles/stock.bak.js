@@ -5,8 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
-    },
-    fullName: DataTypes.STRING
+    }
   }, {});
   Stock.associate = function(models) {
     let columnMapping = {

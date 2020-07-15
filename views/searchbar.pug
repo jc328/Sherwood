@@ -3,8 +3,13 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(href="./css/searchbar.css" rel="stylesheet")
+    script()
+    link(href="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.css" rel="stylesheet")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.js" async)
     script(type="module" src="./javascript/searchBar.js")
+    link(href="./css/searchbar.css" rel="stylesheet")
+
+
     title Dashboard Search Bar
   body
     div
@@ -12,16 +17,27 @@ html(lang="en")
         div
           input(
             class='searchBar'
+            class='awesomplete'
             type='text'
             name='search'
             placeholder='Search'
             autocomplete='off'
+            list='company'
+            size='5'
           )
+          datalist(id='company' size='5').searchbarDrop
+            each val in stockData
+              option=val.fullName
+
+          //- div
+          //-     select(name='dropdown', id='' size="5").searchbarDrop
+          //-       each val in stockData
+          //-         option=val.fullName
+
     div
       img(src=data.logo)
       h4= `Stock Name: ${data.name}`
       h4= `Website: ${data.weburl}`
-      //- p Summary
       h4= `Industry: ${data.finnhubIndustry}`
       h4= `Market Cap: ${data.marketCapitalization} Million`
     div
@@ -29,17 +45,16 @@ html(lang="en")
       h4= `IPO Date: ${data.ipo}`
       h4= `Country: ${data.country}`
       h4= `Phone: ${data.phone}`
-      //- h4 Dividend Yield
-      //- h4 Average Volume
-    div
-      h3= news[0].headline
-      p= news[0].summary
-      p= href=news[0].url
-    div
-      h3= news[1].headline
-      p= news[1].summary
-      p= news[1].url
-    div
-      h3= news[2].headline
-      p= news[2].summary
-      p= news[2].url
+
+    //- div
+    //-   h3= news[0].headline
+    //-   p= news[0].summary
+    //-   p= href=news[0].url
+    //- div
+    //-   h3= news[1].headline
+    //-   p= news[1].summary
+    //-   p= news[1].url
+    //- div
+    //-   h3= news[2].headline
+    //-   p= news[2].summary
+    //-   p= news[2].url

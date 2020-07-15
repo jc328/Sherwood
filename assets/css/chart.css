@@ -1,7 +1,16 @@
 div.google-visualization-tooltip {
-    display:none
+    background-color: transparent;
+    /* position: absolute !important;
+    top: 0px !important;
+    left: 0px !important; */
 }
 
-div.google-visualization-tooltip > ul > li > span {
-    font-family: cursive;
+.google-visualization-tooltip-item-list .google-visualization-tooltip-item:first-child {
+    display: none
 }
+
+div.google-visualization-tooltip-square {
+    display: none
+}
+
+/* <style>div.google-visualization-tooltip {background-color: transparent};</style> */

@@ -41,11 +41,11 @@ async function drawBasic() {
     data.addRows(rows);
 
     let options = {
+        backgroundColor: 'transparent',
         tooltip: {
             isHtml: true,
             ignoreBounds: true,
-            trigger: 'both',
-            style: 'css'
+            trigger: 'focus',
         },
         scaleType: 'log',
         chartArea: {
@@ -57,10 +57,16 @@ async function drawBasic() {
         width: 680,
         height: 300,
         hAxis: {
-            textPosition: 'none'
+            textPosition: 'none',
+            gridlines: {
+                count: 0
+            }
         },
         vAxis: {
-            textPosition: 'none'
+            textPosition: 'none',
+            gridlines: {
+                count: 0
+            }
         },
         focusTarget: 'category',
         crosshair: {
@@ -85,6 +91,9 @@ async function drawBasic() {
     }
 
     chart.draw(data, options);
+    // google.visualization.events.addListener(chart, 'ready', (event) => {
+
+    // });
     google.visualization.events.addListener(chart, 'onmouseover', (event) => {
         changePrice(data, event.row);
     });

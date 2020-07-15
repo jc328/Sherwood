@@ -9,8 +9,6 @@ const fetch = require('node-fetch');
 const { User, Transaction, Stock } = require('./models');
 const finnhub = require('finnhub');
 
-
-
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
 api_key.apiKey = "bs6u9h7rh5rdv3m40reg"
 const finnhubClient = new finnhub.DefaultApi()
@@ -80,7 +78,6 @@ app.post('/search', asyncHandler(async (req, res) => {
   });
 }))
 
-<<<<<<< HEAD
 app.get('/api/chart/price/:id(\\w+)', asyncHandler(async (req, res) => {
   const stockSymbol = req.params.id;
   const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${token}`, {
@@ -92,8 +89,6 @@ app.get('/api/chart/price/:id(\\w+)', asyncHandler(async (req, res) => {
   res.json(price)
 }));
 
-=======
->>>>>>> d13369e53d3aaf52368a16dd5564b9e2c180aedb
 app.get('/api/chart/intraday-prices/:id(\\w+)', asyncHandler(async (req, res) => {
   const stockSymbol = req.params.id;
   const intradayPriceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/intraday-prices?token=${token}`, {

@@ -1,8 +1,9 @@
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawBasic);
+
+// Re-draws chart every 5 min
 setInterval(async function() {
     await drawBasic();
-    // console.log('rEDRAW')
 }, 300000);
 
 async function drawBasic() {
@@ -25,6 +26,7 @@ async function drawBasic() {
     const intradayPrice = await intradayPriceRequest.json()
 
     let rows = new Array();
+    let prices = new Array();
     intradayPrice.forEach((price) => {
         let fullTime = price.minute;
         let hour = parseInt(fullTime.split(':')[0]);
@@ -33,8 +35,12 @@ async function drawBasic() {
         if (minutes % 5 === 0 && price.average) {
             let formattedPrice = parseFloat(price.average.toFixed(2));
             rows.push([[hour, minutes, 0], formattedPrice, label]);
+            prices.push(formattedPrice);
         }
     })
+
+    let maxPrice = Math.max(...prices);
+    let minPrice = Math.min(...prices);
 
     let ratio;
     if (rows.length < 100) {
@@ -63,7 +69,7 @@ async function drawBasic() {
             ignoreBounds: true,
             trigger: 'focus',
         },
-        scaleType: 'log',
+        scaleType: 'linear',
         chartArea: {
             left: 0,
             top: 0,
@@ -82,6 +88,10 @@ async function drawBasic() {
             textPosition: 'none',
             gridlines: {
                 count: 0
+            },
+            viewWindow: {
+                max: maxPrice,
+                min: minPrice
             }
         },
         focusTarget: 'category',

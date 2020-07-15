@@ -104,11 +104,17 @@ app.get('/chart/:id(\\w+)', asyncHandler(async (req, res) => {
 
 app.get('/api/transactions/:id(\\d+)', asyncHandler(async (req, res) => {
   const userId = req.params.id;
-  const userTransactions = await Transaction.findAll({ where: {
-    user_id: userId
-  }});
+
+  const userTransactions = await Transaction.findAll({where: {user_id : userId}});
 
   res.json(userTransactions);
+}));
+
+app.get('/api/:id(\\d+)', asyncHandler(async (req, res) => {
+  const userId = req.params.id;
+  const userBalance = await User.findByPk(userId);
+
+  res.json(userBalance.account_balance);
 }));
 
 app.get('/portfolio-chart', asyncHandler(async (req, res) => {

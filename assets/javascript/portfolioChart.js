@@ -11,6 +11,7 @@ async function drawBasic() {
 
     balanceDisplay.innerHTML = 'oop';
 
+    // This is hardcoded to get transactinos for user #2 ""
     const transactionsRequest = await fetch(`/api/transactions/2`, {
         method: 'get',
         headers: { 'Content-Type': 'application/json' }
@@ -99,7 +100,7 @@ async function drawBasic() {
 
 //THIS IS ALL SET FOR TEST USER
 document.addEventListener("DOMContentLoaded", async () => {
-    const balanceRequest = await fetch(`/api/2`, {
+    const balanceRequest = await fetch(`/api/balance/2`, {
         method: 'get',
         headers: { 'Content-Type': 'application/json' }
         })

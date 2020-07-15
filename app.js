@@ -1,5 +1,6 @@
 #! /usr/bin/env node
 const token = 'Tsk_52c6de67190f4fb7aa10ae91d4c9dd5c';
+const actualToken = 'pk_832bd29aebd64807a159915dae90a5e5'
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -115,6 +116,7 @@ app.get('/chart/:id(\\w+)', asyncHandler(async (req, res) => {
   res.render('chart', { stockSymbol, companyName })
 }));
 
+// This should only work if user is logged in
 app.get('/api/transactions/:id(\\d+)', asyncHandler(async (req, res) => {
   const userId = req.params.id;
 
@@ -123,16 +125,19 @@ app.get('/api/transactions/:id(\\d+)', asyncHandler(async (req, res) => {
   res.json(userTransactions);
 }));
 
-app.get('/api/:id(\\d+)', asyncHandler(async (req, res) => {
+// This should only work if user is logged in
+app.get('/api/balance/:id(\\d+)', asyncHandler(async (req, res) => {
   const userId = req.params.id;
-  const userBalance = await User.findByPk(userId);
-
-  res.json(userBalance.account_balance);
+  const user = await User.findByPk(userId);
+  const balance = user.account_balance;
+  res.json(balance);
 }));
 
+// This should only work if user is logged in
 app.get('/portfolio-chart', asyncHandler(async (req, res) => {
-  // const user = await User.findByPk(1);
-  res.render('portfolio-chart');
+  // TODO Get user from session ID and render appropriate portfolio info
+  // Currently testing User.id 2
+  res.render('portfolioChart');
 }));
 
 const port = Number.parseInt(process.env.PORT, 10) || 8080;

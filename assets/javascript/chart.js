@@ -42,13 +42,7 @@ async function drawBasic() {
     let maxPrice = Math.max(...prices);
     let minPrice = Math.min(...prices);
 
-    let ratio;
-    if (rows.length < 100) {
-        ratio = String((rows.length / 78) * 100).concat('%');
-    } else {
-        ratio = '100%'
-    }
-    console.log(rows.length)
+    let ratio = '100%';
 
     let lastRowPrice = rows[rows.length - 1][1];
     let firstRowPrice = rows[0][1];

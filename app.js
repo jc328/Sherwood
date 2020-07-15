@@ -9,6 +9,8 @@ const fetch = require('node-fetch');
 const { Stock } = require('./models');
 const finnhub = require('finnhub');
 
+
+
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
 api_key.apiKey = "bs6u9h7rh5rdv3m40reg"
 const finnhubClient = new finnhub.DefaultApi()
@@ -31,17 +33,20 @@ app.get('/login-page', asyncHandler(async (req, res) => {
 }));
 
 app.get('/landing-page', asyncHandler(async (req, res) => {
-  res.render('landing-page');
+  res.render('landingPage');
 }));
 
 app.get('/search', asyncHandler(async (req, res) => {
+  const stockData = await Stock.findAll({
+    attributes: ["symbol", "fullName"]
+  })
   finnhubClient.companyProfile2({'symbol': 'DIS'}, (error, data, response) => {
     finnhubClient.companyNews("AAPL", "2020-06-01", "2020-07-14", (error, news, response) => {
       if (error) {
           console.error(error);
       } else {
           // let breakingNews = news[0]
-          res.render('searchbar', {data, news})
+          res.render('searchbar', {data, news, stockData})
       }
   });
   });
@@ -52,19 +57,30 @@ app.get('/news', asyncHandler(async (req, res) => {
 }));
 
 app.post('/search', asyncHandler(async (req, res) => {
+  const stockData = await Stock.findAll({
+    attributes: ["symbol", "fullName"]
+  })
+  const sym = await Stock.findOne({
+    attributes: ["symbol"],
+    where: {
+      'fullName' : req.body.search,
+    }
+  })
+  let ticker = (sym == null ? req.body.search : sym.symbol)
 
-  finnhubClient.companyProfile2({'symbol': req.body.search}, (error, data, response) => {
-    finnhubClient.companyNews(req.body.search, "2020-06-01", "2020-07-14", (error, news, response) => {
+  finnhubClient.companyProfile2({'symbol': ticker}, (error, data, response) => {
+    finnhubClient.companyNews(ticker, "2020-06-01", "2020-07-14", (error, news, response) => {
       if (error) {
           console.error(error);
       } else {
           // let breakingNews = news[0]
-          res.render('searchbar', {data, news})
+          res.render('searchbar', {data, news, stockData})
       }
   });
   });
 }))
 
+<<<<<<< HEAD
 app.get('/api/chart/price/:id(\\w+)', asyncHandler(async (req, res) => {
   const stockSymbol = req.params.id;
   const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${token}`, {
@@ -76,6 +92,8 @@ app.get('/api/chart/price/:id(\\w+)', asyncHandler(async (req, res) => {
   res.json(price)
 }));
 
+=======
+>>>>>>> d13369e53d3aaf52368a16dd5564b9e2c180aedb
 app.get('/api/chart/intraday-prices/:id(\\w+)', asyncHandler(async (req, res) => {
   const stockSymbol = req.params.id;
   const intradayPriceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/intraday-prices?token=${token}`, {

@@ -104,7 +104,6 @@ app.get('/api/chart/intraday-prices/:id(\\w+)', asyncHandler(async (req, res) =>
 
 app.get('/chart/:id(\\w+)', asyncHandler(async (req, res) => {
   const stockSymbol = req.params.id;
-  // const stock = await Stock.findOne({ where: { symbol: stockSymbol }});
   const companyInfoRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/company?token=${token}`, {
     method: 'get',
     body: JSON.stringify(res.body),
@@ -135,7 +134,6 @@ app.get('/api/transactions/:id(\\d+)', asyncHandler(async (req, res) => {
   })
 
   res.json(rows)
-  res.json(userTransactions)
 }));
 
 // This should only work if user is logged in

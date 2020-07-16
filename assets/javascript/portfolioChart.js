@@ -1,5 +1,3 @@
-
-
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawBasic);
 
@@ -27,9 +25,8 @@ async function aggregatePrice (transaction) {
         }
         tempArr.push(intradayPrice[i].average);
     }
-
     return tempArr;
-}
+};
 
 async function drawBasic() {
     const balanceDisplay = document.getElementById('current-balance__text');
@@ -47,15 +44,25 @@ async function drawBasic() {
         })
     const transactionsTestUser = await transactionsRequest.json();
 
-    let stonks = new Array();
-
-    transactionsTestUser.forEach(stonk => {
-        stonks.push(aggregatePrice(stonk));
-    })
+    const intradayTimeRequest = await fetch(`/api/chart/intraday-prices/AAPL`, {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json' }
+        })
+    const intradayTime = await intradayTimeRequest.json()
 
     let agg = new Array();
+    if (transactionsTestUser.length === 0) {
+        for(let i = 0; i < intradayTime.length; i++) {
+            agg.push(Number(cashBalance));
+        }
+    }
+    let userStocks = new Array();
 
-    await Promise.all(stonks).then(val => {
+    transactionsTestUser.forEach(uStock => {
+        userStocks.push(aggregatePrice(uStock));
+    })
+
+    await Promise.all(userStocks).then(val => {
         val.forEach(ele => {
             let shar = ele.shift();
 
@@ -72,35 +79,25 @@ async function drawBasic() {
     });
 
     let rows = new Array();
-    const intradayPriceRequest = await fetch(`/api/chart/intraday-prices/AAPL`, {
-        method: 'get',
-        headers: { 'Content-Type': 'application/json' }
-        })
-    const intradayPrice = await intradayPriceRequest.json()
-    for (let i = 0; i < intradayPrice.length; i++) {
-        let fullTime = intradayPrice[i].minute;
-        let hour = parseInt(fullTime.split(':')[0]);
-        let minutes = parseInt(fullTime.split(':')[1]);
-        let label = intradayPrice[i].label;
-        // if (fullTime.endsWith(0) || fullTime.endsWith(5)) {
-            rows.push([[hour, minutes, 0], agg[i], label]);
-        // }
+    for (let i = 0; i < intradayTime.length; i++) {
+        let fullTime = intradayTime[i].minute;
+        let label = intradayTime[i].label;
+        rows.push([fullTime, agg[i], label]);
     }
 
-    // TODO REFACTOR FOR PORTFOLIO
-    let lastRowPrice = agg[agg.length - 1];
-    let firstRowPrice = agg[0];
-    let lineColor = (lastRowPrice > firstRowPrice) ? "#00C805" : "#E64800";
+    let ratio = `${(agg.length / 390) * 100}%`;
+    let lastRowBalance = agg[agg.length - 1];
+    let firstRowBalance = agg[0];
+    let lineColor = (lastRowBalance >= firstRowBalance) ? "#00C805" : "#E64800";
 
     let data = new google.visualization.DataTable();
-    data.addColumn('timeofday', '');
+    data.addColumn('string', '');
     data.addColumn('number', '');
     data.addColumn({type: 'string', role: 'tooltip'})
 
     data.addRows(rows);
 
     let options = {
-        // interpolateNulls: true,
         backgroundColor: 'transparent',
         tooltip: {
             isHtml: true,
@@ -111,19 +108,19 @@ async function drawBasic() {
         chartArea: {
             left: 0,
             top: 0,
-            width: '100%',
+            width: ratio,
             height: '100%'
         },
         width: 680,
         height: 300,
         hAxis: {
-            textPosition: 'none',
             gridlines: {
                 count: 0
             }
         },
         vAxis: {
-            textPosition: 'none',
+            baseline: firstRowBalance,
+            baselineColor: 'pink',
             gridlines: {
                 count: 0
             }
@@ -143,7 +140,6 @@ async function drawBasic() {
     let chart = new google.visualization.LineChart(document.getElementById('chart_div'));
     chart.draw(data, options);
 
-    // TODO REFACTOR FOR PORTFOLIO
     function changePrice(data, row) {
         const selectedTime = data.cache[row][0].We;
         const selectedPrice = data.cache[row][1].We;
@@ -152,77 +148,17 @@ async function drawBasic() {
         }
     }
 
-    // let currentLastPrice = data.cache[data.cache.length - 1][1].We;
-    console.log(currentLastPrice)
-    balanceDisplay.innerHTML = `$ ${currentLastPrice}`
+    let currentBalance = data.cache[data.cache.length - 2][1].We;
+    balanceDisplay.innerHTML = `$ ${currentBalance}`;
 
+    google.visualization.events.addListener(chart, 'ready', (event) => {
+        balanceDisplay.innerHTML = `$ ${currentBalance}`
+    });
     google.visualization.events.addListener(chart, 'onmouseover', (event) => {
         changePrice(data, event.row);
     });
 
     google.visualization.events.addListener(chart, 'onmouseout', (event) => {
-        balanceDisplay.innerHTML = `$ ${currentLastPrice}`;
+        balanceDisplay.innerHTML = `$ ${currentBalance}`;
     });
 }
-
-//THIS IS ALL SET FOR TEST USER
-// document.addEventListener("DOMContentLoaded", async () => {
-//     const cashBalanceRequest = await fetch(`/api/balance/2`, {
-//         method: 'get',
-//         headers: { 'Content-Type': 'application/json' }
-//         })
-//     const cashBalance = await cashBalanceRequest.json();
-
-//     const runningBalanceSpan = document.getElementById('current-balance__text');
-
-//     const transactionsRequest = await fetch(`/api/transactions/2`, {
-//         method: 'get',
-//         headers: { 'Content-Type': 'application/json' }
-//         })
-//     const transactionsTestUser = await transactionsRequest.json();
-
-//     let stonks = new Array();
-
-//     async function aggregatePrice (transaction) {
-//         let symbol = transaction.symbol;
-//         let shares = transaction.share_quantity;
-//         const intradayPriceRequest = await fetch(`/api/chart/intraday-prices/${symbol}`, {
-//             method: 'get',
-//             headers: { 'Content-Type': 'application/json' }
-//             })
-//         const intradayPrice = await intradayPriceRequest.json();
-
-//         let tempArr = new Array();
-//         tempArr.push(shares)
-//         intradayPrice.forEach(thing => {
-//             if( (thing.minute).endsWith("0") ||
-//                 (thing.minute).endsWith("5")) {
-//                 tempArr.push(thing.average);
-//             }
-//         })
-
-//         return tempArr;
-//     }
-
-//     transactionsTestUser.forEach(stonk => {
-//         stonks.push(aggregatePrice(stonk));
-//     })
-
-//     let agg = new Array();
-
-//     Promise.all(stonks).then(val => {
-//         val.forEach(ele => {
-//             let shar = ele.shift();
-
-//             for (let i = 0; i < ele.length; i++) {
-//                 let current = ele[i];
-
-//                 if (i >= agg.length) {
-//                     agg.push(current * shar);
-//                 } else {
-//                     agg[i] += (current * shar);
-//                 }
-//             }
-//         });
-//     });
-// });

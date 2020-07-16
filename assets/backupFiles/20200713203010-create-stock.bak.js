@@ -13,10 +13,6 @@ module.exports = {
         type: Sequelize.STRING(6),
         unique: true
       },
-      fullName: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

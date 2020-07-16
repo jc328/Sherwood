@@ -3,8 +3,15 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Document
+        title portfolio | Sherwood Wealth Services
+        link(href="./css/awesomplete.css" rel="stylesheet")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.js" async)
+        script(type="module" src="./javascript/searchBar.js")
+        script(type="module" src="./javascript/dashboard.js")
+        link(href="./css/nwz.css" rel="stylesheet")
+        //- link(href="./css/searchbar.css" rel="stylesheet")
         link(href="./css/dash.css" rel="stylesheet")
+
     body
       div#main
         div#nav
@@ -13,6 +20,7 @@ html(lang="en")
               img.nav__feather-c__feather(src="https://cdn.robinhood.com/assets/robinhood/shared/favicon_v2.ico" width='500' height='600')
             div.search
               img#magnifying-glass(src="/images/magnifying-glass.png", alt="", srcset="")
+            div#shrink-space-free
             div#free-stocks.nav__free-c
                 a(href="/").nav__free-c__free Free Stocks   
             div#portfolio.nav__free-c
@@ -23,3 +31,156 @@ html(lang="en")
                 a(href="/").nav__free-c__free Messages
             div.nav__free-c
                 a(href="/").nav__free-c__free Account
+
+                                  //-  div#dash-grid
+                                  //-   div.dash-gridz__grid-space
+                                  //-   div.dash-gridz__grid-space
+                                  //-   div.dash-gridz__grid-space
+                                  //-   div.dash-gridz__grid-space
+                                  //-   div.dash-gridz__grid-space
+                                  //-   div.dash-gridz__grid-space
+                                  //-   div.dash-gridz__grid-space
+                                  //-   div.dash-gridz__grid-space
+            div.right-display-c
+              div.right-display-c__display
+                div#right-top.right-display-c__display__content
+                  div.right-top__cirlces-c
+                    div.right-top__circles-c__circles
+                    div.right-top__circles-c__circles
+                    div.right-top__circles-c__circles
+                div.right-display-c__display__content
+                div.right-display-c__display__content
+                div.right-display-c__display__content
+                div.right-display-c__display__content
+                div.right-display-c__display__content
+                div.right-display-c__display__content
+                div.right-display-c__display__content
+                div.right-display-c__display__content
+                div.right-display-c__display__content
+                div.right-display-c__display__content
+                div.right-display-c__display__content
+                div.right-display-c__display__content
+                div.right-display-c__display__content
+                div.right-display-c__display__content
+
+            div.right-display-c__drop-down
+              div.right-display-c__drop-down__content 
+                span#display Display      
+              div.right-display-c__drop-down__content
+                a#last-price(href="/").nav__free-c__free Last Price       
+              div.right-display-c__drop-down__content
+                a#your-equity(href="/").nav__free-c__free Your Equity       
+              div.right-display-c__drop-down__content
+                a#todays-return(href="/").nav__free-c__free Today's Return       
+              div.right-display-c__drop-down__content
+                a#total-return(href="/").nav__free-c__free Total Return       
+
+          div.left-display-c
+            div.left-display-c__display
+              div.pageContainer
+
+                div.news-c
+                  div#empty-space-news
+                  div#date
+                    h1 July 15, 2020
+                  div.stock__watchlist
+                    h2 Stocks List Goes Here
+                  div.stocks
+                    h2 Stocks Watchlists Goes Here
+                  div.list
+                    h2 Popular Lists
+                    p If implemented, this is a curated list of different categories of assets
+                    div.newsContainer
+                      article.newsContainer__article--main
+                        div.mediaName
+                          span CNBC 2h
+                        div
+                          a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html" class='article__1--heading') Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
+                          img(class='articleOneImage' src="../images/articleOne.png", alt="Guy smiles")
+                      article.newsContainer__article--second
+                        div.mediaName
+                          span Bloomberg 2h
+                          div
+                            a(href="https://finance.yahoo.com/news/apple-tax-ruling-first-win-140020920.html?.tsrc=rss" class='article__2--heading') Apple Clocks Victory in Tax Fight But More EU Battles Loom
+                              img(class='articleTwoImage' src="../images/article2.png", alt="Laptop")
+                              div
+                                p Apple Inc. clinched an important win in a top European Union court Wednesday, but it’s only the first battle in an onslaught of other regulatory threats facing the iPhone maker in Europe
+                      article.newsContainer__article--second
+                        div.mediaName
+                          span Benzinga 2h
+                          div
+                            a(href="https://finance.yahoo.com/news/tesla-shares-breather-historic-run-165056868.html?.tsrc=rss" class='article__3--heading') Tesla Shares Take a Breather After Historic Run
+                              img(class='articleThreeImage' src="../images/article3.png", alt="Guy looks at car")
+                          div
+                            p After a torrid rally that saw shares more than double since early May, Tesla Inc. is taking a pause on Wednesday, even as the broader market rises on the hopes for a coronavirus vaccine.
+                      article.newsContainer__article--second
+                        div.mediaName
+                          span Benzinga 2h
+                          div
+                            a(href="https://www.benzinga.com/analyst-ratings/analyst-color/20/07/16637358/alibaba-analyst-lowers-second-half-estimates-raises-price-target-in-shifting-e-comm" class='article__4--heading') Alibaba Analyst Lowers Second-Half Estimates, Raises Price Target In Shifting E-Commerce Landscape
+                            img(class='articleFourImage' src="../images/article4.png", alt="Hand holds Credit Card")
+                          div
+                            p KeyBanc Capital Markets is lowering its estimates for Alibaba Group Holding Ltd - ADR BABA 0.24% in the second half of the year.
+                      article.newsContainer__article--second
+                        div.mediaName
+                          span MarketWatch 2h
+                          div
+                            a(href="https://finance.yahoo.com/m/5fa8ca36-22af-3a21-8425-4bdedf1b5e36/prominent-twitter-accounts.html?.tsrc=rss") Bitcoin prices unfazed as major Twitter hijacking ripples through social media and digital currency community
+                            img(class='articleFiveImage' src="../images/article5.png", alt="Two laptops")
+                          div
+                            p Bitcoin prices on Wednesday evening were virtually unchanged, even as unknown hackers were perpetuating a massive scam to lure bitcoins away from owners.
+                      article.newsContainer__article--second
+                        div.mediaName
+                          span Benzinga 2h
+                          div
+                            span.article__6--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
+                            a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
+                              img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
+                      article.newsContainer__article--second
+                        div.mediaName
+                          span CNBC 2h
+                          div
+                            span.article__7--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
+                            a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
+                              img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
+                      article.newsContainer__article--second
+                        div.mediaName
+                          span The Wall Street Journal 2h
+                          div
+                            span.article__8--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
+                            a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
+                              img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
+                        article.newsContainer__article--second
+                          div.mediaName
+                            span Benzinga 2h
+                            div
+                              span.article__9--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
+                              a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
+                                img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
+                          article.newsContainer__article--second
+                            div.mediaName
+                              span Benzinga 2h
+                              div
+                                span.article__10--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
+                                a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
+                                  img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
+
+
+                          //- div.left-display-c__display__content
+                          //- div.left-display-c__display__content
+                          //- div.left-display-c__display__content
+                          //- div.left-display-c__display__content
+                          //- div.left-display-c__display__content
+                          //- div.left-display-c__display__content
+                          //- div.left-display-c__display__content
+                          //- div.left-display-c__display__content
+                          //- div.left-display-c__display__content
+                          //- div.left-display-c__display__content
+                          //- div.left-display-c__display__content
+                          //- div.left-display-c__display__content
+                          //- div.left-display-c__display__content
+                          //- div.left-display-c__display__content
+                          //- div.left-display-c__display__content
+                        
+            
+                      

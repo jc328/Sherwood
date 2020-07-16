@@ -1,53 +1,31 @@
 google.charts.load('current', {packages: ['corechart', 'line']});
-google.charts.setOnLoadCallback(drawBasic);
+// google.charts.setOnLoadCallback(drawBasic);
 
-// Re-draws chart every 5 min
-setInterval(async function() {
-    await drawBasic();
-}, 300000);
+// Re-draw the chart every 5 minutes
+// setInterval(async function() {
+//     await drawBasic();
+// }, 300000);
 
 async function drawBasic() {
-    let currentStock = document.getElementsByName("currentStock")[0].value;
+    const balanceDisplay = document.getElementById('current-balance__text');
 
-    const priceDisplay = document.getElementById('current-price-span');
+    balanceDisplay.innerHTML = 'oop';
 
-    // const priceRequest = await fetch(`/api/chart/price/${currentStock}`, {
-    //     method: 'get',
-    //     headers: { 'Content-Type': 'application/json' }
-    //     })
-    // const recentPrice = await priceRequest.json();
-
-    // priceDisplay.innerHTML = `$ ${recentPrice.toFixed(2)}`
-
-    const intradayPriceRequest = await fetch(`/api/chart/intraday-prices/${currentStock}`, {
+    // This is hardcoded to get transactinos for user #2 ""
+    const transactionsRequest = await fetch(`/api/transactions/2`, {
         method: 'get',
         headers: { 'Content-Type': 'application/json' }
         })
-    const intradayPrice = await intradayPriceRequest.json()
+    const transactionsTestUser = await transactionsRequest.json();
 
-    let rows = new Array();
-    let prices = new Array();
-    intradayPrice.forEach((price) => {
-        let fullTime = price.minute;
-        let hour = parseInt(fullTime.split(':')[0]);
-        let minutes = parseInt(fullTime.split(':')[1]);
-        let label = price.label;
-        if (minutes % 5 === 0 && price.average) {
-            let formattedPrice = parseFloat(price.average.toFixed(2));
-            rows.push([[hour, minutes, 0], formattedPrice, label]);
-            prices.push(formattedPrice);
-        }
+    transactionsTestUser.forEach(taction => {
+        let purchase = (taction.price * taction.share_quantity).toFixed(2)
     })
 
-    let maxPrice = Math.max(...prices);
-    let minPrice = Math.min(...prices);
-
-    let ratio = '100%';
-
-    let lastRowPrice = rows[rows.length - 1][1];
-    let firstRowPrice = rows[0][1];
-    let lineColor = (lastRowPrice > firstRowPrice) ? "#00C805" : "#E64800";
-    console.log(lineColor)
+    // TODO REFACTOR FOR PORTFOLIO
+    // let lastRowPrice = rows[rows.length - 1][1];
+    // let firstRowPrice = rows[0][1];
+    // let lineColor = (lastRowPrice > firstRowPrice) ? "#00C805" : "#E64800";
 
     let data = new google.visualization.DataTable();
     data.addColumn('timeofday', '');
@@ -63,7 +41,7 @@ async function drawBasic() {
             ignoreBounds: true,
             trigger: 'focus',
         },
-        scaleType: 'linear',
+        scaleType: 'log',
         chartArea: {
             left: 0,
             top: 0,
@@ -82,10 +60,6 @@ async function drawBasic() {
             textPosition: 'none',
             gridlines: {
                 count: 0
-            },
-            viewWindow: {
-                max: maxPrice,
-                min: minPrice
             }
         },
         focusTarget: 'category',
@@ -103,6 +77,7 @@ async function drawBasic() {
     let chart = new google.visualization.LineChart(document.getElementById('chart_div'));
     chart.draw(data, options);
 
+    // TODO REFACTOR FOR PORTFOLIO
     function changePrice(data, row) {
         const selectedTime = data.cache[row][0].We;
         const selectedPrice = data.cache[row][1].We;
@@ -122,3 +97,29 @@ async function drawBasic() {
         priceDisplay.innerHTML = `$ ${currentLastPrice}`
     });
 }
+
+//THIS IS ALL SET FOR TEST USER
+document.addEventListener("DOMContentLoaded", async () => {
+    const balanceRequest = await fetch(`/api/balance/2`, {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json' }
+        })
+    const balance = await balanceRequest.json();
+
+    const balanceDisplay = document.getElementById('current-balance__text');
+
+    balanceDisplay.innerHTML = `$ ${balance}`;
+
+    const transactionsRequest = await fetch(`/api/transactions/2`, {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json' }
+        })
+    const transactionsTestUser = await transactionsRequest.json();
+
+    transactionsTestUser.forEach(taction => {
+        let purchase = (taction.price * taction.share_quantity).toFixed(2);
+        console.log(purchase)
+    })
+
+    // User "test" should have a balance of $2.50 + every purchase
+})

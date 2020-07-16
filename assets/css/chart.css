@@ -1,0 +1,38 @@
+div#chart-wrapper {
+    width: 680px;
+}
+
+div#current-price {
+    background-color: transparent;
+    width: auto;
+    height: 6rem;
+    margin-bottom: 20px;
+}
+
+div#current-price > span {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+div#chart_div {
+    position: relative;
+}
+div.google-visualization-tooltip {
+    background-color: transparent;
+    position: absolute !important;
+    top: -35px !important;
+    border: 0;
+    margin-left: 80px;
+    box-shadow: none;
+}
+
+.google-visualization-tooltip-item-list .google-visualization-tooltip-item:first-child {
+    display: none
+}
+
+div.google-visualization-tooltip-square {
+    display: none
+}
+
+/* <style>div.google-visualization-tooltip {background-color: transparent};</style> */

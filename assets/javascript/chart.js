@@ -47,13 +47,13 @@ async function drawBasic() {
     let lastRowPrice = rows[rows.length - 1][1];
     let firstRowPrice = rows[0][1];
     let lineColor = (lastRowPrice > firstRowPrice) ? "#00C805" : "#E64800";
-    console.log(lineColor)
+    // console.log(lineColor)
 
     let data = new google.visualization.DataTable();
     data.addColumn('timeofday', '');
     data.addColumn('number', '');
     data.addColumn({type: 'string', role: 'tooltip'})
-
+    // console.log(rows)
     data.addRows(rows);
 
     let options = {

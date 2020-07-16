@@ -119,10 +119,23 @@ app.get('/chart/:id(\\w+)', asyncHandler(async (req, res) => {
 // This should only work if user is logged in
 app.get('/api/transactions/:id(\\d+)', asyncHandler(async (req, res) => {
   const userId = req.params.id;
+  Stock.hasMany(Transaction, {foreignKey: 'stock_id'});
+  Transaction.belongsTo(Stock, {foreignKey: 'stock_id'});
+  const userTransactions = await Transaction.findAll({ where: { user_id: userId }, include: [Stock] })
 
-  const userTransactions = await Transaction.findAll({where: {user_id : userId}});
+  let rows = new Array();
+  userTransactions.forEach(tr => {
+    let { share_quantity, createdAt } = tr;
+    let { symbol } = tr.Stock;
+      rows.push({
+        share_quantity,
+        symbol,
+        createdAt
+    });
+  })
 
-  res.json(userTransactions);
+  res.json(rows)
+  res.json(userTransactions)
 }));
 
 // This should only work if user is logged in

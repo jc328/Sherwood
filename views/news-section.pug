@@ -3,6 +3,8 @@
 //- once finished
 //- Just seeing that news is also an entire page
 
+//- extends layout searchbar.pug
+
 <!DOCTYPE html>
 html(lang="en")
   head
@@ -12,26 +14,87 @@ html(lang="en")
     link(href="./css/news.css" rel="stylesheet")
     title= title
   body
-    h1#date
-    p Popular Lists
-    div.newsContainer
-      div.newsContainer__article
-        p.article__1 Article 1 - MAIN ARTICLE
-      div.newsContainer__article
-        p.article__2 Article 2
-      div.newsContainer__article
-        p.article__3 Article 3
-      div.newsContainer__article
-        p.article__4 Article 4
-      div.newsContainer__article
-        p.article__5 Article 5
-      div.newsContainer__article
-        p.article__6 Article 6
-      div.newsContainer__article
-        p.article__7 Article 7
-      div.newsContainer__article
-        p.article__8 Article 8
-      div.newsContainer__article
-        p.article__9 Article 9
-      div.newsContainer__article
-        p.article__10 Article 10
+    div.pageContainer
+      header THIS IS THE SEARCH BAR
+      div#date
+        h1 July 15, 2020
+      div.stock__watchlist
+        h2 Stocks List Goes Here
+      div.stocks
+        h2 Stocks Watchlists Goes Here
+      div.list  
+        h2 Popular Lists
+        div.newsContainer
+          article.newsContainer__article--main
+            div.mediaName
+              span CNBC 2h
+            div
+              a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html" class='article__1--heading') Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
+              img(class='articleOneImage' src="../images/articleOne.png", alt="Guy smiles")
+          article.newsContainer__article--second
+            div.mediaName
+              span Bloomberg 2h
+            div
+              a(href="https://finance.yahoo.com/news/apple-tax-ruling-first-win-140020920.html?.tsrc=rss" class='article__2--heading') Apple Clocks Victory in Tax Fight But More EU Battles Loom
+              img(class='articleTwoImage' src="../images/article2.png", alt="Guy smiles")
+              div
+                p Apple Inc. clinched an important win in a top European Union court Wednesday, but it’s only the first battle in an onslaught of other regulatory threats facing the iPhone maker in Europe
+          article.newsContainer__article--second
+            div.mediaName
+              span Benzinga 2h
+            div
+              a(href="https://finance.yahoo.com/news/tesla-shares-breather-historic-run-165056868.html?.tsrc=rss" class='article__3--heading') Tesla Shares Take a Breather After Historic Run
+              img(class='articleThreeImage' src="../images/article3.png", alt="Guy looks at car")
+              div
+                p After a torrid rally that saw shares more than double since early May, Tesla Inc. is taking a pause on Wednesday, even as the broader market rises on the hopes for a coronavirus vaccine.
+              <div class="_3Kq2VqhgM7uh8kb5MNe7d" style="background-image: url('https://images.robinhood.com/V-lbTGstf75zZWcG_4XLzni-eZo/aHR0cHM6Ly9zLnlpbWcuY29tL3V1L2FwaS9yZXMvMS4yL0ZnZkt0UFByN3l3TmliNFdSYWhYQlEtLX5CL2FEMHhNek0xTzNjOU1qQXdNRHR6YlQweE8yRndjR2xrUFhsMFlXTm9lVzl1L2h0dHBzOi8vbWVkaWEuemVuZnMuY29tL2VuL2Jsb29tYmVyZ19tYXJrZXRzXzg0Mi84NzcyM2EwMWIxNDJhMjYwZmQyNzRjMDg3MGJiNDAxNQ&');"></div>
+          article.newsContainer__article--second
+            div.mediaName
+              span Benzinga 2h
+            div
+              a(href="https://www.benzinga.com/analyst-ratings/analyst-color/20/07/16637358/alibaba-analyst-lowers-second-half-estimates-raises-price-target-in-shifting-e-comm") Alibaba Analyst Lowers Second-Half Estimates, Raises Price Target In Shifting E-Commerce Landscape
+              img(class='articleFourImage' src="../images/article4.png", alt="Hand holds Credit Card")
+              div
+                p KeyBanc Capital Markets is lowering its estimates for Alibaba Group Holding Ltd - ADR BABA 0.24% in the second half of the year.
+          article.newsContainer__article--second
+            div.mediaName
+              span Reuters 2h
+            div
+              span.article__5--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
+              a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
+              img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
+          article.newsContainer__article--second
+            div.mediaName
+              span Benzinga 2h
+            div
+              span.article__6--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
+              a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
+              img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
+          article.newsContainer__article--second
+            div.mediaName
+              span CNBC 2h
+            div
+              span.article__7--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
+              a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
+              img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
+          article.newsContainer__article--second
+            div.mediaName
+              span The Wall Street Journal 2h
+            div
+              span.article__8--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
+              a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
+              img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
+          article.newsContainer__article--second
+            div.mediaName
+              span Benzinga 2h
+            div
+              span.article__9--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
+              a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
+              img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
+          article.newsContainer__article--second
+            div.mediaName
+              span Benzinga 2h
+            div
+              span.article__10--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
+              a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
+              img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")

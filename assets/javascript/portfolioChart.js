@@ -1,34 +1,97 @@
 google.charts.load('current', {packages: ['corechart', 'line']});
-// google.charts.setOnLoadCallback(drawBasic);
+google.charts.setOnLoadCallback(drawBasic);
 
 // Re-draw the chart every 5 minutes
 // setInterval(async function() {
 //     await drawBasic();
 // }, 300000);
 
+async function aggregatePrice (transaction) {
+    let symbol = transaction.symbol;
+    let shares = transaction.share_quantity;
+
+    const intradayPriceRequest = await fetch(`/api/chart/intraday-prices/${symbol}`, {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json' }
+        })
+    const intradayPrice = await intradayPriceRequest.json();
+
+    let tempArr = new Array();
+    tempArr.push(shares);
+
+    for(let i = 0; i < intradayPrice.length - 1; i++) {
+        if(!intradayPrice[i].average) {
+            intradayPrice[i].average = intradayPrice[i - 1].average;
+        }
+        tempArr.push(intradayPrice[i].average);
+    }
+    return tempArr;
+};
+
 async function drawBasic() {
     const balanceDisplay = document.getElementById('current-balance__text');
 
-    balanceDisplay.innerHTML = 'oop';
-
     // This is hardcoded to get transactinos for user #2 ""
+    const cashBalanceRequest = await fetch(`/api/balance/2`, {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json' }
+        })
+    const cashBalance = await cashBalanceRequest.json();
+
     const transactionsRequest = await fetch(`/api/transactions/2`, {
         method: 'get',
         headers: { 'Content-Type': 'application/json' }
         })
     const transactionsTestUser = await transactionsRequest.json();
 
-    transactionsTestUser.forEach(taction => {
-        let purchase = (taction.price * taction.share_quantity).toFixed(2)
+    const intradayTimeRequest = await fetch(`/api/chart/intraday-prices/AAPL`, {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json' }
+        })
+    const intradayTime = await intradayTimeRequest.json()
+
+    let agg = new Array();
+    if (transactionsTestUser.length === 0) {
+        for(let i = 0; i < intradayTime.length; i++) {
+            agg.push(Number(cashBalance));
+        }
+    }
+    let userStocks = new Array();
+
+    transactionsTestUser.forEach(uStock => {
+        userStocks.push(aggregatePrice(uStock));
     })
 
-    // TODO REFACTOR FOR PORTFOLIO
-    // let lastRowPrice = rows[rows.length - 1][1];
-    // let firstRowPrice = rows[0][1];
-    // let lineColor = (lastRowPrice > firstRowPrice) ? "#00C805" : "#E64800";
+    await Promise.all(userStocks).then(val => {
+        val.forEach(ele => {
+            let shar = ele.shift();
+
+            for (let i = 0; i < ele.length; i++) {
+                let current = ele[i];
+
+                if (i >= agg.length) {
+                    agg.push((current * shar) + Number(cashBalance));
+                } else {
+                    agg[i] += ((current * shar) + Number(cashBalance));
+                }
+            }
+        });
+    });
+
+    let rows = new Array();
+    for (let i = 0; i < intradayTime.length; i++) {
+        let fullTime = intradayTime[i].minute;
+        let label = intradayTime[i].label;
+        rows.push([fullTime, agg[i], label]);
+    }
+
+    let ratio = `${(agg.length / 390) * 100}%`;
+    let lastRowBalance = agg[agg.length - 1];
+    let firstRowBalance = agg[0];
+    let lineColor = (lastRowBalance >= firstRowBalance) ? "#00C805" : "#E64800";
 
     let data = new google.visualization.DataTable();
-    data.addColumn('timeofday', '');
+    data.addColumn('string', '');
     data.addColumn('number', '');
     data.addColumn({type: 'string', role: 'tooltip'})
 
@@ -51,13 +114,13 @@ async function drawBasic() {
         width: 680,
         height: 300,
         hAxis: {
-            textPosition: 'none',
             gridlines: {
                 count: 0
             }
         },
         vAxis: {
-            textPosition: 'none',
+            baseline: firstRowBalance,
+            baselineColor: 'pink',
             gridlines: {
                 count: 0
             }
@@ -77,49 +140,25 @@ async function drawBasic() {
     let chart = new google.visualization.LineChart(document.getElementById('chart_div'));
     chart.draw(data, options);
 
-    // TODO REFACTOR FOR PORTFOLIO
     function changePrice(data, row) {
         const selectedTime = data.cache[row][0].We;
         const selectedPrice = data.cache[row][1].We;
         if (selectedPrice && selectedTime) {
-            priceDisplay.innerHTML = `$ ${selectedPrice}`
+            balanceDisplay.innerHTML = `$ ${selectedPrice}`
         }
     }
 
-    let currentLastPrice = data.cache[data.cache.length - 1][1].We;
-    priceDisplay.innerHTML = `$ ${currentLastPrice}`
+    let currentBalance = data.cache[data.cache.length - 2][1].We;
+    balanceDisplay.innerHTML = `$ ${currentBalance}`;
 
+    google.visualization.events.addListener(chart, 'ready', (event) => {
+        balanceDisplay.innerHTML = `$ ${currentBalance}`
+    });
     google.visualization.events.addListener(chart, 'onmouseover', (event) => {
         changePrice(data, event.row);
     });
 
     google.visualization.events.addListener(chart, 'onmouseout', (event) => {
-        priceDisplay.innerHTML = `$ ${currentLastPrice}`
+        balanceDisplay.innerHTML = `$ ${currentBalance}`;
     });
 }
-
-//THIS IS ALL SET FOR TEST USER
-document.addEventListener("DOMContentLoaded", async () => {
-    const balanceRequest = await fetch(`/api/balance/2`, {
-        method: 'get',
-        headers: { 'Content-Type': 'application/json' }
-        })
-    const balance = await balanceRequest.json();
-
-    const balanceDisplay = document.getElementById('current-balance__text');
-
-    balanceDisplay.innerHTML = `$ ${balance}`;
-
-    const transactionsRequest = await fetch(`/api/transactions/2`, {
-        method: 'get',
-        headers: { 'Content-Type': 'application/json' }
-        })
-    const transactionsTestUser = await transactionsRequest.json();
-
-    transactionsTestUser.forEach(taction => {
-        let purchase = (taction.price * taction.share_quantity).toFixed(2);
-        console.log(purchase)
-    })
-
-    // User "test" should have a balance of $2.50 + every purchase
-})

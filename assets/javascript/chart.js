@@ -29,28 +29,29 @@ async function drawBasic() {
     let prices = new Array();
     intradayPrice.forEach((price) => {
         let fullTime = price.minute;
-        let hour = parseInt(fullTime.split(':')[0]);
-        let minutes = parseInt(fullTime.split(':')[1]);
         let label = price.label;
-        if (minutes % 5 === 0 && price.average) {
+        if (price.average) {
             let formattedPrice = parseFloat(price.average.toFixed(2));
-            rows.push([[hour, minutes, 0], formattedPrice, label]);
+            rows.push([fullTime, formattedPrice, label]);
             prices.push(formattedPrice);
         }
     })
 
-    let maxPrice = Math.max(...prices);
-    let minPrice = Math.min(...prices);
+    for (let i = 0; i < intradayPrice.length; i++) {
+
+    }
+
+    let startPrice = prices[0];
 
     let ratio = '100%';
 
     let lastRowPrice = rows[rows.length - 1][1];
     let firstRowPrice = rows[0][1];
     let lineColor = (lastRowPrice > firstRowPrice) ? "#00C805" : "#E64800";
-    console.log(lineColor)
+    // console.log(lineColor)
 
     let data = new google.visualization.DataTable();
-    data.addColumn('timeofday', '');
+    data.addColumn('string', '');
     data.addColumn('number', '');
     data.addColumn({type: 'string', role: 'tooltip'})
 
@@ -63,7 +64,6 @@ async function drawBasic() {
             ignoreBounds: true,
             trigger: 'focus',
         },
-        scaleType: 'linear',
         chartArea: {
             left: 0,
             top: 0,
@@ -73,19 +73,16 @@ async function drawBasic() {
         width: 680,
         height: 300,
         hAxis: {
-            textPosition: 'none',
             gridlines: {
                 count: 0
             }
         },
         vAxis: {
-            textPosition: 'none',
+            baseline: startPrice,
+            baselineColor: 'pink',
+            logscale: true,
             gridlines: {
                 count: 0
-            },
-            viewWindow: {
-                max: maxPrice,
-                min: minPrice
             }
         },
         focusTarget: 'category',
@@ -97,7 +94,7 @@ async function drawBasic() {
         legend: {
             position: 'none'
         },
-        colors: [lineColor]
+        colors: [lineColor],
     };
 
     let chart = new google.visualization.LineChart(document.getElementById('chart_div'));

@@ -4,14 +4,11 @@
     justify-content: space-evenly;
     height: 70px;
     width: 100%;
-    /* position: fixed; */
-    /* -webkit-box-align: center; */
     top: 0px;
     background-color: whitesmoke;
-    /* border: 1px solid violet; */
     margin: 0px;  
     position: fixed; 
-    z-index: 3;
+    z-index: 11;
     left: 0px;
 }
 .robin-c {
@@ -37,9 +34,7 @@
     flex-shrink: 0;
     
     flex-basis: 350px;
-    flex-grow: 2;
-    
-    
+    flex-grow: 2;  
 }
 #robinhood {
     text-decoration:none;
@@ -225,3 +220,186 @@
     line-height: 28px;
     letter-spacing: -0.25px;
 }
+.poducts-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    width: 100%;
+    /* position: fixed; */
+    /* -webkit-box-align: center; */
+    top: 70px;
+    background-color: whitesmoke;
+    /* border: 1px solid violet; */
+    margin: 0px;  
+    position: fixed; 
+    z-index: 3;
+    left: 0px;
+}
+.nav__options-c {
+    width: 100px;
+    
+}
+.nav__stocks-c {
+    width: 150px;
+    
+}
+.nav__gold-c {
+    width: 75px;
+    
+}
+.nav__cash-c {
+    width: 175px;
+    border-right: 1px solid black;
+}
+.nav__crypto-c {
+    width: 150px;
+    color: rgb(255,90,135);
+}
+.nav__options-c *:hover,
+.nav__stocks-c *:hover,
+.nav__gold-c *:hover,
+.nav__cash-c *:hover {
+    color: rgb(0,200,5);
+}
+.hidden {
+    visibility: hidden;
+}
+.whole-screen {
+    position: fixed;
+    height: 720px;
+    width: 100%;
+    background-color: whitesmoke;
+    z-index: 10;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.whole-screen__links {
+    height: 100%;
+    width: 300px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    z-index: 12;
+    font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    letter-spacing: -0.25px;
+    font-size: 18px;
+    color: black;
+}
+.whole-screen__links * {
+    text-decoration:none;
+}
+.whole-screen__products-c {
+    width: 930px;
+    height: 50px;
+    position: fixed;
+    top: 120px;
+    left: 30px;
+    background-color: #eaeef1;
+    display: flex;
+    align-items: center;
+}
+.whole-screen__products-c__text-center {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: 300px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+.whole-screen__products-c__text-center a{
+    margin-left: 10px;
+}
+.whole-screen__stocks-c {
+    width: 150px;
+    position: fixed;
+    top: 200px;
+    left: 60px;
+}
+.whole-screen__options-c {
+    width: 150px;
+    position: fixed;
+    top: 250px;
+    left: 60px;
+}
+.whole-screen__gold-c {
+    width: 150px;
+    position: fixed;
+    top: 300px;
+    left: 60px;
+}
+.whole-screen__cash-c {
+    width: 900px;
+    position: fixed;
+    top: 350px;
+    left: 60px;
+    border-bottom: 1px solid grey;
+    padding-bottom: 25px;
+}
+.whole-screen__crypto-c {
+    width: 150px;
+    position: fixed;
+    top: 420px;
+    left: 60px;
+}
+.whole-screen__crypto-c a{
+    color: rgb(255,90,135);
+}
+.whole-screen__learn-c {
+    width: 930px;
+    height: 50px;
+    position: fixed;
+    top: 470px;
+    left: 30px;
+    background-color: #eaeef1; 
+    display: flex;
+    align-items: center;
+    justify-content: start; 
+}
+.whole-screen__learn-c__text-center {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: 300px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+.whole-screen__learn-c__text-center {
+    margin-left: 10px;
+}
+.whole-screen__support-c {
+    width: 930px;
+    height: 50px;
+    position: fixed;
+    top: 540px;
+    left: 30px;
+    background-color: #eaeef1;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+.whole-screen__support-c__text-center {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: 300px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+.whole-screen__support-c__text-center a{
+    margin-left: 10px;
+}
+.whole-screen-c__learn {
+    color: #040d14;
+}
+.whole-screen-c__learn:hover {
+    color: rgb(0,200,5);
+}
+

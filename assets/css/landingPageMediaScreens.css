@@ -1,5 +1,5 @@
 @media screen and (min-width: 1024px) {
-        .nav__products-c *,
+    .nav__products-c *,
     .nav__learn-c *,
     .nav__support-c *,
     .nav__loggin-c *,
@@ -26,6 +26,10 @@
     .intro__c {
         top: -80px;
     }
+    .hide {
+        position: absolute;
+    }
+    
 }
 @media screen and (max-width: 1024px) {
     .nav__products-c *,
@@ -46,19 +50,19 @@
         visibility: visible;
     }
     .grid-c {
-    grid-template-columns: 1fr ;
-    grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr ;
+        grid-template-rows: 1fr 1fr;
     }
     .green__title-c {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 1;
-    justify-content: center;
-    align-content: center;
-    max-width: 100%;
-    margin: 0px 30px 0px 30px;
-    overflow: visible;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 1;
+        justify-content: center;
+        align-content: center;
+        max-width: 100%;
+        margin: 0px 30px 0px 30px;
+        overflow: visible;
     }
     .phone-c {
         grid-column-start: 2;
@@ -100,7 +104,7 @@
     }
     .black-c__phone {
         min-height: 300px;
-        height: 300px;
+        /* height: 300px; */
         width: 150px;
         background-size: 150px 300px;
         position: relative;
@@ -115,9 +119,6 @@
         letter-spacing: -0.36px;
 
     }
-    .black-c__learn-as__p {
-    
-    }
     .black-c__learn-as {
         width: 87%;
         position: relative;
@@ -125,22 +126,121 @@
         left: -30px;
         margin-left: 0px;
     }
-
+    .footer-c {
+        grid-template-columns: 30px 1fr 1fr 1fr 1fr 1fr 60px;
+        grid-template-rows: 40px 70px 150px 60px 300px 140px 180px 200px 100px;
+        height: 1300px;
+    }
+    .footer-c__snacks-c {
+        margin-left: 0px;
+        grid-column-start: 2;
+        grid-column-end: 5;
+        grid-row-start: 2;
+        grid-row-end: 2;
+    } 
+    .footer-c__p-c {
+        width: 100%;
+    }
+    .sub-form {
+        grid-column-start: 2;
+        grid-column-end: 6;
+        grid-row-start: 3;
+        grid-row-end: 3;
+        /* background-color: royalblue; */
+        position: relative;
+        left: -30px;
+        top: 40px;
+        margin: 0px;
+        /* opacity: 50%; */
+    }
+    .sub__access {
+        position: absolute;
+        top: 65px;
+        width: 100%;
+        height: 48px;
+        /* background-color: yellow; */
+    }
+    .sub__access-c {
+        width: 100%;
+        /* background-color: tomato; */
+        height: 48px;
+    }
+    .sub__access-c__sub-access{
+        padding: 0 36px;
+        height: 48px;
+        border-radius: 24px;
+        /* background-color: rgb(0,200,5); */
+        font-weight: 700;
+        margin-right: 0px;
+        width: 80%;
+   
+    }
+    .footer-c__link1 {
+        /* background-color: lightpink; */
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 5;
+        grid-row-end: 5; 
+        margin-left: 0px; 
+        
+    }
+    .footer-c__link {
+        /* background-color: darkseagreen;  */
+        grid-column-start: 4;
+        grid-column-end: 4;
+        grid-row-start: 5;
+        grid-row-end: 5;
+        margin-left: 0px;  
+    }
+    .footer-c__link2 { 
+        grid-column-start: 2;
+        grid-column-end: 7;
+        grid-row-start: 7;
+        grid-row-end: 7;
+        align-items: flex-start;
+        /* background-color: crimson; */
+        margin-left: 0px;
+    }
+    .footer-c__link3 {
+        /* background-color: lightseagreen;   */
+        grid-column-start: 6;
+        grid-column-end: 6;
+        grid-row-start: 5;
+        grid-row-end: 5;
+        margin-left: 0px; 
+    }
+    .footer-c__bottom {
+        margin-left: 0px;
+        grid-row-start: 8;
+        grid-row-end: 8;
+        grid-column-start: 2;
+        grid-column-end: 7;
+    }
+    .fractional-disclosure-grid {
+        grid-row-start: 9;
+        grid-row-end: 9;
+        grid-column-start: 1;
+        grid-column-end: 5;
+        top: 40px;
+    }
+    .line {
+    top: 3440px;
+}
 }
 @media screen and (max-width: 764px) {
     .green__title__p-2 {
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 40px;
-    position: absolute;
-    top: 70px;
-    left: 30px;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 40px;
+        position: absolute;
+        top: 70px;
+        left: 30px;
     }
     .nav__sign-nup-b-c {
         visibility: hidden;
     }
-        .green__slogan {
+    .green__slogan {
         position: relative;
         top: -150px;
         font-size: 21px;
@@ -149,10 +249,10 @@
         line-height: 28px;
         letter-spacing: -0.21px;
     }
-        .green-phone {
+    .green-phone {
         width: 100%;
     }
-        .phone-video {
+    .phone-video {
         width: 100%;
     }
     .phone-c {
@@ -178,12 +278,116 @@
         margin-left: 55px;
     }
     .black-c__learn-as__span {
-    margin: 0;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 32px;
-    letter-spacing: -0.24px; 
+        margin: 0;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 32px;
+        letter-spacing: -0.24px; 
     
     }
+    .footer {
+        height: 1400px;
+    }
+    .footer-c {
+        height: 1625px;
+        grid-template-columns: 30px 1fr 1fr 1fr 1fr 1fr 30px;
+        grid-template-rows: 40px 100px 120px 90px 220px 135px 250px 200px 325px 100px;
+    }
+    .sub__access {
+        position: absolute;
+        top: 70px;
+        width: 100%;
+        height: 48px;
+        /* background-color: yellow; */
+    }
+    .sub__access-c {
+        width: 100%;
+        /* background-color: tomato; */
+        height: 48px;
+    }
+    .footer-c__link1 {
+        color: #ffffff;
+        font-family: "Capsule Sans Text",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+        letter-spacing: -0.25px;
+        margin: 0px 0px 0px 30px;
+        color: #ffffff;
+        margin-left: 0px;
+        /* background-color: lightpink; */
+        grid-column-start: 2;
+        grid-column-end: 4;
+        grid-row-start: 5;
+        grid-row-end: 5;   
+    }
+    .footer-c__link {
+        color: #ffffff;
+        font-family: "Capsule Sans Text",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+        letter-spacing: -0.25px;
+        /* background-color: darkseagreen;  */
+        grid-column-start: 2;
+        grid-column-end: 4;
+        grid-row-start: 6;
+        grid-row-end: 7;  
+    }
+    .footer-c__link3 {
+        font-family: "Capsule Sans Text",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+        letter-spacing: -0.25px;
+        /* background-color: lightseagreen;   */
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 7;
+        grid-row-end: 7; 
+    }
+    .footer-c__link2 { 
+        grid-column-start: 2;
+        grid-column-end: 7;
+        grid-row-start: 8;
+        grid-row-end: 8;
+        /* align-items: flex-start; */
+        display: flex;
+        justify-content: flex-start;
+        /* background-color: crimson; */
+        margin-left: 0px;
+    }
+    .footer-c__linkz__holder2 a {
+        text-align: left;
+        margin-left: 0px;
+        margin: 0px 0px 7px 0px;
+        color: #ffffff;
+        font-family: "Capsule Sans Text",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+        letter-spacing: -0.25px;
+
+    
+    }
+    .footer-c__bottom {
+        grid-row-start: 9;
+        grid-row-end: 9;
+        grid-column-start: 0;
+        grid-column-end: 8;
+        
+    }
+    .fractional-disclosure-grid {
+        grid-row-start: 10;
+        grid-row-end: 10;
+    }
+    .line {
+        top: 3935px;
+    }
+    
 }

@@ -28,7 +28,10 @@ app.get('/login-page', asyncHandler(async (req, res) => {
 }));
 
 app.get('/landing-page', asyncHandler(async (req, res) => {
-  res.render('landing-page');
+  res.render('landingPage');
+}));
+app.get('/dashboard-page', asyncHandler(async (req, res) => {
+  res.render('dashboardPage');
 }));
 
 

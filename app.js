@@ -35,6 +35,7 @@ app.get('/landing-page', asyncHandler(async (req, res) => {
   res.render('landingPage');
 }));
 
+
 app.get('/search', asyncHandler(async (req, res) => {
   const stockData = await Stock.findAll({
     attributes: ["symbol", "fullName"]
@@ -53,6 +54,10 @@ app.get('/search', asyncHandler(async (req, res) => {
 
 app.get('/news', asyncHandler(async (req, res) => {
   res.render('news-section', { title: 'News' });
+
+app.get('/dashboard-page', asyncHandler(async (req, res) => {
+  res.render('dashboardPage');
+
 }));
 
 app.post('/search', asyncHandler(async (req, res) => {

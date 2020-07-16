@@ -1,11 +1,28 @@
 window.addEventListener('DOMContentLoaded', event => {
     const eqx = document.querySelectorAll('.eqx-c');
-    const eqxTop = document.querySelectorAll('.eqx-c__top');
+    const eqxTop = document.querySelectorAll('.eqx-c__top'); 
     const eqxBottom = document.querySelectorAll('.eqx-c__bottom');
-
+    const productsButton = document.querySelectorAll('.nav__products__span');
+    const productsBar = document.querySelectorAll('.poducts-bar');
+    const wholeScreen = document.querySelectorAll('.whole-screen')
     document.addEventListener("click", event => {
         console.log(event.target)
     })
+    console.log(productsButton);
+    console.log(productsBar);
+
+    eqx.forEach(node => {node.addEventListener('click', event => {
+        wholeScreen.forEach(node => {
+            node.classList.toggle("hidden");
+        })
+    })})
+
+    productsButton.forEach(node => { node.addEventListener('click', event => {
+        productsBar.forEach(node => {
+            node.classList.toggle("hidden");
+        })
+    })});
+    
     
     eqx.forEach( node => { node.addEventListener('click', event => {
         eqxTop.forEach(node => {

@@ -1,3 +1,5 @@
+
+
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawBasic);
 
@@ -5,6 +7,7 @@ google.charts.setOnLoadCallback(drawBasic);
 // setInterval(async function() {
 //     await drawBasic();
 // }, 300000);
+
 async function aggregatePrice (transaction) {
     let symbol = transaction.symbol;
     let shares = transaction.share_quantity;
@@ -16,19 +19,27 @@ async function aggregatePrice (transaction) {
     const intradayPrice = await intradayPriceRequest.json();
 
     let tempArr = new Array();
-    tempArr.push(shares)
-    intradayPrice.forEach(thing => {
-        if( (thing.minute).endsWith("0") ||
-            (thing.minute).endsWith("5")) {
-            tempArr.push(thing.average);
+    tempArr.push(shares);
+
+    for(let i = 0; i < intradayPrice.length - 1; i++) {
+        if(!intradayPrice[i].average) {
+            intradayPrice[i].average = intradayPrice[i - 1].average;
         }
-    })
+        tempArr.push(intradayPrice[i].average);
+    }
 
     return tempArr;
 }
 
 async function drawBasic() {
     const balanceDisplay = document.getElementById('current-balance__text');
+
+    // This is hardcoded to get transactinos for user #2 ""
+    const cashBalanceRequest = await fetch(`/api/balance/2`, {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json' }
+        })
+    const cashBalance = await cashBalanceRequest.json();
 
     const transactionsRequest = await fetch(`/api/transactions/2`, {
         method: 'get',
@@ -42,13 +53,6 @@ async function drawBasic() {
         stonks.push(aggregatePrice(stonk));
     })
 
-    // This is hardcoded to get transactinos for user #2 ""
-    const cashBalanceRequest = await fetch(`/api/balance/2`, {
-        method: 'get',
-        headers: { 'Content-Type': 'application/json' }
-        })
-    const cashBalance = await cashBalanceRequest.json();
-    // console.log(cashBalance)
     let agg = new Array();
 
     await Promise.all(stonks).then(val => {
@@ -67,8 +71,6 @@ async function drawBasic() {
         });
     });
 
-    balanceDisplay.innerHTML = `$ ${agg[0].toFixed(2)}`;
-
     let rows = new Array();
     const intradayPriceRequest = await fetch(`/api/chart/intraday-prices/AAPL`, {
         method: 'get',
@@ -80,9 +82,9 @@ async function drawBasic() {
         let hour = parseInt(fullTime.split(':')[0]);
         let minutes = parseInt(fullTime.split(':')[1]);
         let label = intradayPrice[i].label;
-        if (fullTime.endsWith(0) || fullTime.endsWith(5)) {
+        // if (fullTime.endsWith(0) || fullTime.endsWith(5)) {
             rows.push([[hour, minutes, 0], agg[i], label]);
-        }
+        // }
     }
 
     // TODO REFACTOR FOR PORTFOLIO
@@ -98,6 +100,7 @@ async function drawBasic() {
     data.addRows(rows);
 
     let options = {
+        // interpolateNulls: true,
         backgroundColor: 'transparent',
         tooltip: {
             isHtml: true,
@@ -149,7 +152,8 @@ async function drawBasic() {
         }
     }
 
-    let currentLastPrice = data.cache[data.cache.length - 1][1].We;
+    // let currentLastPrice = data.cache[data.cache.length - 1][1].We;
+    console.log(currentLastPrice)
     balanceDisplay.innerHTML = `$ ${currentLastPrice}`
 
     google.visualization.events.addListener(chart, 'onmouseover', (event) => {
@@ -157,7 +161,7 @@ async function drawBasic() {
     });
 
     google.visualization.events.addListener(chart, 'onmouseout', (event) => {
-        balanceDisplay.innerHTML = `$ ${lastRowPrice.toFixed(2)}`
+        balanceDisplay.innerHTML = `$ ${currentLastPrice}`;
     });
 }
 

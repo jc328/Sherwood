@@ -32,9 +32,11 @@ async function drawBasic() {
         let hour = parseInt(fullTime.split(':')[0]);
         let minutes = parseInt(fullTime.split(':')[1]);
         let label = price.label;
-        if (minutes % 5 === 0 && price.average) {
+        // if (minutes % 5 === 0 && price.average) {
+            if (price.average){
             let formattedPrice = parseFloat(price.average.toFixed(2));
-            rows.push([[hour, minutes, 0], formattedPrice, label]);
+            // rows.push([[hour, minutes, 0], formattedPrice, label]);
+            rows.push([fullTime, formattedPrice, label]);
             prices.push(formattedPrice);
         }
     })
@@ -50,10 +52,10 @@ async function drawBasic() {
     // console.log(lineColor)
 
     let data = new google.visualization.DataTable();
-    data.addColumn('timeofday', '');
+    data.addColumn('string', '');
     data.addColumn('number', '');
     data.addColumn({type: 'string', role: 'tooltip'})
-    // console.log(rows)
+
     data.addRows(rows);
 
     let options = {

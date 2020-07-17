@@ -1,41 +1,37 @@
+html,
 body{
   font-family: "Capsule Sans Text", -apple-system, BlinkMacSystemFont, sans-serif;
+  height: 100%;
   font-size: 13px;
   font-weight: 400;
   letter-spacing: -0.1px;
   line-height: 20px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  display: flex;
+  flex-direction: row-reverse;
+  height: 100%;
+  width: 100%;
 }
-
-/* .loginPage__container{
-  display: grid;
-} */
-
-.loginImage{
-  display: grid;
-  grid-column: 1 / 2;
-  grid-row: 1 / 6;
-  background-image: url('../images/loginPage.png');
-  background-position: center;
-  background-size: cover;
-  /* height: 100% */
-  /* min-width: 50%; */
-  /* min-height: 100%; */
-
-}
-
 
 .form__container{
-  display: grid;
-  grid-column: 2 / 3;
-  grid-row: 0 / 4;
-  min-width: 50%;
-  margin-left: 50px;
+  width: auto;
+  align-self: center;
+  margin-right: 150px;
 }
 
+.logo {
+  display: flex;
+  padding: 0px 20px;
+  width: 35%;
+  justify-content: space-evenly;
+  align-items: center;
+  /* border: black 1px dotted; */
+  background-color: rgb(215, 228, 236);
+  flex-direction: column;
+}
 
+.textWrap {
+  color: lightgrey
+}
 
 .form__head {
   display:grid;
@@ -50,11 +46,15 @@ body{
   text-decoration: unset;
 }
 
+.nameInput {
+  display: flex;
+}
+
 .inputBox__inner{
   margin: 5px;
   padding: 12px;
   background-color: #E8F0FE;
-  width: 48%;
+  width: 100%;
   border-style: solid;
   border-width: 1px;
   border-radius: 4px;
@@ -69,6 +69,13 @@ body{
   overflow: visible;
   font-size: 100%;
 }
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  font-family: cursive;
+  color: green;
+}
+
 
 .inputBox__forgot{
   color: #2FC802;
@@ -85,23 +92,16 @@ button{
   cursor: pointer;
 }
 
-.demo {
-  margin-left: 10px;
-}
-
 @keyframes shake {
   10%, 90% {
     transform: translate3d(-1px, 0, 0);
   }
-
   20%, 80% {
     transform: translate3d(2px, 0, 0);
   }
-
   30%, 50%, 70% {
     transform: translate3d(-4px, 0, 0);
   }
-
   40%, 60% {
     transform: translate3d(4px, 0, 0);
   }

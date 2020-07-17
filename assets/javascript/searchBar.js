@@ -16,9 +16,7 @@ window.addEventListener('DOMContentLoaded', e => {
   //   datalist.style.display = "block";
   // }
   searchBar.addEventListener('click', (e) => {
-    console.log(searchBar.value)
     if (searchBar.value == '') {
-
       e.preventDefault()
     }
   })

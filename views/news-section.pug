@@ -3,98 +3,268 @@
 //- once finished
 //- Just seeing that news is also an entire page
 
-//- extends layout searchbar.pug
-
 <!DOCTYPE html>
 html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     script(type="text/javascript" src="./javascript/newsPage.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.js" async)
+    script(type="module" src="./javascript/searchBar.js")
     link(href="./css/news.css" rel="stylesheet")
+    link(href="./css/awesomplete.css" rel="stylesheet")
+    link(href="./css/dash.css" rel="stylesheet")
     title= title
+
   body
+  div#main
+    div#nav
+      div#nav__centering
+        div.nav__feather-c
+          a(href="/")
+            img.nav__feather-c__feather(src="https://cdn.robinhood.com/assets/robinhood/shared/favicon_v2.ico" width='500' height='600')
+          
+        div.search
+          img#magnifying-glass(src="/images/magnifying-glass.png", alt="", srcset="")
+          span#search-span Search
+        div#shrink-space-free
+        div#free-stocks.nav__free-c
+            a(href="/dashboard").nav__free-c__free Free Stocks   
+        div#portfolio.nav__free-c
+            a(href="/dashboard").nav__free-c__free Portfolio    
+        div.nav__free-c
+            a(href="/dashboard").nav__free-c__free Cash
+        div.nav__free-c
+            a(href="/dashboard").nav__free-c__free Messages
+        div.nav__free-c
+            a(href="/dashboard").nav__free-c__free Account
+    
     div.pageContainer
-      header THIS IS THE SEARCH BAR
       div#date
-        h1 July 15, 2020
-      div.stock__watchlist
-        h2 Stocks List Goes Here
-      div.stocks
-        h2 Stocks Watchlists Goes Here
+        h1 July 16, 2020
+
+        div.right-display-c
+          div.right-display-c__display
+            div#right-top.right-display-c__display__content
+              span.right-span.right-span-top Cryptocurrencies
+              div.right-top__cirlces-c
+                div.right-top__circles-c__circles
+                div.right-top__circles-c__circles
+                div.right-top__circles-c__circles
+            div.right-display-c__display__content
+              span.right-span BTC
+              <svg height="16" width="60"><g><g><path class="Fmt4_v7r79-zzZKHVUw3W _3ngdf0NigC72HeECkuWEtK" name="sparkline" width="60" height="16" d="M0,0Z" fill="none"></path></g><g><path class="Fmt4_v7r79-zzZKHVUw3W _1iALBLlm7naX_m-7ClimsI" name="sparkline" width="60" height="16" d="M0,0L0.20833333333333331,1.2424396144692036L0.41666666666666663,6.5462207827683L0.625,5.819487259530899L0.8333333333333333,6.290240761696637L1.0416666666666667,7.575759940687552L1.25,7.186795176961823L1.4583333333333333,6.093573184532065L1.6666666666666665,6.1503882623796375L1.875,7.1056307800367495L2.0833333333333335,7.575135599172844L2.291666666666667,8.25754087485866L2.5,8.11893705857108L2.7083333333333335,7.412182463807763L2.9166666666666665,7.058180824911169L3.125,7.055683458852107L3.333333333333333,8.077106177078786L3.5416666666666665,8.479182112615668L3.75,10.057517462051734L3.9583333333333335,9.3626253560697L4.166666666666667,9.71288094587736L4.375,9.029226987161898L4.583333333333334,8.672103640691535L4.791666666666666,8.209466578218372L5,10.945331096109635L5.208333333333333,11.04023100636057L5.416666666666667,12.606079525500418L5.625,10.598197213875972L5.833333333333333,10.303508018886241L6.041666666666667,12.26893510750391L6.25,15.352557849143546L6.458333333333334,13.961524954149834L6.666666666666666,14.402310063604785L6.875,14.00023412806813L7.083333333333333,13.402114956881382L7.291666666666667,15.188356030748821L7.5,16L7.708333333333332,15.902602723689776L7.916666666666667,14.296172006087279L8.125,13.996488078979196L8.333333333333334,14.338002887579572L8.541666666666666,15.046630506887242L8.75,14.550903344129296L8.958333333333334,11.951769617981032L9.166666666666668,13.24915128575323L9.375,11.09080266905992L9.583333333333332,12.53365590978263L9.791666666666666,11.24688804776207L10,9.929527451516016L10.208333333333334,12.527412494634635L10.416666666666666,13.340305146915458L10.625,12.267686424474267L10.833333333333334,11.601514028173373L11.041666666666668,9.899559058805231L11.25,12.780895149646781L11.458333333333332,11.660202130565526L11.666666666666666,13.511374721972887L11.875,11.060834276349135L12.083333333333334,12.907012135638144L12.291666666666666,13.857259921176905L12.5,13.408358372029605L12.708333333333334,11.511608850041016L12.916666666666668,10.464588129706968L13.125,11.695789596909599L13.333333333333332,12.609825574589351L13.541666666666666,12.331369258984772L13.75,12.612947282163349L13.958333333333334,13.693682444297117L14.166666666666666,13.759238303351975L14.375,13.3446755375191L14.583333333333334,13.63062395130132L14.791666666666668,13.814804698169903L15,12.062902407616892L15.208333333333332,12.047293869746676L15.416666666666664,12.167167440590045L15.625000000000002,12.61731767276699L15.833333333333334,13.04936200101466L16.041666666666668,11.98860576735475L16.25,13.300971631482453L16.458333333333336,15.796464666172497L16.666666666666668,14.409802161782425L16.875,14.07702813438956L17.083333333333332,13.252272993327455L17.291666666666664,13.683068638545251L17.5,13.595660826472184L17.708333333333332,13.262262457564383L17.916666666666668,13.392749834159389L18.125,14.598353299254649L18.333333333333336,13.448316228977319L18.541666666666668,13.13864283763208L18.75,11.96675381433654L18.958333333333332,11.158231552659359L19.166666666666664,9.194677488586269L19.375,8.232567214266226L19.583333333333332,8.316853318765297L19.791666666666668,9.9170406212198L20,10.383423732781896L20.208333333333336,10.494556522417753L20.416666666666668,10.643774144456973L20.625,10.39903227065211L20.833333333333332,9.102274944394622L21.041666666666664,8.015920708627569L21.25,8.46919264837874L21.458333333333332,9.996956335115227L21.666666666666668,9.985718187848654L21.875,9.810902563702292L22.083333333333336,9.503102196901635L22.291666666666668,8.843173215748962L22.5,8.025910172864497L22.708333333333332,7.078784094899962L22.916666666666664,7.25235103601668L23.125,8.228196823662584L23.333333333333332,6.880867834705517L23.541666666666668,8.45733015959723L23.75,8.526632067741023L23.958333333333336,9.012994107776976L24.166666666666668,9.075428259257835L24.375,9.039840792913763L24.583333333333332,8.753268037616607L24.791666666666664,8.991142154758766L25,8.212588285792368L25.208333333333332,7.822999180551703L25.416666666666668,8.574082022866602L25.625,8.465446599289805L25.833333333333336,8.654622078276738L26.041666666666668,8.642759589495459L26.25,8.598431341944101L26.458333333333332,8.319350684824585L26.666666666666664,8.196355406407218L26.875,8.214461310336722L27.083333333333332,8.210715261248016L27.291666666666668,8.439224255667954L27.5,8.903110001170761L27.708333333333336,8.464197916260161L27.916666666666668,8.328091466031868L28.125,7.729972294845348L28.333333333333332,5.720841300191259L28.541666666666664,7.2024037148320375L28.75,7.9478674835134235L28.958333333333332,6.797830413236092L29.166666666666668,6.8228040738283L29.375,6.319584812892714L29.583333333333336,7.822999180551703L29.791666666666668,8.873141608459749L30,8.365551956920521L30.208333333333332,8.273149412728877L30.416666666666664,8.223826433058942L30.624999999999996,8.573457681351666L30.83333333333333,8.857533070589533L31.04166666666667,8.518515628048446L31.250000000000004,7.96285167986893L31.458333333333336,8.698950325828323L31.666666666666668,7.894174113239847L31.875,8.946189565692473L32.083333333333336,9.388223358176843L32.291666666666664,8.868771217856107L32.5,9.047332891091402L32.70833333333333,9.18219065829005L32.91666666666667,8.976782299917968L33.125,8.75701408670554L33.333333333333336,10.564482772076254L33.541666666666664,11.608381784836304L33.75,11.570296952432944L33.958333333333336,11.507238459437374L34.166666666666664,11.713895500838875L34.375,11.635852811487801L34.58333333333333,12.292035743551764L34.79166666666667,11.283724197135786L35,10.628165606586759L35.208333333333336,8.732664767627814L35.416666666666664,10.171147617746882L35.625,9.892066960627364L35.833333333333336,8.204471846099793L36.041666666666664,9.68166387013693L36.25,13.798571818784978L36.45833333333333,9.172898458656917L36.66666666666667,8.957497389472064L36.875,8.420157864751939L37.083333333333336,8.249501229172285L37.291666666666664,8.658397346548464L37.5,8.134930315682585L37.708333333333336,7.743083466656275L37.916666666666664,7.437780465914907L38.125,7.723104538182419L38.33333333333333,7.355367385960189L38.54166666666667,5.43676591095339L38.75,6.927069106801454L38.958333333333336,7.416552854411405L39.166666666666664,7.810512350255713L39.375,7.701876926678917L39.583333333333336,7.6787762906310615L39.791666666666664,7.504585007999408L40,6.889608615913028L40.20833333333333,7.029461115230028L40.41666666666667,7.836110352362857L40.625,7.263589183283253L40.833333333333336,7.981581925313142L41.041666666666664,7.990322706520425L41.25,7.479611347406973L41.458333333333336,7.311663479923542L41.666666666666664,6.931439497405096L41.875,6.862761930776241L42.08333333333333,7.653178288523918L42.29166666666667,7.879814258399277L42.5,7.061926874000102L42.708333333333336,7.877316892340215L42.916666666666664,8.427986108401381L43.125,8.417996644164454L43.333333333333336,8.494166308970946L43.541666666666664,8.627775393139952L43.75,8.4048854723533L43.95833333333333,8.461076208686164L44.16666666666667,8.938073125999898L44.375,9.221524173723056L44.583333333333336,9.20903734342684L44.791666666666664,9.615483669567364L45,9.514964685683143L45.208333333333336,9.19904787918991L45.416666666666664,8.931829710851902L45.625,8.492917625941303L45.83333333333333,6.471299800991222L46.04166666666667,6.505014242790713L46.25,6.418230772232354L46.458333333333336,7.934131970187789L46.666666666666664,8.291879658173087L46.875,8.32746712451716L47.083333333333336,9.262730713700414L47.291666666666664,9.577398837164004L47.5,9.70538884769972L47.70833333333333,9.101650602879687L47.91666666666667,9.260857689156062L48.125,9.117883482264837L48.333333333333336,8.650876029188034L48.541666666666664,6.9926249658563115L48.75,7.93850236079143L48.958333333333336,7.889179381121496L49.166666666666664,6.649861474226517L49.375,8.33431277949048" fill="none"></path></g></g></svg>
+            div.right-display-c__display__content
+              span.right-span Watchlist
+            div.right-display-c__display__content
+              span.right-span AAPL
+            div.right-display-c__display__content
+              span.right-span TSLA
+            div.right-display-c__display__content
+              span.right-span NTFLX
+            div.right-display-c__display__content
+              span.right-span MSFT
+            div.right-display-c__display__content
+              span.right-span DIS
+            div.right-display-c__display__content
+              span.right-span GPRO
+            div.right-display-c__display__content
+              span.right-span SBUX
+            div.right-display-c__display__content
+              span.right-span F
+            div.right-display-c__display__content
+              span.right-span BABA
+            div.right-display-c__display__content
+              span.right-span BAC
+            div.right-display-c__display__content
+              span.right-span FIT
+            div.right-display-c__display__content
+              span.right-span  SNAP
+        div.right-display-c__drop-down.hidden
+          div.right-display-c__drop-down__content 
+            span#display Display      
+          div.right-display-c__drop-down__content
+            a#last-price(href="/dashboard").nav__free-c__free Last Price       
+          div.right-display-c__drop-down__content
+            a#your-equity(href="/dashboard").nav__free-c__free Your Equity       
+          div.right-display-c__drop-down__content
+            a#todays-return(href="/dashboard").nav__free-c__free Today's Return       
+          div.right-display-c__drop-down__content
+            a#total-return(href="/dashboard").nav__free-c__free Total Return       
+        div.account-display-c.hidden
+          div.account-display-c__display
+            div#account-top.account-display-c__display__content
+              div
+                span.account-span.account-span-top User Name 
+                div.flex1
+                  div#portfolio-power
+                    span#money-span $0.00 
+                    span.account-span2 Portfolio Value
+              div.flex1
+                div#buying-power
+                  span#money-span2 $0.00 
+                  span.account-span Buying Power
+                          
       div.list  
-        h2 Popular Lists
+        h2.listSection Popular Lists
+          div.popLists__container
+            div.listOne
+              a(href='google.com' class='listLink')
+                div.list__image--text
+                  div.image
+                    img(src="../images/listicon1.png" class='icon')
+                  span Hot 120
+            div.listTwo      
+              a(href='google.com' class='listLink')
+                div.list__image--text
+                  div.image
+                    img(src="../images/listicon1.png" class='icon')
+                  span Real Estate
+            div.listThree       
+              a(href='google.com' class='listLink')
+                div.list__image--text
+                  div.image
+                    img(src="../images/listicon1.png" class='icon')
+                  span Aviation 
+            div.listFour       
+              a(href='google.com' class='listLink')
+                div.list__image--text
+                  div.image
+                    img(src="../images/listicon1.png" class='icon')
+                  span Healthcare 
+            div.listFive       
+              a(href='google.com' class='listLink')
+                div.list__image--text
+                  div.image
+                    img(src="../images/listicon1.png" class='icon')
+                  span Consumer Goods 
+            div.listSix       
+              a(href='google.com' class='listLink')
+                div.list__image--text
+                  div.image
+                    img(src="../images/listicon1.png" class='icon')
+                  span Pharma 
+            div.listSeven       
+              a(href='google.com' class='listLink')
+                div.list__image--text
+                  div.image
+                    img(src="../images/listicon1.png" class='icon')
+                  span Crypto 
+            div.listEight       
+              a(href='google.com' class='listLink')
+                div.list__image--text
+                  div.image
+                    img(src="../images/listicon1.png" class='icon')
+                  span Top Movers
+            div.listNine       
+              a(href='google.com' class='listLink')
+                div.list__image--text
+                  div.image
+                    img(src="../images/listicon1.png" class='icon')
+                  span Top Movers 2
+            div.listTen     
+              a(href='google.com' class='listLink')
+                div.list__image--text
+                  div.image
+                    img(src="../images/listicon1.png" class='icon')
+                  span Top Movers 2
+            div.listEleven       
+              a(href='google.com' class='listLink')
+                div.list__image--text
+                  div.image
+                    img(src="../images/listicon1.png" class='icon')
+                  span Top Movers 2
+            div.listTwelve      
+              a(href='google.com' class='listLink')
+                div.list__image--text
+                  div.image
+                    img(src="../images/listicon1.png" class='icon')
+                  span Top Movers 2
+            div.listThirteen    
+              a(href='google.com' class='listLink')
+                div.list__image--text
+                  div.image
+                    img(src="../images/listicon1.png" class='icon')
+                  span Top Movers 2
+            div.listFourteen      
+              a(href='google.com' class='listLink')
+                div.list__image--text
+                  div.image
+                    img(src="../images/listicon1.png" class='icon')
+                  span Top Movers 2
+            div.listFifteen      
+              a(href='google.com' class='listLink')
+                div.list__image--text
+                  div.image
+                    img(src="../images/listicon1.png" class='icon')
+                  span Top Movers 2
+            div.listSixteen       
+              a(href='google.com' class='listLink')
+                div.list__image--text
+                  div.image
+                    img(src="../images/listicon1.png" class='icon')
+                  span Top Movers 2
+
         div.newsContainer
           article.newsContainer__article--main
             div.mediaName
               span CNBC 2h
             div
               a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html" class='article__1--heading') Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
-              img(class='articleOneImage' src="../images/articleOne.png", alt="Guy smiles")
+                img(class='articleOneImage' src="../images/articleOne.png", alt="Guy smiles")
           article.newsContainer__article--second
             div.mediaName
               span Bloomberg 2h
-            div
+              //- i(class="fas fa-ellipsis-h")
+              div
               a(href="https://finance.yahoo.com/news/apple-tax-ruling-first-win-140020920.html?.tsrc=rss" class='article__2--heading') Apple Clocks Victory in Tax Fight But More EU Battles Loom
-              img(class='articleTwoImage' src="../images/article2.png", alt="Guy smiles")
-              div
-                p Apple Inc. clinched an important win in a top European Union court Wednesday, but it’s only the first battle in an onslaught of other regulatory threats facing the iPhone maker in Europe
+                img(class='articleTwoImage' src="../images/article2.png", alt="Laptop")
           article.newsContainer__article--second
             div.mediaName
               span Benzinga 2h
-            div
-              a(href="https://finance.yahoo.com/news/tesla-shares-breather-historic-run-165056868.html?.tsrc=rss" class='article__3--heading') Tesla Shares Take a Breather After Historic Run
-              img(class='articleThreeImage' src="../images/article3.png", alt="Guy looks at car")
               div
-                p After a torrid rally that saw shares more than double since early May, Tesla Inc. is taking a pause on Wednesday, even as the broader market rises on the hopes for a coronavirus vaccine.
-              <div class="_3Kq2VqhgM7uh8kb5MNe7d" style="background-image: url('https://images.robinhood.com/V-lbTGstf75zZWcG_4XLzni-eZo/aHR0cHM6Ly9zLnlpbWcuY29tL3V1L2FwaS9yZXMvMS4yL0ZnZkt0UFByN3l3TmliNFdSYWhYQlEtLX5CL2FEMHhNek0xTzNjOU1qQXdNRHR6YlQweE8yRndjR2xrUFhsMFlXTm9lVzl1L2h0dHBzOi8vbWVkaWEuemVuZnMuY29tL2VuL2Jsb29tYmVyZ19tYXJrZXRzXzg0Mi84NzcyM2EwMWIxNDJhMjYwZmQyNzRjMDg3MGJiNDAxNQ&');"></div>
+                a(href="https://finance.yahoo.com/news/tesla-shares-breather-historic-run-165056868.html?.tsrc=rss" class='article__3--heading') Tesla Shares Take a Breather After Historic Run
+                  img(class='articleThreeImage' src="../images/article3.png", alt="Guy looks at car")
           article.newsContainer__article--second
             div.mediaName
               span Benzinga 2h
-            div
-              a(href="https://www.benzinga.com/analyst-ratings/analyst-color/20/07/16637358/alibaba-analyst-lowers-second-half-estimates-raises-price-target-in-shifting-e-comm") Alibaba Analyst Lowers Second-Half Estimates, Raises Price Target In Shifting E-Commerce Landscape
-              img(class='articleFourImage' src="../images/article4.png", alt="Hand holds Credit Card")
               div
-                p KeyBanc Capital Markets is lowering its estimates for Alibaba Group Holding Ltd - ADR BABA 0.24% in the second half of the year.
+                a(href="https://www.benzinga.com/analyst-ratings/analyst-color/20/07/16637358/alibaba-analyst-lowers-second-half-estimates-raises-price-target-in-shifting-e-comm" class='article__4--heading') Alibaba Analyst Lowers Second-Half Estimates, Raises Price Target In Shifting E-Commerce Landscape
+                  img(class='articleFourImage' src="../images/article4.png", alt="Hand holds Credit Card")
           article.newsContainer__article--second
             div.mediaName
-              span Reuters 2h
-            div
-              span.article__5--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
-              a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
-              img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
+              span MarketWatch 2h
+              div
+                a(href="https://finance.yahoo.com/m/5fa8ca36-22af-3a21-8425-4bdedf1b5e36/prominent-twitter-accounts.html?.tsrc=rss" class='article__5--heading') Bitcoin prices unfazed as major Twitter hijacking ripples through social media and digital currency community
+                  img(class='articleFiveImage' src="../images/article5.png", alt="Two laptops")
           article.newsContainer__article--second
             div.mediaName
-              span Benzinga 2h
-            div
-              span.article__6--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
-              a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
-              img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
+              span MarketWatch 2h
+              div
+                a(href="https://robinhood.com/news/article/fb0be8d9-11b3-3e2b-a390-f4615eab85a0" class='article__5--heading') Netflix Names Ted Sarandos Co-CEO, Adds 10 Million Subscribers
+                  img(class='articleFiveImage' src="../images/nflx.png", alt="Netflix Sign")
           article.newsContainer__article--second
             div.mediaName
-              span CNBC 2h
-            div
-              span.article__7--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
-              a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
-              img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
+              span MarketWatch 2h
+              div
+                a(href="https://finance.yahoo.com/m/127f662d-e0a7-3df4-ae99-71a0ee815df1/tesla-is-like-a-spacex-rocket.html?.tsrc=rss" class='article__6--heading') Tesla is like a SpaceX rocket to stock investors, but the car maker’s bond holders are more down to earth
+                  img(class='articleSixImage' src="../images/article6.png", alt="Tesla Decal")
           article.newsContainer__article--second
             div.mediaName
               span The Wall Street Journal 2h
-            div
-              span.article__8--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
-              a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
-              img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
+              div
+                a(href="https://robinhood.com/news/article/4c8c66cd-12be-3eee-80ae-609603157798" class='article__7--heading') Bank of America Sees Reasons For Optimism in a Coronavirus Economy
+                  img(class='articleSevenImage' src="../images/article7.png", alt="Bank of America Sign")
           article.newsContainer__article--second
             div.mediaName
               span Benzinga 2h
-            div
-              span.article__9--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
-              a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
-              img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
+              div
+                a(href="https://www.benzinga.com/analyst-ratings/analyst-color/20/07/16655335/disneys-stock-falls-on-downgrade-cowen-says-parks-wont-fully-recover-until-2025" class='article__8--heading') Disney's Stock Falls On Downgrade, Cowen Says Parks Won't Fully Recover Until 2025
+                  img(class='articleEightImage' src="../images/article8.png", alt="Status at Disney World")
           article.newsContainer__article--second
             div.mediaName
-              span Benzinga 2h
-            div
-              span.article__10--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
-              a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
-              img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
+              span CNBC 2h
+              div
+                a(href="https://www.cnbc.com/2020/07/16/china-stock-market-shares-to-buy-as-economy-rebounds.html" class='article__9--heading') One Chinese stock is the best bet as its economy rebounds, traders say
+                  img(class='articleNineImage' src="../images/article9.png", alt="Sign that says Alibaba")
+

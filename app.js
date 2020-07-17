@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended : false }));
 
 app.get('/', asyncHandler(async (req, res) => {
-  res.send('HOME-THIS PAGE SHOULD BE DIRECTED TO EITHER THE LOGIN PAGE IF NOT SIGNED IN OR TO THE SPLASH/LANDING PAGE IF SIGNED IN');
+  res.render('landingPage');
 }));
 
 app.get('/login-page', asyncHandler(async (req, res) => {
@@ -84,6 +84,7 @@ app.get('/landing-page', asyncHandler(async (req, res) => {
   res.render('landingPage');
 }));
 
+
 app.get('/search', asyncHandler(async (req, res) => {
   const stockData = await Stock.findAll({
     attributes: ["symbol", "fullName"]
@@ -102,6 +103,10 @@ app.get('/search', asyncHandler(async (req, res) => {
 
 app.get('/news', asyncHandler(async (req, res) => {
   res.render('news-section', { title: 'News' });
+
+app.get('/dashboard-page', asyncHandler(async (req, res) => {
+  res.render('dashboardPage');
+
 }));
 
 app.post('/search', asyncHandler(async (req, res) => {
@@ -153,7 +158,6 @@ app.get('/api/chart/intraday-prices/:id(\\w+)', asyncHandler(async (req, res) =>
 
 app.get('/chart/:id(\\w+)', asyncHandler(async (req, res) => {
   const stockSymbol = req.params.id;
-  // const stock = await Stock.findOne({ where: { symbol: stockSymbol }});
   const companyInfoRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/company?token=${token}`, {
     method: 'get',
     body: JSON.stringify(res.body),
@@ -168,10 +172,22 @@ app.get('/chart/:id(\\w+)', asyncHandler(async (req, res) => {
 // This should only work if user is logged in
 app.get('/api/transactions/:id(\\d+)', asyncHandler(async (req, res) => {
   const userId = req.params.id;
+  Stock.hasMany(Transaction, {foreignKey: 'stock_id'});
+  Transaction.belongsTo(Stock, {foreignKey: 'stock_id'});
+  const userTransactions = await Transaction.findAll({ where: { user_id: userId }, include: [Stock] })
 
-  const userTransactions = await Transaction.findAll({where: {user_id : userId}});
+  let rows = new Array();
+  userTransactions.forEach(tr => {
+    let { share_quantity, createdAt } = tr;
+    let { symbol } = tr.Stock;
+      rows.push({
+        share_quantity,
+        symbol,
+        createdAt
+    });
+  })
 
-  res.json(userTransactions);
+  res.json(rows)
 }));
 
 // This should only work if user is logged in

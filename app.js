@@ -28,6 +28,9 @@ app.use(bodyParser.urlencoded({ extended : false }));
 app.get('/', asyncHandler(async (req, res) => {
   res.render('landingPage');
 }));
+app.get('/dashboard', asyncHandler(async (req, res) => {
+  res.render('dashboardPage');
+}));
 
 app.get('/login-page', asyncHandler(async (req, res) => {
   res.render('login-page', { title: 'Log in: Sherwood Wealth Services'});

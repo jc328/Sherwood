@@ -71,6 +71,11 @@
         grid-row-end: 3;
         /* position: absolute; */
         /* top: 350px; */
+        
+    }
+    .green-phone,
+    .phone-video {
+        left: 250px;
     }
     .nav__sign-nup-b-c {
         margin-top: -120px;
@@ -249,12 +254,15 @@
         line-height: 28px;
         letter-spacing: -0.21px;
     }
-    .green-phone {
-        width: 100%;
-    }
+  
+    .green-phone,
     .phone-video {
+        /* left: 100px; */
+        /* top: 30px; */
         width: 100%;
+     
     }
+   
     .phone-c {
         position: absolute;
         top: 350px;

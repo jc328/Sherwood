@@ -15,6 +15,9 @@
     /* background-color: magenta; */
     margin: 0px; 
 }
+#grid-c {
+    overflow: hidden;
+}
 .phone-c {
     height: 400px;
     width: 400px;

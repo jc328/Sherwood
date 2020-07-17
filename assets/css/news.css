@@ -117,8 +117,6 @@ header{
   grid-row: 1 / 2;
   grid-column: 1 / 6;
   border: solid 1px black;
-  /* background-color: silver; */
-
 }
 
 #date{
@@ -139,16 +137,11 @@ header{
 .stock__watchlist{
   grid-column: 3 / 4;
   grid-row: 2 / 4;
-  /* background-color: silver; */
-  border: solid 1px black;
 }
 
 .stocks{
   grid-column: 3 / 4;
   grid-row: 4 / 5;
-  border: solid 1px black;
-  /* background-color: #3AC803; */
-
 }
 
 /* .newsContainer{
@@ -164,13 +157,11 @@ header{
   flex-direction: column;
   /* justify-content: flex-start; */
   align-items: stretch;
-  /* border: solid 1px black; */
 }
 
-.newsContainer__article--main{
-  /* border-bottom: solid #FFFFFF 30px;
-  background-color: transparent; */
-}
+/* .newsContainer__article--main{
+
+} */
 
 .mediaName{
   display: grid;

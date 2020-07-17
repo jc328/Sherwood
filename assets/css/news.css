@@ -29,7 +29,22 @@ body{
   border-bottom-color: #e4e9ed;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 33% 33% 33%;
+  /* grid-template-rows: 25% 25% 25% 25%; */
+  grid-template-rows: 20% 20% 20% 20% 20%;
+}
+
+.list__image--text{
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 36px;
+  padding-right: 16px;
+  border-radius: 20px;
+  font-family: "Capsule Sans Text", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.1px;
+  line-height: 20px;
 }
 
 header{
@@ -48,20 +63,142 @@ header{
   display: grid;
   grid-column: 2 / 3;
   grid-row: 3 / 4;
-  /* border-bottom-color: #e4e9ed; */
   padding: 0 2px;
   border-bottom-style: solid;
   border-bottom-width: 1px;
+  justify-self: center;
+  /* justify-items: center; */
+}
+
+.listSection{
+  margin-bottom: 50px;
+  /* justify-self: center; */
+}
+
+.icon{
+  height: 24px;
+  width: 24px;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  border-radius: 12px;
 }
 
 .listOne{
   display: grid;
   grid-column: 1 / 2;
-  grid-row: 1 / 2
+  grid-row: 1 / 2;
+  border: solid 1px lightgrey;
+  border-radius: 12px;
 }
 
 .listTwo{
+  display: grid;
   grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  border: solid 1px lightgrey;
+  border-radius: 12px;
+}
+.listThree{
+  display: grid;
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  border: solid 1px lightgrey;
+  border-radius: 12px;
+}
+.listFour{
+  display: grid;
+  grid-column: 4 / 5;
+  grid-row: 1 / 2;
+  border: solid 1px lightgrey;
+  border-radius: 12px;
+}
+.listFive{
+  display: grid;
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  border: solid 1px lightgrey;
+  border-radius: 12px;
+}
+.listSix{
+  display: grid;
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  border: solid 1px lightgrey;
+  border-radius: 12px;
+}
+.listSeven{
+  display: grid;
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+  border: solid 1px lightgrey;
+  border-radius: 12px;
+}
+.listEight{
+  display: grid;
+  grid-column: 4 / 5;
+  grid-row: 2 / 3;
+  border: solid 1px lightgrey;
+  border-radius: 12px;
+}
+
+.listNine{
+  display: grid;
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+  border: solid 1px lightgrey;
+  border-radius: 12px;
+}
+
+.listTen{
+  display: grid;
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  border: solid 1px lightgrey;
+  border-radius: 12px;
+}
+
+.listEleven{
+  display: grid;
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+  border: solid 1px lightgrey;
+  border-radius: 12px;
+}
+.listTwelve{
+  display: grid;
+  grid-column: 4 / 5;
+  grid-row: 3 / 4;
+  border: solid 1px lightgrey;
+  border-radius: 12px;
+}
+.listThirteen{
+  display: grid;
+  grid-column: 1 / 2;
+  grid-row: 4 / 5;
+  border: solid 1px lightgrey;
+  border-radius: 12px;
+}
+.listFourteen{
+  display: grid;
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  border: solid 1px lightgrey;
+  border-radius: 12px;
+}
+.listFifteen{
+  display: grid;
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+  border: solid 1px lightgrey;
+  border-radius: 12px;
+}
+.listSixteen{
+  display: grid;
+  grid-column: 4 / 5;
+  grid-row: 3 / 4;
+  border: solid 1px lightgrey;
+  border-radius: 12px;
 }
 
 .stock__watchlist{
@@ -74,14 +211,6 @@ header{
   grid-row: 4 / 5;
 }
 
-.right-display-c__display {
-    height: 765px;
-    width: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
 
 /* .newsContainer{
   display: grid;
@@ -96,7 +225,6 @@ header{
   flex-direction: column;
   /* justify-content: flex-start; */
   align-items: stretch;
-
   /* grid-column: 2 / 3;
   grid-row: 3 / 4 */
 }
@@ -123,10 +251,6 @@ header{
   width: 680px;
 }
 
-/* .newsContainer__article--main{
-
-} */
-
 .mediaName{
   /* display: grid;
   grid-column: 2 /3;
@@ -145,15 +269,12 @@ header{
 }
 
 .article__1--heading{
-
   /* display: grid; */
   /* grid-column: 3 / 4; */
   font-family: "Capsule Sans Text", -apple-system, BlinkMacSystemFont, sans-serif;  
-
   /* display: grid;
   grid-column: 3 / 4; */
   font-family: "Capsule Sans Text", -apple-system, BlinkMacSystemFont, sans-serif;
-
   font-size: 20px;
   font-weight: 400;
   letter-spacing: -0.1px;
@@ -202,7 +323,6 @@ header{
   text-decoration: none;
 }
 
-
 .articleTwoImage{
   display: grid;
   grid-column: 3 / 4;
@@ -235,7 +355,6 @@ header{
   justify-self: end;
   align-self: center;
 }
-
 
 .article__4--heading{
   display: grid;
@@ -276,7 +395,6 @@ header{
   overflow-wrap: break-word;
 }
 
-
 .articleFiveImage{
   display: grid;
   grid-column: 3 / 4;
@@ -295,55 +413,6 @@ header{
   align-self: center;
 }
 
-.articleOneImage{
-  /* display: grid;
-  grid-column: 3 / 4; */
-  height: 85%;
-  width: 85%;
-}
-.article__2{
-  /* display: grid;
-  grid-row: 2 / 3;
-  grid-column: 2 / 3 */
-}
-
-.articleTwoImage{
-  /* display: grid;
-  grid-column: 3 / 4; */
-  height: 10%;
-  width: 12%;
-}
-
-.article__3{
-  /* display: grid;
-  grid-row: 3 / 4; */
-  
-}
-
-.articleThreeImage{
-  /* display: grid;
-  grid-column: 3 / 4; */
-  height: 10%;
-  width: 12%;
-}
-
-.article__4{
-  /* display: grid;
-  grid-row: 4 / 5; */
-}
-
-.articleFourImage{
-  /* display: grid;
-  grid-column: 3 / 4; */
-  height: 10%;
-  width: 12%;
-}
-
-.article__5{
-  /* display: grid;
-  grid-row: 5 / 6; */
-}
-
 .article__6--heading{
   display: grid;
   grid-column: 3 / 4;
@@ -358,7 +427,6 @@ header{
   text-decoration: none;
   overflow-wrap: break-word;
 }
-
 
 .article__7--heading{
   display: grid;
@@ -382,6 +450,7 @@ header{
   justify-self: end;
   align-self: center;
 }
+
 .article__8--heading{
   display: grid;
   grid-column: 3 / 4;
@@ -396,6 +465,7 @@ header{
   text-decoration: none;
   overflow-wrap: break-word;
 }
+
 .articleEightImage{
   display: grid;
   grid-column: 3 / 4;
@@ -426,35 +496,5 @@ header{
   width: 130px;
   justify-self: end;
   align-self: center;
-}
-
-.article__6{
-  /* display: grid;
-  grid-row: 6 / 7; */
-  
-}
-.article__7{
-  /* display: grid;
-  grid-row: 7 / 8; */
-  
-}
-.article__8{
-  /* display: grid;
-  grid-row: 8 / 9; */
-  
-}
-.article__8{
-  /* display: grid;
-  grid-row: 9 / 10 */
-  
-}
-.article__9{
-  /* display: grid;
-  grid-row: 10 / 11 */
-  
-}
-.article__10{
-  /* display: grid;
-  grid-row: 11 / 12; */
 }
 

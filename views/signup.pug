@@ -1,0 +1,50 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    //- script(type="module" src="./javascript/loginPage.js")
+    link(href="./css/signup.css" rel="stylesheet")
+    title= title
+  body
+    div.signupText
+    div.logo
+      div
+        h2 Commission-free stock trading
+        p Weve cut the fat that makes other brokerages costly, like manual account management and hundreds of storefront locations, so we can offer zero commission trading.
+      div
+        h2 Account Protection
+        p Robinhood Financial is a member of SIPC. Securities in your account are protected up to $500,000. For details, please see www.sipc.org.
+      div
+        h2 Keep tabs on your money
+        p Set up customized news and notifications to stay on top of your assets as casually or as relentlessly as you like. Controlling the flow of info is up to you.
+    div.form__container
+      p.title Sherwood Wealth Services
+      form(action="/login-page", method="post" )
+        input(type="hidden" name="_csrf" value=token)
+        label.form__head Make Your Money Move
+        p Sherwood lets you invest in companies you love, commission-free.
+        div.inputBox
+          //- label Email
+          div.nameInput
+            input(class='inputBox__inner' type='text' name='firstName' placeholder='First Name' autocomplete="off")
+            input(class='inputBox__inner' type='text' name='lastName' placeholder='Last Name' autocomplete="off")
+          div
+            input(class='inputBox__inner' class='emailDemo' type='text' name='username' placeholder='Email' autocomplete="off")
+        div.inputBox
+          //- label Password
+          div
+            input(class='inputBox__inner' class='passwordDemo' type='password' name='password' placeholder='Password' autocomplete="off")
+        div.buttons
+            button(type="submit" class="signup") Sign Up
+        h3.apply-shake= msg2
+        div.textWrap
+          p Check the background of Sherwood Financial LLC and
+          p Sherwood Securities, LLC on FINRA's BrokerCheck.
+
+          p All investments involve risk and the past performance of a security,
+          p or financial product does not guarantee future results or returns.
+          p Keep in mind that while diversification may help spread risk it does
+          p not assure a profit, or protect against loss, in a down market. There
+          p is always the potential of losing money when you invest in securities,
+          p or other financial products.

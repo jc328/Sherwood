@@ -44,9 +44,7 @@ app.post('/login-page', asyncHandler(async (req, res) => {
       email: email
     }
   })
-
   if (UserData === null) {
-    //if no user is found, creates salt, hashes and updates table
     bcrypt.genSalt(saltRounds, function(err, salt) {
       bcrypt.hash(password, salt, function(err, hash) {
         User.create({
@@ -60,10 +58,10 @@ app.post('/login-page', asyncHandler(async (req, res) => {
       })
     })
   })
-      res.render('login-page', {
-        msg: '',
-        msg1: 'A new user has been created!  Please login with your new credentials'
-      })
+    res.render('login-page', {
+      msg: '',
+      msg1: 'A new user has been created!  Please login with your new credentials'
+    })
   } else {
     bcrypt.hash(password, UserData.salt, function(err, hash) {
       if (hash === UserData.password) {
@@ -74,7 +72,6 @@ app.post('/login-page', asyncHandler(async (req, res) => {
         res.render('login-page', {
           msg: 'Please check your Password'
         })
-
       }
     })
   }
@@ -84,6 +81,29 @@ app.get('/landing-page', asyncHandler(async (req, res) => {
   res.render('landingPage');
 }));
 
+app.get('/signup', asyncHandler(async(req, res) => {
+  res.render('signup')
+}))
+
+app.post('/signup', asyncHandler(async(req, res) => {
+  let password = req.body.password
+  let email = req.body.username
+  let random = Math.random()
+
+  let UserData = await User.findOne({
+    attributes: ["email", "salt", "password"],
+    where: {
+      email: email
+    }
+  })
+
+  if (UserData !== null) {
+    res.render('signup', {
+      msg2: 'Email is already Taken'
+    })
+ }
+  res.render('login-page')
+}))
 
 app.get('/search', asyncHandler(async (req, res) => {
   const stockData = await Stock.findAll({

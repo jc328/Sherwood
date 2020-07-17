@@ -1,0 +1,120 @@
+html,
+body{
+  font-family: "Capsule Sans Text", -apple-system, BlinkMacSystemFont, sans-serif;
+  height: 100%;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.1px;
+  line-height: 20px;
+  display: flex;
+  flex-direction: row-reverse;
+  height: 100%;
+  width: 100%;
+}
+
+.form__container{
+  width: auto;
+  align-self: center;
+  margin-right: 150px;
+}
+
+.logo {
+  display: flex;
+  padding: 0px 20px;
+  width: 35%;
+  justify-content: space-evenly;
+  align-items: center;
+  /* border: black 1px dotted; */
+  background-color: rgb(245,248,250);
+  flex-direction: column;
+}
+
+.textWrap {
+  color: lightgrey
+}
+
+.form__head {
+  display:grid;
+  color: rgb(4,13,20);
+  font-family: var(--rh__type-palette__type15__stack);
+  /* font-size: var(--rh__type-palette__type15__font-size); */
+  font-size: 22px;
+  font-style: normal;
+  font-weight: var(--rh__type-palette__type15__font-weight);
+  line-height: var(--rh__type-palette__type15__line-height);
+  letter-spacing: var(--rh__type-palette__type15__letter-spacing);
+  text-decoration: unset;
+}
+
+.nameInput {
+  display: flex;
+}
+
+.inputBox__inner{
+  margin: 5px;
+  padding: 12px;
+  background-color: #E8F0FE;
+  width: 100%;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  line-height: 1.5em;
+  border-color:rgb(245, 248, 250);
+  outline: 0;
+  transition-property: border-color;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+  box-sizing: border-box;
+  overflow: visible;
+  font-size: 100%;
+}
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  font-family: cursive;
+  color: green;
+}
+
+
+.inputBox__forgot{
+  color: #2FC802;
+}
+
+button{
+  background-color: #2FC802;
+  color: #F8FDF9;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  height: 50px;
+  width: 140px;
+  align-items: center;
+  cursor: pointer;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.apply-shake {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+.err {
+  color: red;
+}
+
+.new {
+  color: green;
+}

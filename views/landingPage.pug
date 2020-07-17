@@ -12,10 +12,10 @@ html(lang="en")
       link(href="./css/landingPageBlackPhone.css" rel="stylesheet")
       link(href="./css/landingPageFooter.css" rel="stylesheet")
       link(href="./css/landingPageMediaScreens.css" rel="stylesheet")
-      
-      
 
-      
+
+
+
       title Sherwood Wealth Services
     body
       div#main
@@ -28,7 +28,7 @@ html(lang="en")
           div.nav__products-c
             div.nav__products-c--fixed
               span.nav__products__span Products
-              P.invisible ' ' 
+              P.invisible ' '
                 p.angle ∟
           div.nav__learn-c
             div.nav__learn-c--fixed
@@ -37,16 +37,16 @@ html(lang="en")
             div.nav__support--fixed
               a(href="/").nav__support-c__support Support
           div#inbetween-space
-         
+
           div.nav__loggin-c
-            a(href="/").nav__log-in-c__log-in Log In
+            a(href="/login-page").nav__log-in-c__log-in Log In
           div.sign
             div.nav__sign-nup-c
-              a.nav__sign-nup-c__sign-nup Sign Up
+              a(href="/signup").nav__sign-nup-c__sign-nup Sign Up
               div.eqx-c
                 div.eqx-c__c
                   div.eqx-c__top
-                  div.eqx-c__bottom 
+                  div.eqx-c__bottom
 
         div.poducts-bar.hidden
             div.nav__stocks-c
@@ -81,9 +81,9 @@ html(lang="en")
             div.whole-screen__support-c
               div.whole-screen__support-c__text-center
                 a(href="/").whole-screen-c__learn Support
-            
 
-          
+
+
         div#green
           div.grid-c
             div.phone-c
@@ -91,48 +91,48 @@ html(lang="en")
               <video autoplay="" controlslist="nodownload nofullscreen noremoteplayback" loop="" muted="" playsinline="" preload="auto" class="phone-video"><source src="./images/3x__8a5e77cafdc8af11be3651d08c2ff2a2.mp4" type="video/mp4"><img class="css-1eazbjj" draggable="false" role="presentation" src="https://cdn.robinhood.com/assets/robinhood/brand/1x__d05b6c860541960976715b15872f6027.png" srcset="https://cdn.robinhood.com/assets/robinhood/brand/1x__d05b6c860541960976715b15872f6027.png, https://cdn.robinhood.com/assets/robinhood/brand/2x__cc315b9c078102e16b08ae0e8490ee9f.png 2x, https://cdn.robinhood.com/assets/robinhood/brand/3x__f91478063fabe05577d7e75323c10826.png 3x"></video>
             div.green__title-c
               p.green__title__p Investing for <br> Everyone
-              p.green__title__p-2 Investing for Everyone 
+              p.green__title__p-2 Investing for Everyone
               p.green__slogan Sherwood Wealth Services, a pioneer of commission-free investing, gives you more ways to make your money work harder.
-            
+
               div.sign-b
                 div.nav__sign-nup-b-c
                   a.nav__sign-nup-b-c__sig-nup Sign Up
-        div#break-text-c  
+        div#break-text-c
           div#break-text-centering
             p.break-text-c__title Break Free from Commission <br> Fees
             div.break-text-c__c
-              p.break-text-c__c__text  Make unlimited commission-free trades in stocks, ETFs, and options with Sherwood Wealth Services, as well as buy and sell cryptocurrencies with Sherwood Wealth Services Crypto. See our fee schedule to learn more about cost. 
-              div.commission-disclosure          
-                <svg fill="none" height="28" viewBox="0 0 24 24" width="28" class="commission-disclosure__svg"><circle cx="12" cy="12" r="11" stroke="#6f787e" stroke-width="2"></circle><path d="M11.232 18H13.056V9.52H11.232V18ZM11.2 8.128H13.088V6.32H11.2V8.128Z" fill="#6f787e"></path></svg>  
-                span.commission-disclosure__text Commissions Disclosure   
-        
-        div.intro 
+              p.break-text-c__c__text  Make unlimited commission-free trades in stocks, ETFs, and options with Sherwood Wealth Services, as well as buy and sell cryptocurrencies with Sherwood Wealth Services Crypto. See our fee schedule to learn more about cost.
+              div.commission-disclosure
+                <svg fill="none" height="28" viewBox="0 0 24 24" width="28" class="commission-disclosure__svg"><circle cx="12" cy="12" r="11" stroke="#6f787e" stroke-width="2"></circle><path d="M11.232 18H13.056V9.52H11.232V18ZM11.2 8.128H13.088V6.32H11.2V8.128Z" fill="#6f787e"></path></svg>
+                span.commission-disclosure__text Commissions Disclosure
+
+        div.intro
           img#party-shapes(src="./images/partyshapes.png", alt="")
-          div.intro__c   
-            p.intro__c__title Introducing Fractional Shares 
+          div.intro__c
+            p.intro__c__title Introducing Fractional Shares
             p.intro__c__pitch Invest in thousands of stocks with as little as $1.
-            div.intro__c__args-c 
+            div.intro__c__args-c
               div.args-c-1
-                p.args-c-1__p Invest Any Amount 
+                p.args-c-1__p Invest Any Amount
                 p.args-c-1__p-text Choose how much you want to invest, and we’ll convert from dollars to parts of a whole share.
-              div.args-c-2 
-                p.args-c-2__p Build a Balanced Portfolio 
+              div.args-c-2
+                p.args-c-2__p Build a Balanced Portfolio
                 p.args-c-2__p-text Customize your portfolio with pieces of different companies and funds to help reduce risk.
               div.args-c-3
-                p.args-c-3__p Trade in Real Time 
+                p.args-c-3__p Trade in Real Time
                 p.args-c-3__p-text Trades placed during market hours are executed at that time, so you’ll always know the share price.
               img#balloons(src="./images/2x__c933308e212fc01d9353f801698d17cd.png", alt="", srcset="")
             form(action="/", method="post")
               input(type="hidden" name="_csurf" value="token")
               div.early
-                input.early__input(type="text" name="earlyAccessSubmit" placeholder="name@email.com" required) 
+                input.early__input(type="text" name="earlyAccessSubmit" placeholder="name@email.com" required)
                 div.early__access
                   div.early__access-c
                     a.early__access-c__early-access Get Early Access
-            div.fractional-disclosure          
-              <svg fill="none" height="28" viewBox="0 0 24 24" width="28" class="fractional-disclosure__svg"><circle cx="12" cy="12" r="11" stroke="#6f787e" stroke-width="2"></circle><path d="M11.232 18H13.056V9.52H11.232V18ZM11.2 8.128H13.088V6.32H11.2V8.128Z" fill="#6f787e"></path></svg>  
-              span.fractional-disclosure__text Fractional Shares Disclosure        
-        
+            div.fractional-disclosure
+              <svg fill="none" height="28" viewBox="0 0 24 24" width="28" class="fractional-disclosure__svg"><circle cx="12" cy="12" r="11" stroke="#6f787e" stroke-width="2"></circle><path d="M11.232 18H13.056V9.52H11.232V18ZM11.2 8.128H13.088V6.32H11.2V8.128Z" fill="#6f787e"></path></svg>
+              span.fractional-disclosure__text Fractional Shares Disclosure
+
         div#black
           div.black-c
             //- nav.black-c__nav
@@ -162,10 +162,10 @@ html(lang="en")
                 div.black__circles__1.opt3
             div.black-c__learn-as
               span.black-c__learn-as__span Learn As You Grow
-              p.black-c__learn-as__p 
+              p.black-c__learn-as__p
                 span#black-paragraph Our goal is to make investing in financial markets more affordable, more intuitive, and more fun, no matter how much experience you have (or don’t have).
     footer
-      div.footer-c 
+      div.footer-c
         div.footer-c__grid-space
         div.footer-c__grid-space
         div.footer-c__grid-space
@@ -253,7 +253,7 @@ html(lang="en")
         form.sub-form(action="/", method="post")
             input(type="hidden" name="_csurf" value="token")
             div.sub
-              input.sub__input(type="text" name="earlyAccessSubmit" placeholder="name@email.com" required) 
+              input.sub__input(type="text" name="earlyAccessSubmit" placeholder="name@email.com" required)
               div.sub__access
                 div.sub__access-c
                   a.sub__access-c__sub-access Subscribe
@@ -268,7 +268,7 @@ html(lang="en")
             a Disclosure Library
               span.hide.zero-opacity jslkdjflaskjflsakdjflsdjflasjflksjfklsjlfjflkdsj
           div.footer-c__linkz__holder2
-            a Privacy 
+            a Privacy
               span.hide.zero-opacity jslkdjflaskjflsakdjflsdjflasjflksjfklsjlfjflkdsj
         div.line
         div.footer-c__bottom
@@ -276,7 +276,6 @@ html(lang="en")
           p.footer-c__bottom__p1All All investments involve risks, including the possible loss of capital.
           p.footer-c__bottom__p1Securities Secuties trading is offered to self-directed customers by Sherwood Wealth Services. Sherwood Wealth Services is a member of the
             span.green  Financial Industry Regulatory Authority (FINRA).
-        div.fractional-disclosure2.fractional-disclosure-grid         
-          <svg fill="none" height="28" viewBox="0 0 24 24" width="28" class="fractional-disclosure__svg"><circle cx="12" cy="12" r="11" stroke="#6f787e" stroke-width="2"></circle><path d="M11.232 18H13.056V9.52H11.232V18ZM11.2 8.128H13.088V6.32H11.2V8.128Z" fill="#6f787e"></path></svg>  
+        div.fractional-disclosure2.fractional-disclosure-grid
+          <svg fill="none" height="28" viewBox="0 0 24 24" width="28" class="fractional-disclosure__svg"><circle cx="12" cy="12" r="11" stroke="#6f787e" stroke-width="2"></circle><path d="M11.232 18H13.056V9.52H11.232V18ZM11.2 8.128H13.088V6.32H11.2V8.128Z" fill="#6f787e"></path></svg>
             span.fractional-disclosure__text2 View Important Disclosures
-        

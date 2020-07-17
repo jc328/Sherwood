@@ -6,6 +6,7 @@
     justify-content: flex-start;
     align-items: center;
     border-bottom: 1px solid black;
+    /* overflow: hidden; */
 }
 .grid-c {
     display: grid;

@@ -1,9 +1,15 @@
 div#chart-wrapper {
     width: 680px;
+    /* background-color: tomato; */
+    position: fixed;
+    top: 200px;
+    left: 200px;
+    z-index: 10;
+    /* border: 1px solid blue; */
 }
 
 div#current-price {
-    background-color: transparent;
+    background-color: transparent;  
     width: auto;
     height: 6rem;
     margin-bottom: 20px;

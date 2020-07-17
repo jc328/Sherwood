@@ -7,8 +7,8 @@ body {
 
 }
 #main {
-    /* height: 2700px; */
     width: 100%;
+    /* width: 100vw ; */
     display: flex;
     flex-direction: column;
     justify-content: start;

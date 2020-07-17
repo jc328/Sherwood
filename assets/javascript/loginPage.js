@@ -2,11 +2,9 @@
 window.addEventListener('DOMContentLoaded', e => {
 
   let demo = document.querySelector('.demo')
-  let i=0;
-  let k=0;
-  let spd = 50;
-  let txt = 'SchroogeMcDuck@gmail.com'
-  let pwd = 'myMoneyBin2020'
+  let i=0, k=0, spd = 70;
+  let txt = 'demo@gmail.com'
+  let pwd = 'demodemo'
 
   demo.addEventListener('click', (e => {
     document.querySelector('.emailDemo').value = ''
@@ -30,6 +28,6 @@ window.addEventListener('DOMContentLoaded', e => {
       k++;
       setTimeout(typePassword, spd);
     }
-    // document.querySelector('.signIn').click()
+    document.querySelector('.signIn').click()
   }
 });

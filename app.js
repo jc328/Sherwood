@@ -56,7 +56,7 @@ app.post('/login-page', asyncHandler(async (req, res) => {
       email: email
     }
   })
-  if (UserData === null && req.body.firstName === '') {
+  if (UserData === null && req.body.firstName !== undefined) {
     bcrypt.genSalt(saltRounds, function(err, salt) {
       bcrypt.hash(password, salt, function(err, hash) {
         User.create({

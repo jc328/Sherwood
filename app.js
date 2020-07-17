@@ -86,7 +86,7 @@ app.post('/login-page', asyncHandler(async (req, res) => {
       } else {
         //Password is Wrong, redirect to Login Page
         res.render('login-page', {
-          msg: 'Please check your Password'
+          msg: 'Login Failed.  Please check your Password'
         })
       }
     })
@@ -118,7 +118,7 @@ app.post('/signup', asyncHandler(async(req, res) => {
 
   if (UserData !== null) {
     res.render('signup', {
-      msg2: 'Email is already Taken'
+      msg2: 'Creating User Account Failed.  Email is already Taken'
     })
  }
   res.render('login-page')

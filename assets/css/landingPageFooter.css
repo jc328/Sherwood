@@ -1,7 +1,13 @@
+#footer-centering {
+    width: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+}
 footer {
     min-height: 760px;
-    min-width: 100%;
-    background-color: grey;
+    max-width: 1500px;
+    background-color: rgb(0, 0, 0);
 }
 .footer-c {
     border-top: 2px solid white;

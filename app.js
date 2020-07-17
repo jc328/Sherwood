@@ -37,14 +37,14 @@ app.post('/login-page', asyncHandler(async (req, res) => {
   let password = req.body.password
   let email = req.body.username
   let random = Math.random()
-
+  console.log(req.body)
   let UserData = await User.findOne({
     attributes: ["email", "salt", "password"],
     where: {
       email: email
     }
   })
-  if (UserData === null) {
+  if (UserData === null && req.body.firstName === '') {
     bcrypt.genSalt(saltRounds, function(err, salt) {
       bcrypt.hash(password, salt, function(err, hash) {
         User.create({
@@ -61,6 +61,10 @@ app.post('/login-page', asyncHandler(async (req, res) => {
     res.render('login-page', {
       msg: '',
       msg1: 'A new user has been created!  Please login with your new credentials'
+    })
+  } else if (UserData === null) {
+    res.render('login-page', {
+      msg: 'Username or Password Not Found',
     })
   } else {
     bcrypt.hash(password, UserData.salt, function(err, hash) {

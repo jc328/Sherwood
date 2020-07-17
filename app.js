@@ -68,7 +68,7 @@ app.post('/login-page', asyncHandler(async (req, res) => {
     bcrypt.hash(password, UserData.salt, function(err, hash) {
       if (hash === UserData.password) {
         //Redirect User to the Dashboard - change to dashboard page
-        res.render('login-page')
+        res.render('dashboardPage');
       } else {
         //Password is Wrong, redirect to Login Page
         res.render('login-page', {
@@ -103,6 +103,7 @@ app.get('/search', asyncHandler(async (req, res) => {
 
 app.get('/news', asyncHandler(async (req, res) => {
   res.render('news-section', { title: 'News' });
+}))
 
 app.get('/dashboard-page', asyncHandler(async (req, res) => {
   res.render('dashboardPage');

@@ -1,0 +1,34 @@
+
+block content
+  div
+    form(action='/search' method='post')
+      div
+        input(
+          class='searchBar'
+          class='awesomplete'
+          type='text'
+          name='search'
+          placeholder='Search'
+          autocomplete='off'
+          list='company'
+          size='5'
+        )
+        datalist(id='company' size='5').searchbarDrop
+          each val in stockData
+            option=val.fullName  
+        //- div
+        //-     select(name='dropdown', id='' size="5").searchbarDrop
+        //-       each val in stockData
+        //-         option=val.fullName  
+  div
+    img(src=data.logo)
+    h4= `Stock Name: ${data.name}`
+    h4= `Website: ${data.weburl}`
+    h4= `Industry: ${data.finnhubIndustry}`
+    h4= `Market Cap: ${data.marketCapitalization} Million`
+  div
+    h4= `Shares Outstanding: ${data.shareOutstanding}`
+    h4= `IPO Date: ${data.ipo}`
+    h4= `Country: ${data.country}`
+    h4= `Phone: ${data.phone}`
+  

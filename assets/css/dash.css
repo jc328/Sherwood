@@ -6,28 +6,30 @@
     height: 70px;
     width: 100%;
     top: 0px;
-    background-color: whitesmoke;
+    /* background-color: whitesmoke;  */
     /* background-color: black; */
-    border: 1px solid violet;
+    /* border: 1px solid violet; */
     margin: 0px;  
     position: fixed; 
-    z-index: 11;
     left: 0px;
 }
 #nav__centering {
     width: 95%;
     height: 100%;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-basis: 500px;
 }
 .nav__feather-c {
-    width: 28px;
-    height: 28px;
+    /* width: 28px; */
+    height: 50px;
     /* border: 1px solid green; */
     margin-left: 7px;
+    position: relative;
+    top: 5px;
+
 }
 .nav__feather-c__feather {
     position: relative;
@@ -38,18 +40,24 @@
     filter: brightness(0.0);
 }
 .search {
-    height: 30px;
+    height: 35px;
     width: 100%;
-    margin-left: 14px;
-    border: 1px solid rgb(255, 0, 0);
+    margin-left: 2px;
+    border: 1px solid rgb(179, 179, 179);
     display: flex;
     justify-content: start;
     align-items: center;
     flex-shrink: -1;
 }
+.search span {
+    color: rgb(179, 179, 179);
+    margin-left: 7px;
+}
 #magnifying-glass {
     height: 18px;
     margin-left: 20px;
+    filter: invert(27%) sepia(0%) saturate(2878%) hue-rotate(10deg) brightness(250%) contrast(97%);
+
 }
 .nav__free-c {
     display: flex;
@@ -57,12 +65,26 @@
     align-items: center;
     left: 470px;
     width: 150px;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     margin-right: 14px;
 }
+.nav__free-c *:hover,
+.right-display-c__drop-down__content a:hover {
+    color: rgb(0,200,5);
+}
+.right-top__cirlces-c *:hover {
+    background-color: rgb(0,200,5);
+}
+.nav__feather-c__feather:hover {
+    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(10deg) brightness(104%) contrast(97%);
+}
+
+#shrink-space-free {
+    width: 200px;
+    flex-shrink: 1.3;
+}
 #free-stocks {
-    min-width: 100px;
-    
+    min-width: 100px;   
 }
 .nav__free-c__free {
     font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
@@ -75,3 +97,249 @@
     flex-grow: 2;
     margin-left: 7px;
 }
+#dash-grid {
+    display: grid;
+    grid-template-columns: 40px 800px 400px 40px;
+    grid-template-rows:70px 700px;
+
+}
+.right-display-c {
+    height: 475px;
+    width: 250px;
+  
+    position: fixed;
+    top: 100px;
+    left: 875px;
+    box-shadow: 0px 0px 13px  rgb(169, 169, 169);
+    overflow-y: scroll;
+}
+.right-display-c__display {
+    height: 765px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.right-display-c__display__content {
+   width: 100%;
+   height: 50px;
+   border-bottom: 1px solid rgb(165, 165, 165);
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+}
+.right-span-top:hover {
+    color: rgb(250, 0, 129);
+}
+.right-span {
+    font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    letter-spacing: -0.25px;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+    flex-shrink: 2;
+    flex-grow: 2;
+    margin-left: 20px;
+}
+#right-top {
+  width: 100%px;
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.right-top__cirlces-c {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-right: 20px;
+}
+.right-top__circles-c__circles {
+    width: 4px;
+    height: 4px;
+    border-radius: 100%;
+    background-color: lightslategrey;
+}
+.right-display-c__drop-down {
+    width: 150px;
+    height: 235px;
+    position: fixed;
+    top: 150px;
+    left: 975px;
+    background-color: white;
+    box-shadow: 0px 0px 13px  rgb(169, 169, 169);
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+}
+.right-display-c__drop-down__content {
+    position: fixed;
+    width: 150px;
+    height: 45px;
+    border-bottom: 1px solid slategray;
+}
+.right-display-c__drop-down a {
+    color: rgb(4,13,20);
+    font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    letter-spacing: -0.25px;
+    font-size: 12px;
+    font-weight: 600;
+}
+#display {
+    position: fixed;
+    top: 165px;
+    left: 995px;
+    color: rgb(4,13,20);
+    font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    letter-spacing: -0.25px;
+    font-size: 14px;
+    font-weight: 700;
+}
+#last-price {
+    position: fixed;
+    top: 210px;
+    left: 990px;
+}
+#your-equity {
+    position: fixed;
+    top: 255px;
+    left: 990px;
+}
+#todays-return {
+    position: fixed;
+    top: 300px;
+    left: 990px;
+}
+#total-return {
+    position: fixed;
+    top: 345px;
+    left: 990px;
+}
+
+
+.account-display-c {
+    height: 540px;
+    width: 285px;
+  
+    position: fixed;
+    top: 50px;
+    left: 835px;
+    box-shadow: 0px 0px 13px  rgb(169, 169, 169);
+    overflow-y: scroll;
+    background-color: white;
+    opacity: 100%;
+}
+.account-display-c__display {
+    height: 765px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.account-display-c__display__content {
+   width: 100%;
+   height: 50px;
+   border-bottom: 1px solid rgb(165, 165, 165);
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+}
+.account-span-top:hover {
+    color: rgb(250, 0, 129);
+}
+.account-span {
+    font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    letter-spacing: -0.25px;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+    flex-shrink: 2;
+    flex-grow: 2;
+    margin-left: 20px;
+}
+.account-span2 {
+    font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    letter-spacing: -0.25px;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+    flex-shrink: 2;
+    flex-grow: 2;
+}
+#money-span {
+    position: relative;
+    left: -20px;
+}
+#money-span2 {
+    position: relative;
+    left: -10px;
+}
+.flex1 {
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+#account-top {
+  width: 100%px;
+    height: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+#portfolio-power,
+#buying-power {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    /* background-color: yellowgreen; */
+    margin-left: 20px;
+}
+#buying-power {
+    margin-top: 20px;
+}
+
+
+.left-display-c {
+    height: 100%;
+    width: 680px;
+    position: fixed;
+    top: 70px;
+    left: 125px;
+    overflow-y: scroll;
+}
+.left-display-c__display {
+    height: 2000px;
+    width: 680px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    flex-shrink: 3;
+    /* background-color: thistle; */
+    
+}
+.left-display-c__display__content {
+   width: 100%;
+   height: 100px;
+   border-bottom: 1px solid rgb(165, 165, 165);
+}
+.hidden {
+    visibility: hidden;
+}
+#empty-space-news {
+    height: 100px;
+    width: 680px;
+}
+
+
+
+

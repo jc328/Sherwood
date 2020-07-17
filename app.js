@@ -26,8 +26,20 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended : false }));
 
 app.get('/', asyncHandler(async (req, res) => {
+
   res.render('landingPage');
 }));
+app.get('/dashboard', asyncHandler(async (req, res) => {
+  res.render('dashboardPage');
+
+  const user = await User.findByPk(userId);
+  const balance = user.account_balance;
+  res.render('landingPage', { user, balance});
+
+}));
+// app.get('/dashboard', asyncHandler(async (req, res) => {
+//   res.render('dashboardPage');
+// }));
 
 app.get('/login-page', asyncHandler(async (req, res) => {
   res.render('login-page', { title: 'Log in: Sherwood Wealth Services'});
@@ -84,6 +96,9 @@ app.post('/login-page', asyncHandler(async (req, res) => {
 app.get('/landing-page', asyncHandler(async (req, res) => {
   res.render('landingPage');
 }));
+app.get('/search', asyncHandler(async (req, res) => {
+  res.render('searchbar');
+}));
 
 app.get('/signup', asyncHandler(async(req, res) => {
   res.render('signup')
@@ -109,7 +124,7 @@ app.post('/signup', asyncHandler(async(req, res) => {
   res.render('login-page')
 }))
 
-app.get('/search', asyncHandler(async (req, res) => {
+app.get('/dashboard', asyncHandler(async (req, res) => {
   const stockData = await Stock.findAll({
     attributes: ["symbol", "fullName"]
   })
@@ -119,7 +134,7 @@ app.get('/search', asyncHandler(async (req, res) => {
           console.error(error);
       } else {
           // let breakingNews = news[0]
-          res.render('searchbar', {data, news, stockData})
+          res.render('dashboardPage', {data, news, stockData})
       }
   });
   });
@@ -127,12 +142,18 @@ app.get('/search', asyncHandler(async (req, res) => {
 
 app.get('/news', asyncHandler(async (req, res) => {
   res.render('news-section', { title: 'News' });
+
 }))
 
 app.get('/dashboard-page', asyncHandler(async (req, res) => {
   res.render('dashboardPage');
 
+
 }));
+
+// app.get('/dashboard-page', asyncHandler(async (req, res) => {
+//   res.render('dashboardPage');
+// }));
 
 app.post('/search', asyncHandler(async (req, res) => {
   const stockData = await Stock.findAll({

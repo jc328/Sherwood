@@ -25,7 +25,7 @@ body{
   justify-content: space-evenly;
   align-items: center;
   /* border: black 1px dotted; */
-  background-color: rgb(245,248,250);
+  background-color: rgb(215, 228, 236);
   flex-direction: column;
 }
 

@@ -10,7 +10,7 @@ body{
   background-image: url('../images/loginPage.png');
   width: 50%;
   height: 100vh;
-} 
+}
 
 .form__container{
   display:flex;

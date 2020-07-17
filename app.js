@@ -1,11 +1,13 @@
 #! /usr/bin/env node
 const token = 'Tsk_52c6de67190f4fb7aa10ae91d4c9dd5c';
-
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const csurf = require('csurf');
 const fetch = require('node-fetch');
+
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const { User, Transaction, Stock } = require('./models');
 const finnhub = require('finnhub');
@@ -30,6 +32,53 @@ app.get('/', asyncHandler(async (req, res) => {
 app.get('/login-page', asyncHandler(async (req, res) => {
   res.render('login-page', { title: 'Log in: Sherwood Wealth Services'});
 }));
+
+app.post('/login-page', asyncHandler(async (req, res) => {
+  let password = req.body.password
+  let email = req.body.username
+  let random = Math.random()
+
+  let UserData = await User.findOne({
+    attributes: ["email", "salt", "password"],
+    where: {
+      email: email
+    }
+  })
+
+  if (UserData === null) {
+    //if no user is found, creates salt, hashes and updates table
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+      bcrypt.hash(password, salt, function(err, hash) {
+        User.create({
+          email: email,
+          password: hash,
+          salt: salt,
+          session_token: random,
+          account_balance: 100000,
+          createdAt: new Date(),
+          updatedAt: new Date()
+      })
+    })
+  })
+      res.render('login-page', {
+        msg: '',
+        msg1: 'A new user has been created!  Please login with your new credentials'
+      })
+  } else {
+    bcrypt.hash(password, UserData.salt, function(err, hash) {
+      if (hash === UserData.password) {
+        //Redirect User to the Dashboard - change to dashboard page
+        res.render('login-page')
+      } else {
+        //Password is Wrong, redirect to Login Page
+        res.render('login-page', {
+          msg: 'Please check your Password'
+        })
+
+      }
+    })
+  }
+}))
 
 app.get('/landing-page', asyncHandler(async (req, res) => {
   res.render('landingPage');

@@ -96,9 +96,6 @@ app.post('/login-page', asyncHandler(async (req, res) => {
 app.get('/landing-page', asyncHandler(async (req, res) => {
   res.render('landingPage');
 }));
-app.get('/search', asyncHandler(async (req, res) => {
-  res.render('searchbar');
-}));
 
 app.get('/signup', asyncHandler(async(req, res) => {
   res.render('signup')
@@ -154,6 +151,14 @@ app.get('/dashboard-page', asyncHandler(async (req, res) => {
 // app.get('/dashboard-page', asyncHandler(async (req, res) => {
 //   res.render('dashboardPage');
 // }));
+
+app.get('/search', asyncHandler(async (req, res) => {
+  const stockData = await Stock.findAll({
+    attributes: ["symbol", "fullName"]
+  })
+  let data = ''
+  res.render('searchbar', {stockData, data});
+}));
 
 app.post('/search', asyncHandler(async (req, res) => {
   const stockData = await Stock.findAll({

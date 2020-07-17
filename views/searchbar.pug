@@ -30,25 +30,25 @@ html(lang="en")
 
     div
       img(src=data.logo)
-      h4= `Stock Name: ${data.name}`
-      h4= `Website: ${data.weburl}`
-      h4= `Industry: ${data.finnhubIndustry}`
-      h4= `Market Cap: ${data.marketCapitalization} Million`
+      h4= data.name
+      h4= data.weburl
+      h4= data.finnhubIndustry
+      h4= data.marketCapitalization
     div
-      h4= `Shares Outstanding: ${data.shareOutstanding}`
-      h4= `IPO Date: ${data.ipo}`
-      h4= `Country: ${data.country}`
-      h4= `Phone: ${data.phone}`
+      h4= data.shareOutstanding
+      h4= data.ipo
+      h4= data.country
+      h4= data.phone
 
-    div
-      h3= news[0].headline
-      p= news[0].summary
-      p= href=news[0].url
-    div
-      h3= news[1].headline
-      p= news[1].summary
-      p= news[1].url
-    div
-      h3= news[2].headline
-      p= news[2].summary
-      p= news[2].url
+    //- div
+    //-   h3= news[0].headline
+    //-   p= news[0].summary
+    //-   p= href=news[0].url
+    //- div
+    //-   h3= news[1].headline
+    //-   p= news[1].summary
+    //-   p= news[1].url
+    //- div
+    //-   h3= news[2].headline
+    //-   p= news[2].summary
+    //-   p= news[2].url

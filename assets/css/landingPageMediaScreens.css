@@ -1,4 +1,30 @@
-@media screen and (min-width: 1024px) {
+/* @media screen and (max-width: 2000) {
+    .green-phone,
+    .phone-video {
+          left: 100px;
+          
+          width: 600px;
+          height: 600px;
+     
+     }
+} */
+@media screen and (min-width: 1279) {
+    .green-phone,
+    .phone-video {
+ 
+        height: 200% !important;
+        width: 200% !important;
+     
+     }
+     .black__circles {
+         visibility: hidden;
+     }
+}
+
+
+
+
+@media screen and (min-width: 1025px) {
     .nav__products-c *,
     .nav__learn-c *,
     .nav__support-c *,
@@ -28,6 +54,9 @@
     }
     .hide {
         position: absolute;
+    }
+    .black__circles {
+        visibility: hidden;
     }
     
 }
@@ -71,6 +100,13 @@
         grid-row-end: 3;
         /* position: absolute; */
         /* top: 350px; */
+        
+    }
+    .green-phone,
+    .phone-video {
+        left: -250px;
+        width: 130%;
+        /* width: 60%; */
     }
     .nav__sign-nup-b-c {
         margin-top: -120px;
@@ -80,12 +116,12 @@
         top: -80px;
         
     }
-    .green-phone {
+    /* .green-phone {
         width: 60%;
     }
     .phone-video {
         width: 60%;
-    }
+    } */
     .intro__c__args-c {
         flex-direction: column;
     }
@@ -249,12 +285,15 @@
         line-height: 28px;
         letter-spacing: -0.21px;
     }
-    .green-phone {
-        width: 100%;
-    }
+  
+    .green-phone,
     .phone-video {
+        left: 100px;
+        /* top: 30px; */
         width: 100%;
+     
     }
+   
     .phone-c {
         position: absolute;
         top: 350px;

@@ -11,6 +11,7 @@ body{
 #nav {
     display: flex;
     align-items: center;
+    /* align-items: flex-start; */
     justify-content: space-evenly;
     height: 55px;
     width: 100%;
@@ -23,6 +24,7 @@ body{
     z-index: 11;
     left: 0px;
 }
+
 #nav__centering {
     width: 95%;
     height: 100%;
@@ -39,6 +41,8 @@ body{
     margin-left: 7px;
     position: relative;
     top: 5px;
+    display: flex;
+    align-self: flex-start;
 }
 .nav__feather-c__feather {
     position: relative;
@@ -83,6 +87,8 @@ body{
 #shrink-space-free {
     width: 200px;
     flex-shrink: 1.3;
+    display: flex;
+    align-self: flex-end;
 }
 #free-stocks {
     min-width: 100px;   
@@ -104,6 +110,7 @@ body{
   grid-template-columns: 1fr 4fr 2fr 1fr;
   grid-template-rows: 1% 2% 10% 40%;
   /* grid-template-rows: 50px 50px 100px 300px 800px; */
+  margin-top: 100px;
 }
 
 header{
@@ -144,17 +151,25 @@ header{
 
 }
 
-.newsContainer{
+/* .newsContainer{
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 3fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr 2fr;
   border: solid 1px black;
   grid-auto-rows: none;
+} */
+
+.newsContainer{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-start; */
+  align-items: stretch;
+  border: solid 1px black;
 }
 
 .newsContainer__article--main{
-  border-bottom: solid #FFFFFF 30px;
-  background-color: transparent;
+  /* border-bottom: solid #FFFFFF 30px;
+  background-color: transparent; */
 }
 
 .mediaName{
@@ -175,9 +190,9 @@ header{
 }
 
 .article__1--heading{
-  display: grid;
-  grid-column: 3 / 4;
-  font-family: "Capsule Sans Text", -apple-system, BlinkMacSystemFont, sans-serif;
+  /* display: grid; */
+  /* grid-column: 3 / 4; */
+  font-family: "Capsule Sans Text", -apple-system, BlinkMacSystemFont, sans-serif;  
   font-size: 20px;
   font-weight: 400;
   letter-spacing: -0.1px;
@@ -188,12 +203,29 @@ header{
   text-decoration: none;
 }
 
+
+.articleOneImage{
+  display: grid;
+  grid-column: 3 / 4;
+  height: 397px;
+  width: 92%;
+  margin-left: 40px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #e4e9ed;
+}
+
 .newsContainer__article--second{
   display: grid;
   border-bottom-color: #e4e9ed;
   padding: 0 2px;
   border-bottom-style: solid;
   border-bottom-width: 1px;
+  /* height: 50px; */
+}
+
+.article__2{
+  order: 5;
 }
 .article__2--heading{
   display: grid;
@@ -209,33 +241,14 @@ header{
   text-decoration: none;
 }
 
-.articleOneImage{
-  display: grid;
-  grid-column: 3 / 4;
-  height: 450px;
-  width: 450x;
-}
-
-/* .article__2{
-  display: grid;
-  grid-row: 2 / 3;
-  grid-column: 2 / 3
-} */
-
 .articleTwoImage{
   display: grid;
   grid-column: 3 / 4;
-  height: 120px;
-  width: 150px;
+  height: 74px;
+  width: 130px;
   justify-self: end;
   align-self: center;
 }
-
-/* .article__3{
-  display: grid;
-  grid-row: 3 / 4;
-  
-} */
 
 .article__3--heading{
   display: grid;
@@ -255,16 +268,12 @@ header{
 .articleThreeImage{
   display: grid;
   grid-column: 3 / 4;
-  height: 120px;
-  width: 150px;
+  height: 74px;
+  width: 130px;
   justify-self: end;
   align-self: center;
 }
 
-/* .article__4{
-  display: grid;
-  grid-row: 4 / 5;
-} */
 
 .article__4--heading{
   display: grid;
@@ -284,8 +293,8 @@ header{
 .articleFourImage{
   display: grid;
   grid-column: 3 / 4;
-  height: 120px;
-  width: 150px;
+  height: 74px;
+  width: 130px;
   justify-self: end;
   align-self: center;
 }
@@ -305,47 +314,12 @@ header{
   overflow-wrap: break-word;
 }
 
-/* .article__5{
-  display: grid;
-  grid-row: 5 / 6;
-} */
 
 .articleFiveImage{
   display: grid;
   grid-column: 3 / 4;
-  height: 120px;
-  width: 150px;
+  height: 74px;
+  width: 130px;
   justify-self: end;
   align-self: center;
-}
-
-.article__6{
-  display: grid;
-  grid-row: 6 / 7;
-  
-}
-.article__7{
-  display: grid;
-  grid-row: 7 / 8;
-  
-}
-.article__8{
-  display: grid;
-  grid-row: 8 / 9;
-  
-}
-.article__8{
-  display: grid;
-  grid-row: 9 / 10
-  
-}
-.article__9{
-  display: grid;
-  grid-row: 10 / 11
-  
-}
-.article__10{
-  display: grid;
-  grid-row: 11 / 12;
-
 }

@@ -24,7 +24,9 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended : false }));
 
 app.get('/', asyncHandler(async (req, res) => {
-  res.render('landingPage');
+  const user = await User.findByPk(userId);
+  const balance = user.account_balance;
+  res.render('landingPage', { user, balance});
 }));
 // app.get('/dashboard', asyncHandler(async (req, res) => {
 //   res.render('dashboardPage');
@@ -36,6 +38,9 @@ app.get('/login-page', asyncHandler(async (req, res) => {
 
 app.get('/landing-page', asyncHandler(async (req, res) => {
   res.render('landingPage');
+}));
+app.get('/search', asyncHandler(async (req, res) => {
+  res.render('searchbar');
 }));
 
 
@@ -58,13 +63,10 @@ app.get('/dashboard', asyncHandler(async (req, res) => {
 app.get('/news', asyncHandler(async (req, res) => {
   res.render('news-section', { title: 'News' });
 }));
-app.get('/nwz', asyncHandler(async (req, res) => {
-  res.render('nwz', { title: 'News' });
-}));
 
-app.get('/dashboard-page', asyncHandler(async (req, res) => {
-  res.render('dashboardPage');
-}));
+// app.get('/dashboard-page', asyncHandler(async (req, res) => {
+//   res.render('dashboardPage');
+// }));
 
 app.post('/search', asyncHandler(async (req, res) => {
   const stockData = await Stock.findAll({

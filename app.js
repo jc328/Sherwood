@@ -5,11 +5,13 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const csurf = require('csurf');
 const fetch = require('node-fetch');
+const { check, validationResult } = require('express-validator');
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 const { User, Transaction, Stock } = require('./models');
+const { userValidators, transactionValidtor } = require('./validators')
 const finnhub = require('finnhub');
 
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
@@ -24,6 +26,7 @@ app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/assets'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended : false }));
+
 
 app.get('/', asyncHandler(async (req, res) => {
 
@@ -102,24 +105,36 @@ app.get('/signup', asyncHandler(async(req, res) => {
   res.render('signup')
 }))
 
-app.post('/signup', asyncHandler(async(req, res) => {
-  let password = req.body.password
-  let email = req.body.username
-  let random = Math.random()
+app.post('/signup', userValidators, asyncHandler(async(req, res) => {
+//   let password = req.body.password
+//   let email = req.body.username
+//   let random = Math.random()
 
-  let UserData = await User.findOne({
-    attributes: ["email", "salt", "password"],
-    where: {
-      email: email
-    }
-  })
+//   let UserData = await User.findOne({
+//     attributes: ["email", "salt", "password"],
+//     where: {
+//       email: email
+//     }
+//   })
 
-  if (UserData !== null) {
-    res.render('signup', {
-      msg2: 'Creating User Account Failed.  Email is already Taken'
-    })
- }
-  res.render('login-page')
+//   if (UserData !== null) {
+//     res.render('signup', {
+//       msg2: 'Creating User Account Failed.  Email is already Taken'
+//     })
+//  }
+//   res.render('login-page')
+  const email = req.body.username;
+  const password = req.body.password;
+
+  const user = User.build( {
+    email
+  });
+
+  const validationErrors = validationResult(req);
+
+  if (validationErrors.isEmpty()) {
+
+  }
 }))
 
 app.get('/dashboard', asyncHandler(async (req, res) => {
@@ -185,7 +200,7 @@ app.post('/search', asyncHandler(async (req, res) => {
   });
 }))
 
-app.get('/api/chart/price/:id(\\w+)', asyncHandler(async (req, res) => {
+app.get('/api/price/:id(\\w+)', asyncHandler(async (req, res) => {
   const stockSymbol = req.params.id;
   const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${token}`, {
     method: 'get',
@@ -266,9 +281,30 @@ app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
   })
   const companyInfo = await companyInfoRequest.json();
   const companyName = companyInfo.companyName;
+  const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${token}`, {
+    method: 'get',
+    body: JSON.stringify(res.body),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  const price = await priceRequest.json();
 
-  res.render('stockPage', { stockSymbol, companyName })
+  res.render('stockPage', { stockSymbol, companyName, price })
 }));
+
+app.post('/transactions/add', asyncHandler(async (req, res) => {
+  // TODO things to check for,
+  // BUYS: check if enough funds
+  // SELLS: check if enough shares
+
+  const shares = req.body;
+  res.json(shares)
+}));
+
+app.use((req, res, next) => {
+  const err = new Error("The requested resource couldn't be found.");
+  err.status = 404;
+  next(err);
+});
 
 const port = Number.parseInt(process.env.PORT, 10) || 8080;
 

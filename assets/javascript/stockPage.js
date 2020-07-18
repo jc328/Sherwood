@@ -1,12 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let investInSelect = document.getElementById("invest-in");
-    let tradeInput = document.getElementById("shares-or-dollars");
+    let costSpan = document.getElementById("estimate-cost__span");
+    let creditSpan = document.getElementById("estimate-credit__span");
+    let currentPrice = document.getElementsByName("current-price")[0].value;
+    document.getElementById("number-shares__buy")
+        .addEventListener('change', e => {
+            let estimateCost = (e.target.value * currentPrice).toFixed(2);
+            costSpan.innerHTML = `$${estimateCost}`;
+        });
 
-    investInSelect.addEventListener('change', e => {
-        if (event.target.value === 'Dollars') {
-            tradeInput.innerHTML = "DOLLARS"
-        } else if (event.target.value === "Shares") {
-            tradeInput.innerHTML = "Shares"
+    document.getElementById("number-shares__sell")
+        .addEventListener('change', e => {
+            let estimateCredit = (e.target.value * currentPrice).toFixed(2);
+            creditSpan.innerHTML = `$${estimateCredit}`;
+        });
+
+    let buyTabButton = document.getElementById("buy-tab__button");
+    let sellTabButton = document.getElementById("sell-tab__button");
+    let buyForm = document.getElementById("transaction-form__buy");
+    let sellForm = document.getElementById("transaction-form__sell");
+
+    sellTabButton.addEventListener('click', e => {
+        if(!buyForm.classList.contains("hidden") && sellForm.classList.contains("hidden")) {
+            buyForm.classList.add("hidden");
+            sellForm.classList.remove("hidden");
         }
     })
+
+    buyTabButton.addEventListener("click", e => {
+        if(!sellForm.classList.contains("hidden") && buyForm.classList.contains("hidden")) {
+            sellForm.classList.add("hidden");
+            buyForm.classList.remove("hidden");
+        }
+    });
 });

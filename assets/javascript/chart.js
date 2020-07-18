@@ -6,10 +6,20 @@ setInterval(async function() {
     await drawBasic();
 }, 300000);
 
+function calcPercentDiff(first, current) {
+    let trueDiff = (current - first).toFixed(2);
+    let diffPercent = ((trueDiff / first) * 100).toFixed(2);
+    let plusMinus = (trueDiff >= 0) ? "+" : "-";
+    let diff = Math.abs(trueDiff);
+    diffPercent = Math.abs(diffPercent);
+    return `${plusMinus}$${diff} (${plusMinus}${diffPercent}%) Today`;
+};
+
 async function drawBasic() {
     let currentStock = document.getElementsByName("currentStock")[0].value;
 
     const priceDisplay = document.getElementById('current-price-span');
+    const diffDisplay = document.getElementById('percent-diff');
 
     // const priceRequest = await fetch(`/api/chart/price/${currentStock}`, {
     //     method: 'get',
@@ -106,10 +116,12 @@ async function drawBasic() {
         if (selectedPrice && selectedTime) {
             priceDisplay.innerHTML = `$ ${selectedPrice}`
         }
+        diffDisplay.innerHTML = calcPercentDiff(firstRowPrice, selectedPrice);
     }
 
     let currentLastPrice = data.cache[data.cache.length - 1][1].We;
     priceDisplay.innerHTML = `$ ${currentLastPrice}`
+    diffDisplay.innerHTML = calcPercentDiff(firstRowPrice, currentLastPrice);
 
     google.visualization.events.addListener(chart, 'onmouseover', (event) => {
         changePrice(data, event.row);
@@ -117,5 +129,6 @@ async function drawBasic() {
 
     google.visualization.events.addListener(chart, 'onmouseout', (event) => {
         priceDisplay.innerHTML = `$ ${currentLastPrice}`
+        diffDisplay.innerHTML = calcPercentDiff(firstRowPrice, currentLastPrice);
     });
 }

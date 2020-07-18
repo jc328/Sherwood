@@ -3,9 +3,10 @@ google.charts.setOnLoadCallback(drawBasic);
 
 async function drawBasic() {
     // TODO Change to get the stock from each stock owned
-    let currentStock = document.getElementsByName("currentStock")[0].value;
+    let currentStock = document.getElementById("mini-chart__1");
+    console.log(currentStock.innerHTML)
 
-    const intradayPriceRequest = await fetch(`/api/chart/intraday-prices/${currentStock}`, {
+    const intradayPriceRequest = await fetch(`/api/chart/intraday-prices/${currentStock.innerHTML}`, {
         method: 'get',
         headers: { 'Content-Type': 'application/json' }
         })
@@ -75,6 +76,6 @@ async function drawBasic() {
         colors: [lineColor],
     };
 
-    let chart = new google.visualization.LineChart(document.getElementById('mini-chart'));
+    let chart = new google.visualization.LineChart(document.getElementById('mini-chart__1-display'));
     chart.draw(data, options);
 }

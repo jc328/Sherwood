@@ -82,7 +82,8 @@ app.post('/login-page', asyncHandler(async (req, res) => {
     bcrypt.hash(password, UserData.salt, function(err, hash) {
       if (hash === UserData.password) {
         //Redirect User to the Dashboard - change to dashboard page
-        res.render('dashboardPage');
+        //May change UserData.password to provide better security
+        res.redirect(`/dashboard/${UserData.salt}`);
       } else {
         //Password is Wrong, redirect to Login Page
         res.render('login-page', {

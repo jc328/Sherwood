@@ -1,4 +1,24 @@
-
+body {
+    margin: 0;
+    height: 100%x;
+    width: 100%;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    /* background-color: turquoise; */
+    /* position: relative; */
+}
+#main {
+    /* background-color: violet; */
+    width: 1200px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
 #nav {
     display: flex;
     align-items: center;
@@ -12,6 +32,7 @@
     margin: 0px;  
     position: fixed; 
     left: 0px;
+    background-color: white;
 }
 #nav__centering {
     width: 95%;
@@ -48,9 +69,11 @@
     justify-content: start;
     align-items: center;
     flex-shrink: -1;
+    
 }
 .search span {
     color: rgb(179, 179, 179);
+    
     margin-left: 7px;
 }
 #magnifying-glass {
@@ -104,14 +127,15 @@
 
 }
 .right-display-c {
-    height: 475px;
-    width: 250px;
-  
+    height: 470px;
+    width: 265px;
     position: fixed;
     top: 100px;
-    left: 875px;
+    left: 835px;
     box-shadow: 0px 0px 13px  rgb(169, 169, 169);
     overflow-y: scroll;
+    /* border: 1px solid yellow; */
+    background-color: white;
 }
 .right-display-c__display {
     height: 765px;
@@ -169,12 +193,13 @@
     height: 235px;
     position: fixed;
     top: 150px;
-    left: 975px;
+    left: 950px;
     background-color: white;
     box-shadow: 0px 0px 13px  rgb(169, 169, 169);
     display: flex;
     justify-content: flex-start;
     align-content: center;
+    
 }
 .right-display-c__drop-down__content {
     position: fixed;
@@ -223,11 +248,11 @@
 
 .account-display-c {
     height: 540px;
-    width: 285px;
+    width: 305px;
   
     position: fixed;
     top: 50px;
-    left: 835px;
+    left: 820px;
     box-shadow: 0px 0px 13px  rgb(169, 169, 169);
     overflow-y: scroll;
     background-color: white;
@@ -312,7 +337,7 @@
     width: 680px;
     position: fixed;
     top: 70px;
-    left: 125px;
+    left: 90px;
     overflow-y: scroll;
 }
 .left-display-c__display {
@@ -339,6 +364,8 @@
     height: 100px;
     width: 680px;
 }
+
+
 
 
 

@@ -5,13 +5,16 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const csurf = require('csurf');
 const fetch = require('node-fetch');
+const session = require('express-session');
 const { check, validationResult } = require('express-validator');
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 const { User, Transaction, Stock } = require('./models');
-const { userValidators, transactionValidtor } = require('./validators')
+const { userValidators, transactionValidtor, loginValidator } = require('./validators')
+const { loginUser, restoreUser } = require('./auth')
+
 const finnhub = require('finnhub');
 
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
@@ -27,9 +30,14 @@ app.use(express.static(__dirname + '/assets'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended : false }));
 
+app.use(session({
+  name: 'sws.sid',
+  secret: 'robin',
+  resave: false,
+  saveUninitialized: false
+}));
 
-app.get('/', asyncHandler(async (req, res) => {
-
+app.get('/', asyncHandler(async (req, res, next) => {
   res.render('landingPage');
 }));
 // app.get('/dashboard', asyncHandler(async (req, res) => {
@@ -45,51 +53,37 @@ app.get('/login-page', asyncHandler(async (req, res) => {
   res.render('login-page', { title: 'Log in: Sherwood Wealth Services'});
 }));
 
-app.post('/login-page', asyncHandler(async (req, res) => {
-  let password = req.body.password
-  let email = req.body.username
-  let random = Math.random()
-  console.log(req.body)
-  let UserData = await User.findOne({
-    attributes: ["email", "salt", "password"],
-    where: {
-      email: email
-    }
-  })
-  if (UserData === null && req.body.firstName !== undefined) {
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-      bcrypt.hash(password, salt, function(err, hash) {
-        User.create({
-          email: email,
-          password: hash,
-          salt: salt,
-          session_token: random,
-          account_balance: 100000,
-          createdAt: new Date(),
-          updatedAt: new Date()
+app.post('/login-page', loginValidator, asyncHandler(async (req, res) => {
+  let validationErrors = validationResult(req);
+  let errs = new Array();
+
+  if (validationErrors.isEmpty()) {
+    let user = await User.findOne({ where: { email: req.body.email }});
+
+    if (user) {
+      let hash = user.password;
+      bcrypt.compare(req.body.password, hash, function(err, result) {
+        if (result) {
+          loginUser(req, res, user);
+          console.log(req.session)
+          res.redirect('/dashboard')
+        } else {
+          errs.push("This email or password could not be found.")
+          res.render('login-page', {
+          msg: `${errs}`
+          });
+        }
+      });
+    } else {
+      errs.push("This email or password could not be found.")
+      res.render('login-page', {
+        msg: `${errs}`
       })
-    })
-  })
-    res.render('login-page', {
-      msg: '',
-      msg1: 'A new user has been created!  Please login with your new credentials'
-    })
-  } else if (UserData === null) {
-    res.render('login-page', {
-      msg: 'Username or Password Not Found',
-    })
+    }
   } else {
-    bcrypt.hash(password, UserData.salt, function(err, hash) {
-      if (hash === UserData.password) {
-        //Redirect User to the Dashboard - change to dashboard page
-        //May change UserData.password to provide better security
-        res.redirect(`/dashboard/${UserData.salt}`);
-      } else {
-        //Password is Wrong, redirect to Login Page
-        res.render('login-page', {
-          msg: 'Login Failed.  Please check your Password'
-        })
-      }
+    errs = validationErrors.errors.map(err => err.msg)
+    res.render('login-page', {
+      msg: `${errs}`
     })
   }
 }))
@@ -103,36 +97,31 @@ app.get('/signup', asyncHandler(async(req, res) => {
 }))
 
 app.post('/signup', userValidators, asyncHandler(async(req, res) => {
-//   let password = req.body.password
-//   let email = req.body.username
-//   let random = Math.random()
-
-//   let UserData = await User.findOne({
-//     attributes: ["email", "salt", "password"],
-//     where: {
-//       email: email
-//     }
-//   })
-
-//   if (UserData !== null) {
-//     res.render('signup', {
-//       msg2: 'Creating User Account Failed.  Email is already Taken'
-//     })
-//  }
-//   res.render('login-page')
-  const email = req.body.username;
-  const password = req.body.password;
-
-  const user = User.build( {
-    email
-  });
-
-  const validationErrors = validationResult(req);
-
+  let validationErrors = validationResult(req);
   if (validationErrors.isEmpty()) {
+    const password = req.body.password;
 
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+      bcrypt.hash(password, salt, function(err, hash) {
+        User.create({
+          email: req.body.email,
+          password: hash,
+          salt: salt,
+          session_token: req.session.id,
+          account_balance: 100000,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        });
+    })});
+
+    res.redirect('/dashboard')
+  } else {
+    let errs = validationErrors.errors.map(err => err.msg)
+    res.render('signup', {
+      msg2: `${errs}`
+    })
   }
-}))
+}));
 
 
 app.get('/news', asyncHandler(async (req, res) => {
@@ -140,11 +129,9 @@ app.get('/news', asyncHandler(async (req, res) => {
 
 }))
 
-// app.get('/dashboard-page', asyncHandler(async (req, res) => {
-//   res.render('dashboardPage');
-// }));
-
 app.get('/dashboard', asyncHandler(async (req, res) => {
+  console.log(res.locals)
+
   const stockData = await Stock.findAll({
     attributes: ["symbol", "fullName"]
   })
@@ -284,11 +271,11 @@ app.post('/transactions/add', asyncHandler(async (req, res) => {
   res.json(shares)
 }));
 
-app.use((req, res, next) => {
-  const err = new Error("The requested resource couldn't be found.");
-  err.status = 404;
-  next(err);
-});
+// app.use((req, res, next) => {
+//   const err = new Error("The requested resource couldn't be found.");
+//   err.status = 404;
+//   next(err);
+// });
 
 const port = Number.parseInt(process.env.PORT, 10) || 8080;
 

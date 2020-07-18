@@ -2,9 +2,9 @@ google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawBasic);
 
 // Re-draw the chart every 5 minutes
-// setInterval(async function() {
-//     await drawBasic();
-// }, 300000);
+setInterval(async function() {
+    await drawBasic();
+}, 300000);
 
 function calcPercentDiff(first, current) {
     let trueDiff = (current - first).toFixed(2);
@@ -16,17 +16,13 @@ function calcPercentDiff(first, current) {
 };
 
 async function aggregatePrice (transaction) {
-    let symbol = transaction.symbol;
-    let shares = transaction.share_quantity;
-
-    const intradayPriceRequest = await fetch(`/api/chart/intraday-prices/${symbol}`, {
+    const intradayPriceRequest = await fetch(`/api/chart/intraday-prices/${transaction.symbol}`, {
         method: 'get',
         headers: { 'Content-Type': 'application/json' }
         })
     const intradayPrice = await intradayPriceRequest.json();
 
-    let tempArr = new Array();
-    tempArr.push(shares);
+    let tempArr = [transaction.share_quantity];
 
     for(let i = 0; i < intradayPrice.length - 1; i++) {
         if(!intradayPrice[i].average) {
@@ -75,7 +71,6 @@ async function drawBasic() {
     await Promise.all(userStocks).then(val => {
         val.forEach(ele => {
             let shar = ele.shift();
-
             for (let i = 0; i < ele.length; i++) {
                 let current = ele[i];
 
@@ -90,11 +85,8 @@ async function drawBasic() {
 
     let rows = new Array();
     for (let i = 0; i < intradayTime.length; i++) {
-        let fullTime = intradayTime[i].minute;
-        let label = intradayTime[i].label;
-        rows.push([fullTime, agg[i], label]);
+        rows.push([intradayTime[i].minute, agg[i], intradayTime[i].label]);
     }
-
 
     let ratio = `${(agg.length / 390) * 100}%`;
     let lastRowBalance = agg[agg.length - 1];

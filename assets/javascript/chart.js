@@ -16,18 +16,10 @@ function calcPercentDiff(first, current) {
 };
 
 async function drawBasic() {
-    let currentStock = document.getElementsByName("currentStock")[0].value;
-
     const priceDisplay = document.getElementById('current-price-span');
     const diffDisplay = document.getElementById('percent-diff');
 
-    // const priceRequest = await fetch(`/api/chart/price/${currentStock}`, {
-    //     method: 'get',
-    //     headers: { 'Content-Type': 'application/json' }
-    //     })
-    // const recentPrice = await priceRequest.json();
-
-    // priceDisplay.innerHTML = `$ ${recentPrice.toFixed(2)}`
+    let currentStock = document.getElementsByName("currentStock")[0].value;
 
     const intradayPriceRequest = await fetch(`/api/chart/intraday-prices/${currentStock}`, {
         method: 'get',
@@ -38,18 +30,12 @@ async function drawBasic() {
     let rows = new Array();
     let prices = new Array();
     intradayPrice.forEach((price) => {
-        let fullTime = price.minute;
-        let label = price.label;
         if (price.average) {
             let formattedPrice = parseFloat(price.average.toFixed(2));
-            rows.push([fullTime, formattedPrice, label]);
+            rows.push([price.minute, formattedPrice, price.label]);
             prices.push(formattedPrice);
         }
     })
-
-    for (let i = 0; i < intradayPrice.length; i++) {
-
-    }
 
     let startPrice = prices[0];
 
@@ -58,7 +44,6 @@ async function drawBasic() {
     let lastRowPrice = rows[rows.length - 1][1];
     let firstRowPrice = rows[0][1];
     let lineColor = (lastRowPrice > firstRowPrice) ? "#00C805" : "#E64800";
-    // console.log(lineColor)
 
     let data = new google.visualization.DataTable();
     data.addColumn('string', '');
@@ -89,11 +74,11 @@ async function drawBasic() {
         },
         vAxis: {
             baseline: startPrice,
-            baselineColor: 'pink',
+            baselineColor: 'lightgrey',
             logscale: true,
             gridlines: {
                 count: 0
-            }
+            },
         },
         focusTarget: 'category',
         crosshair: {
@@ -110,18 +95,20 @@ async function drawBasic() {
     let chart = new google.visualization.LineChart(document.getElementById('chart_div'));
     chart.draw(data, options);
 
+    let currentLastPrice = data.cache[data.cache.length - 1][1].We;
+    priceDisplay.innerHTML = `$ ${currentLastPrice}`
+    currentLastPrice = Number(currentLastPrice.replace(",", ""));
+    diffDisplay.innerHTML = calcPercentDiff(firstRowPrice, currentLastPrice);
+
     function changePrice(data, row) {
         const selectedTime = data.cache[row][0].We;
-        const selectedPrice = data.cache[row][1].We;
+        let selectedPrice = data.cache[row][1].We;
         if (selectedPrice && selectedTime) {
             priceDisplay.innerHTML = `$ ${selectedPrice}`
         }
+        selectedPrice = Number(selectedPrice.replace(",", ""));
         diffDisplay.innerHTML = calcPercentDiff(firstRowPrice, selectedPrice);
     }
-
-    let currentLastPrice = data.cache[data.cache.length - 1][1].We;
-    priceDisplay.innerHTML = `$ ${currentLastPrice}`
-    diffDisplay.innerHTML = calcPercentDiff(firstRowPrice, currentLastPrice);
 
     google.visualization.events.addListener(chart, 'onmouseover', (event) => {
         changePrice(data, event.row);

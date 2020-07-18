@@ -5,9 +5,12 @@ html(lang="en")
         //- meta(name="viewport", content="width=device-width, initial-scale=1.0")
         <meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=3.0, minimum-scale=0.86">
         title portfolio | Sherwood Wealth Services
-        link(href="./css/awesomplete.css" rel="stylesheet")
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/awesomplete/1.1.5/awesomplete.js" async)
+        //- link(href="./css/awesomplete.css" rel="stylesheet")
+
+        script(src="./javascript/awesomplete.js" async)
+        
         script(type="module" src="./javascript/searchBar.js")
+        link(href="./css/searchbar.css" rel="stylesheet")
         script(type="text/javascript" src="https://www.gstatic.com/charts/loader.js")
         script(type="text/javascript" src="../javascript/chart.js")
         link(rel="stylesheet" type="text/css" href="../css/chart.css")
@@ -31,9 +34,39 @@ html(lang="en")
               a(href="/")
                 img.nav__feather-c__feather(src="https://cdn.robinhood.com/assets/robinhood/shared/favicon_v2.ico" width='500' height='600')
 
-            div.search
-              img#magnifying-glass(src="/images/magnifying-glass.png", alt="", srcset="")
-              span#search-span Search
+            div#search-wrap.flex1
+                
+              //- span#search-span Search
+              
+              form#search-form(action='/search' method='post') 
+                  //- div#search-form__c
+                  img#magnifying-glass(src="/images/magnifying-glass.png", alt="", srcset="")  
+                  input.search2(
+                    //- class='searchBar'
+                    class='awesomplete'
+                    type='text'
+                    name='search'
+                    placeholder='Search'
+                    autocomplete='off'
+                    list='company'
+                    size='5'
+                  )
+                  
+                  datalist(id='company' size='5').searchbarDrop
+                    each val in stockData
+                      option=val.fullName
+              div.searchbarDropz
+                img(src=data.logo)
+                h4= data.name
+                h4= data.weburl
+                h4= data.finnhubIndustry
+                h4= data.marketCapitalization
+              div.searchbarDropz
+                h4= data.shareOutstanding
+                h4= data.ipo
+                h4= data.country
+                h4= data.phone
+
             div#shrink-space-free
             div#free-stocks.nav__free-c
                 a(href="/dashboard").nav__free-c__free Free Stocks
@@ -43,7 +76,7 @@ html(lang="en")
                 a(href="/dashboard").nav__free-c__free Cash
             div.nav__free-c
                 a(href="/dashboard").nav__free-c__free Messages
-            div.nav__free-c
+            div#account.nav__free-c
                 span.nav__free-c__free Account
 
                                   //-  div#dash-grid

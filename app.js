@@ -29,16 +29,13 @@ app.get('/', asyncHandler(async (req, res) => {
 
   res.render('landingPage');
 }));
-app.get('/dashboard', asyncHandler(async (req, res) => {
-  res.render('dashboardPage');
-
-  const user = await User.findByPk(userId);
-  const balance = user.account_balance;
-  res.render('landingPage', { user, balance});
-
-}));
 // app.get('/dashboard', asyncHandler(async (req, res) => {
 //   res.render('dashboardPage');
+
+//   const user = await User.findByPk(userId);
+//   const balance = user.account_balance;
+//   res.render('landingPage', { user, balance});
+
 // }));
 
 app.get('/login-page', asyncHandler(async (req, res) => {
@@ -122,36 +119,23 @@ app.post('/signup', asyncHandler(async(req, res) => {
   res.render('login-page')
 }))
 
-app.get('/dashboard', asyncHandler(async (req, res) => {
-  const stockData = await Stock.findAll({
-    attributes: ["symbol", "fullName"]
-  })
-  finnhubClient.companyProfile2({'symbol': 'DIS'}, (error, data, response) => {
-    finnhubClient.companyNews("AAPL", "2020-06-01", "2020-07-14", (error, news, response) => {
-      if (error) {
-          console.error(error);
-      } else {
-          // let breakingNews = news[0]
-          res.render('dashboardPage', {data, news, stockData})
-      }
-  });
-  });
-}))
 
 app.get('/news', asyncHandler(async (req, res) => {
   res.render('news-section', { title: 'News' });
 
 }))
 
-app.get('/dashboard-page', asyncHandler(async (req, res) => {
-  res.render('dashboardPage');
-
-
-}));
-
 // app.get('/dashboard-page', asyncHandler(async (req, res) => {
 //   res.render('dashboardPage');
 // }));
+
+app.get('/dashboard', asyncHandler(async (req, res) => {
+  const stockData = await Stock.findAll({
+    attributes: ["symbol", "fullName"]
+  })
+  let data = ''
+  res.render('dashboardPage', { stockData, data });
+}));
 
 app.get('/search', asyncHandler(async (req, res) => {
   const stockData = await Stock.findAll({

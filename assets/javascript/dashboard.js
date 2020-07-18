@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', event => {
     const circlesButton = document.querySelectorAll('.right-top__cirlces-c');
     const circleDropDown = document.querySelectorAll('.right-display-c__drop-down');
-    const accountButton = document.querySelectorAll('.nav__free-c');
+    const accountButton = document.querySelectorAll('#account');
     const accountDropDown = document.querySelectorAll('.account-display-c');
 
     circlesButton.forEach(node => {node.addEventListener('click', event => {

@@ -3,6 +3,10 @@ window.addEventListener('DOMContentLoaded', event => {
     const circleDropDown = document.querySelectorAll('.right-display-c__drop-down');
     const accountButton = document.querySelectorAll('#account');
     const accountDropDown = document.querySelectorAll('.account-display-c');
+  
+    document.addEventListener("click", event => {
+        console.log(event.target)
+    })
 
     circlesButton.forEach(node => {node.addEventListener('click', event => {
         circleDropDown[0].classList.toggle('hidden');

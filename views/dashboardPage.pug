@@ -8,7 +8,7 @@ html(lang="en")
         //- link(href="./css/awesomplete.css" rel="stylesheet")
 
         script(src="./javascript/awesomplete.js" async)
-        
+
         script(type="module" src="./javascript/searchBar.js")
         link(href="./css/searchbar.css" rel="stylesheet")
         script(type="text/javascript" src="https://www.gstatic.com/charts/loader.js")
@@ -35,12 +35,12 @@ html(lang="en")
                 img.nav__feather-c__feather(src="https://cdn.robinhood.com/assets/robinhood/shared/favicon_v2.ico" width='500' height='600')
 
             div#search-wrap.flex1
-                
+
               //- span#search-span Search
-              
-              form#search-form(action='/search' method='post') 
+
+              form#search-form(action='/search' method='post')
                   //- div#search-form__c
-                  img#magnifying-glass(src="/images/magnifying-glass.png", alt="", srcset="")  
+                  img#magnifying-glass(src="/images/magnifying-glass.png", alt="", srcset="")
                   input.search2(
                     //- class='searchBar'
                     class='awesomplete'
@@ -51,7 +51,7 @@ html(lang="en")
                     list='company'
                     size='5'
                   )
-                  
+
                   datalist(id='company' size='5').searchbarDrop
                     each val in stockData
                       option=val.fullName
@@ -288,5 +288,3 @@ html(lang="en")
                               span.article__10--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
                               a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
                                 img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
-
-

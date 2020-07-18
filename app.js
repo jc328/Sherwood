@@ -37,8 +37,13 @@ app.use(session({
   saveUninitialized: false
 }));
 
-app.get('/', asyncHandler(async (req, res, next) => {
-  res.render('landingPage');
+app.get('/', restoreUser, asyncHandler(async (req, res, next) => {
+  if (res.locals.authenticated) {
+    res.send("loggedin")
+    // res.render('dashboardPage')
+  } else {
+    res.render('landingPage');
+  }
 }));
 // app.get('/dashboard', asyncHandler(async (req, res) => {
 //   res.render('dashboardPage');
@@ -65,8 +70,7 @@ app.post('/login-page', loginValidator, asyncHandler(async (req, res) => {
       bcrypt.compare(req.body.password, hash, function(err, result) {
         if (result) {
           loginUser(req, res, user);
-          console.log(req.session)
-          res.redirect('/dashboard')
+          return res.redirect('/')
         } else {
           errs.push("This email or password could not be found.")
           res.render('login-page', {
@@ -82,6 +86,7 @@ app.post('/login-page', loginValidator, asyncHandler(async (req, res) => {
     }
   } else {
     errs = validationErrors.errors.map(err => err.msg)
+    errs = errs.join(" ");
     res.render('login-page', {
       msg: `${errs}`
     })
@@ -107,7 +112,6 @@ app.post('/signup', userValidators, asyncHandler(async(req, res) => {
           email: req.body.email,
           password: hash,
           salt: salt,
-          session_token: req.session.id,
           account_balance: 100000,
           createdAt: new Date(),
           updatedAt: new Date()

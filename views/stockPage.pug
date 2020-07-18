@@ -1,0 +1,50 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        script(type="text/javascript" src="https://www.gstatic.com/charts/loader.js")
+        script(type="text/javascript" src="../javascript/chart.js")
+        script(type="module" src="../javascript/stockPage.js")
+        link(rel="stylesheet" type="text/css" href="../css/chart.css")
+        link(rel="stylesheet" type="text/css" href="../css/stockPage.css")
+        title Dummy Stock Page
+    body
+        input(type="hidden", name="currentStock" value=stockSymbol)
+
+        div#chart-wrapper
+            div#current-price
+                span(id="current-company-name")= companyName
+                br
+                span(id="current-price-span")
+                br
+                span(id="percent-diff")
+            div#chart_div
+
+        div#purchase-form
+            div#buy-stock.tabcontent
+                div#button-wrapper
+                    button#buy-tab__button BUY TAB
+                    button#sell-tab__button SELL TAB
+                div#transaction-form__buy
+                    form(action="/transactions/add", method="post")
+                        input(type="hidden", name="symbol" value=stockSymbol)
+                        div#shares-or-dollars
+                            label Shares
+                            input#number-shares__buy(type="number", name="number-shares-bought" placeholder="0" min=1)
+                        div#estimate-cost
+                            span Estimated Cost
+                            span#estimate-cost__span
+                        button#buy-button(type="submit") SUBMIT BUY
+            div#sell-stock.tabcontent
+                div#transaction-form__sell.hidden
+                    form(action="/transactions/add", method="post")
+                        input(type="hidden", name="symbol" value=stockSymbol)
+                        div#shares-or-dollars
+                            label Shares
+                            input#number-shares__sell(type="number", name="number-shares-sold" placeholder="0" min=1)
+                        div#estimate-credit
+                            span Estimated Credit
+                            span#estimate-credit__span
+                        button#sell-button(type="submit") SUBMIT SELL
+        input(type="hidden", name="current-price" value=price)

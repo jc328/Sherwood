@@ -1,10 +1,10 @@
 div#chart-wrapper {
     width: 680px;
     /* background-color: tomato; */
-    position: fixed;
+    /* position: fixed;
     top: 200px;
     left: 200px;
-    z-index: 10;
+    z-index: 10; */
     /* border: 1px solid blue; */
 }
 

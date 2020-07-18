@@ -1,0 +1,38 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        script(type="text/javascript" src="https://www.gstatic.com/charts/loader.js")
+        script(type="text/javascript" src="../javascript/chart.js")
+        script(type="module" src="../javascript/stockPage.js")
+        link(rel="stylesheet" type="text/css" href="../css/chart.css")
+        title Dummy Stock Page
+    body
+        input(type="hidden", name="currentStock" value=stockSymbol)
+
+        div#chart-wrapper
+            div#current-price
+                span(id="current-company-name")= companyName
+                br
+                span(id="current-price-span")
+                br
+                span(id="percent-diff")
+            div#chart_div
+
+        div NEWS BLOCK
+
+        div#purchase-form
+            p BUY/SELL MODULE
+                div
+                    label(for="investIn") Invest In
+                    select#invest-in(name="investIn")
+                        option Shares
+                        option Dollars
+                div
+                    form#transaction-form(action="/transactions/add", method="post")
+                        div#shares-or-dollars
+                            label Shares
+                            input#number-shares(type="number", name="number-shares" placeholder="0")
+
+                    button(type="submit") SUBMIT BUY/SELL

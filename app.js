@@ -257,6 +257,19 @@ app.get('/portfolio-chart', asyncHandler(async (req, res) => {
   res.render('portfolioChart');
 }));
 
+app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
+  const stockSymbol = req.params.id;
+  const companyInfoRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/company?token=${token}`, {
+    method: 'get',
+    body: JSON.stringify(res.body),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  const companyInfo = await companyInfoRequest.json();
+  const companyName = companyInfo.companyName;
+
+  res.render('stockPage', { stockSymbol, companyName })
+}));
+
 const port = Number.parseInt(process.env.PORT, 10) || 8080;
 
 app.listen(port, () => {

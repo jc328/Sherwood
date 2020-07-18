@@ -395,11 +395,11 @@ textarea:focus, input:focus{
     /* background-color: thistle; */
     
 }
-.left-display-c__display__content {
+/* .left-display-c__display__content {
    width: 100%;
    height: 100px;
    border-bottom: 1px solid rgb(165, 165, 165);
-}
+} */
 .hidden {
     visibility: hidden;
 }

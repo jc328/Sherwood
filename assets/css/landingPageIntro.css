@@ -1,3 +1,10 @@
+#intro-centering {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .intro {
     height: 600px;
     width: 100%;
@@ -96,7 +103,7 @@
 #balloons {
     max-width: 457px;
     position: absolute;
-    right: -220px;
+    right: -420px;
     height: 100%;
     top: 0px;
 }

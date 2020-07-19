@@ -8,11 +8,35 @@ html(lang="en")
         script(type="module" src="../javascript/stockPage.js")
         link(rel="stylesheet" type="text/css" href="../css/chart.css")
         link(rel="stylesheet" type="text/css" href="../css/stockPage.css")
-        title Dummy Stock Page
+        script(src="../javascript/awesomplete.js" async)
+        script(type="module" src="./javascript/searchBar.js")
+        link(href="../css/awesomplete.css" rel="stylesheet")
+        link(href="../css/searchbar.css" rel="stylesheet")
+        title.titlePrice= stockSymbol
     body
-        input(type="hidden", name="currentStock" value=stockSymbol)
+        div.header_bar
+            div.header_flavicon
+                img(src='../images/favicon_v2.ico')
+            div
+                form(action="/stocks" method='post')
+                    div
+                        input(
+                            class='searchBar__stocks'
+                            class='awesomplete'
+                            type='text'
+                            name='search'
+                            placeholder='  Search By Name'
+                            autocomplete='off'
+                            list='company'
+                            size='5'
+                        )
+                        datalist(id='company' size='5').searchbarDrop
+                            each val in stockData
+                                option=val.fullName
 
+        input(type="hidden", name="currentStock" value=stockSymbol)
         div#chart-wrapper
+            button.industry_icon= data.finnhubIndustry
             div#current-price
                 span(id="current-company-name")= companyName
                 br
@@ -24,18 +48,32 @@ html(lang="en")
         div#purchase-form
             div#buy-stock.tabcontent
                 div#button-wrapper
-                    button#buy-tab__button BUY TAB
-                    button#sell-tab__button SELL TAB
+                    button#buy-tab__button= `Buy ${stockSymbol}`
+                    button#sell-tab__button= `Sell ${stockSymbol}`
+                    div.create-fullline
                 div#transaction-form__buy
-                    form(action="/transactions/add", method="post")
-                        input(type="hidden", name="symbol" value=stockSymbol)
-                        div#shares-or-dollars
-                            label Shares
-                            input#number-shares__buy(type="number", name="number-shares-bought" placeholder="0" min=1)
-                        div#estimate-cost
-                            span Estimated Cost
-                            span#estimate-cost__span
-                        button#buy-button(type="submit") SUBMIT BUY
+                    div
+                        label.buyLabels Shares
+                    div
+                        form(action="/transactions/add", method="post")
+                            input(type="hidden", name="symbol" value=stockSymbol)
+                            div#shares-or-dollars
+                                input#number-shares__buy(type="number", name="number-shares-bought" placeholder="0" min=1)
+                    div.line-break
+                    div
+                        label.buyLabels Market Price
+                    div.marketPrice
+                    div.create-fullline
+                div#estimate-cost
+                    span.buyLabels Estimated Cost
+                    span#estimate-cost__span
+                button#buy-button(type="submit").review_order Review Order
+                div
+                    div.create-fullline
+                div.flavorText
+                    h4 Introducing Fractional Shares
+                    p Invest in thousands of stocks with as little as $1
+
             div#sell-stock.tabcontent
                 div#transaction-form__sell.hidden
                     form(action="/transactions/add", method="post")
@@ -48,3 +86,34 @@ html(lang="en")
                             span#estimate-credit__span
                         button#sell-button(type="submit") SUBMIT SELL
         input(type="hidden", name="current-price" value=price)
+        div.line-break
+        div.create-line
+        div.about
+            div
+                h2 About
+                h4= data.name
+                h4= data.weburl
+                h4= `Market Cap: ${data.marketCapitalization} million`
+            div
+                h2= `Contact`
+                h4= data.country
+                h4= data.phone
+                h4= `IPO: ${data.ipo}`
+            div.logo
+                img(src=data.logo)
+        div.line-break
+        div.create-line
+        div.newsPage
+            h2.newsTitle News
+                div.newsSummary
+                    h4.newsHeadline= news[0].headline
+                    p= news[0].summary
+                    a(href= `${news[0].url}`) News Article Link
+                div.newsSummary
+                    h4.newsHeadline= news[1].headline
+                    p= news[1].summary
+                    a(href= `${news[1].url}`) News Article Link
+                div.newsSummary
+                    h4.newsHeadline= news[2].headline
+                    p= news[2].summary
+                    a(href= `${news[2].url}`) News Article Link

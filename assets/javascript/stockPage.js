@@ -2,10 +2,18 @@ document.addEventListener("DOMContentLoaded", () => {
     let costSpan = document.getElementById("estimate-cost__span");
     let creditSpan = document.getElementById("estimate-credit__span");
     let currentPrice = document.getElementsByName("current-price")[0].value;
+    let title = document.querySelector('.titlePrice')
+    let marketPrice = document.querySelector('.marketPrice')
+    let marketPriceValue = document.createElement('h4')
+    marketPriceValue.innerHTML = currentPrice
+    title.innerHTML += ` - $${currentPrice}`
+    marketPrice.appendChild(marketPriceValue)
+
+
     document.getElementById("number-shares__buy")
         .addEventListener('change', e => {
             let estimateCost = (e.target.value * currentPrice).toFixed(2);
-            costSpan.innerHTML = `$${estimateCost}`;
+            costSpan.innerHTML = `     $${estimateCost}`;
         });
 
     document.getElementById("number-shares__sell")

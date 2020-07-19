@@ -1,8 +1,10 @@
 .searchBar {
   height: 37px;
   width: 400px;
-  margin: 25px;
+  margin: 25px 0 20px 0;
 }
+
+
 
 .searchbarDrop {
   /* position: absolute; */

@@ -20,7 +20,7 @@ html(lang="en")
         p Set up customized news and notifications to stay on top of your assets as casually or as relentlessly as you like. Controlling the flow of info is up to you.
     div.form__container
       p.title Sherwood Wealth Services
-      form(action="/login-page", method="post" )
+      form(action="/signup", method="post" )
         input(type="hidden" name="_csrf" value=token)
         label.form__head Make Your Money Move
         p Sherwood lets you invest in companies you love, commission-free.
@@ -30,7 +30,7 @@ html(lang="en")
             input(class='inputBox__inner' type='text' name='firstName' placeholder='First Name' autocomplete="off")
             input(class='inputBox__inner' type='text' name='lastName' placeholder='Last Name' autocomplete="off")
           div
-            input(class='inputBox__inner' class='emailDemo' type='text' name='username' placeholder='Email' autocomplete="off")
+            input(class='inputBox__inner' class='emailDemo' type='text' name='email' placeholder='Email' autocomplete="off")
         div.inputBox
           //- label Password
           div

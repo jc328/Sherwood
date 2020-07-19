@@ -31,6 +31,7 @@ html(lang="en")
         link(href="./css/dash.css" rel="stylesheet")
 
     body
+      input(type="hidden", name="uId" value=userId)
       div#main
         div#nav
           div#nav__centering
@@ -82,6 +83,8 @@ html(lang="en")
                 a(href="/dashboard").nav__free-c__free Messages
             div#account.nav__free-c
                 span.nav__free-c__free Account
+                form(action="/logout", method="post")
+                  button(type="submit") LOGOUT
 
                                   //-  div#dash-grid
                                   //-   div.dash-gridz__grid-space
@@ -115,31 +118,20 @@ html(lang="en")
                 span.right-span Watchlist
               //- TESTING MINI CHART
               div.hover-grey.right-display-c__display__content
-                span.right-span#mini-chart__1 AAPL
+                a(href="/stocks/AAPL")
+                  span.right-span#mini-chart__1 AAPL
                 div#mini-chart__1-display
 
               div.hover-grey.right-display-c__display__content
                 span.right-span TSLA
+                a(href="/stocks/TSLA") LINK TO STOCK PAGE
               div.hover-grey.right-display-c__display__content
-                span.right-span NTFLX
-              div.hover-grey.right-display-c__display__content
-                span.right-span MSFT
-              div.hover-grey.right-display-c__display__content
-                span.right-span DIS
+                span.right-span FLWS
+                a(href="/stocks/FLWS") LINK TO STOCK PAGE
               div.hover-grey.right-display-c__display__content
                 span.right-span GPRO
-              div.hover-grey.right-display-c__display__content
-                span.right-span SBUX
-              div.hover-grey.right-display-c__display__content
-                span.right-span F
-              div.hover-grey.right-display-c__display__content
-                span.right-span BABA
-              div.hover-grey.right-display-c__display__content
-                span.right-span BAC
-              div.hover-grey.right-display-c__display__content
-                span.right-span FIT
-              div.hover-grey.right-display-c__display__content
-                span.right-span  SNAP
+                a(href="/stocks/GPRO") LINK TO STOCK PAGE
+
         div.account--fixed
           div.right-display-c__drop-down.hidden
             div.right-display-c__drop-down__content.flex1

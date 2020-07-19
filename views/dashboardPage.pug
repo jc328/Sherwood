@@ -39,7 +39,7 @@ html(lang="en")
 
               //- span#search-span Search
 
-              form#search-form(action='/search' method='post')
+              form#search-form(action='/stocks' method='post')
                   //- div#search-form__c
                   img#magnifying-glass(src="/images/magnifying-glass.png", alt="", srcset="")
                   input.search2(
@@ -73,9 +73,9 @@ html(lang="en")
                 a(href="/dashboard").nav__free-c__free Free Stocks
             div#portfolio.nav__free-c
                 a(href="/dashboard").nav__free-c__free Portfolio
-            div.nav__free-c
+            div#cash.nav__free-c
                 a(href="/dashboard").nav__free-c__free Cash
-            div.nav__free-c
+            div#messages.nav__free-c
                 a(href="/dashboard").nav__free-c__free Messages
             div#account.nav__free-c
                 span.nav__free-c__free Account
@@ -118,7 +118,7 @@ html(lang="en")
                   span.right-span#mini-chart__1 AAPL
                 div#mini-chart__1-display
 
-              div.right-display-c__display__content
+              div.hover-grey.right-display-c__display__content
                 span.right-span TSLA
                 a(href="/stocks/TSLA") LINK TO STOCK PAGE
               div.hover-grey.right-display-c__display__content
@@ -135,16 +135,16 @@ html(lang="en")
                 span Display
             div.right-display-c__drop-down__content.flex1
               a.drop-down-link(href="/dashboard")
-                span Last Price
+                span.hover-green Last Price
             div.right-display-c__drop-down__content.flex1
               a.drop-down-link(href="/dashboard")
-                span Your Equity
+                span.hover-green Your Equity
             div.right-display-c__drop-down__content.flex1
               a.drop-down-link(href="/dashboard")
-                span Today's Return
+                span.hover-green Today's Return
             div.right-display-c__drop-down__content.flex1
               a.drop-down-link(href="/dashboard")
-                span Total Return
+                span.hover-green Total Return
         div.account--fixed
           div.account-display-c.hidden
             div.account-display-c__display

@@ -1,0 +1,114 @@
+.right-display-a {
+    height: 370px;
+    width: 265px;
+    position: fixed;
+    top: 570px;
+    left: 1335px;
+    box-shadow: 0px 0px 13px  rgb(169, 169, 169);
+    /* overflow-y: scroll; */
+    /* overflow-y: auto; */
+    /* border: 1px solid yellow; */
+    background-color: white;
+}
+.right-display-a__display {
+    height: 765px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.right-display-a__display__content {
+   width: 100%;
+   height: 50px;
+   /* border-bottom: 1px solid rgb(165, 165, 165); */
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+}
+.right-span-topp:hover {
+    color: rgb(58, 200, 3);
+}
+.right-span {
+    font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    letter-spacing: -0.25px;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+    flex-shrink: 2;
+    flex-grow: 2;
+    margin-left: 20px;
+}
+#right-top {
+  width: 100%px;
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.right-top__cirlces-a {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-right: 20px;
+}
+.right-top__circles-a__circles {
+    width: 4px;
+    height: 4px;
+    border-radius: 100%;
+    background-color: lightslategrey;
+}
+.right-display-a__drop-down {
+    width: 150px;
+    height: 235px;
+    position: fixed;
+    top: 150px;
+    left: 950px;
+    background-color: white;
+    box-shadow: 0px 0px 13px  rgb(169, 169, 169);
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    
+}
+.right-display-a__drop-down__content {
+    position: fixed;
+    width: 150px;
+    height: 45px;
+    border-bottom: 1px solid slategray;
+}
+.right-display-a__drop-down a {
+    color: rgb(4,13,20);
+    font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    letter-spacing: -0.25px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* My Original Code  */
+
+.stockHeader{
+  color: rgb(4,13,20);
+  font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  letter-spacing: -0.25px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.listTitle{
+  color: black;
+  border-bottom: 1px solid rgb(165, 165, 165);
+  letter-spacing: -0.25px;
+  margin-left: 20px;
+  font-size: 24px;
+  font-weight: 600;
+  text-decoration: none;
+  font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+
+.addSign{
+  font-size: 25px;
+}

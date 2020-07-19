@@ -46,7 +46,7 @@ body {
     display: flex;
     flex-direction: row;
     position: fixed;
-    left: 137px;
+    left: 25px;
     background-color: white;
     /* border: black 1px dotted; */
     width: 56%;

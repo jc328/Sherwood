@@ -78,6 +78,9 @@
     
         visibility: visible;
     }
+    .eqx-c {
+    pointer-events: all;
+}
     .grid-c {
         grid-template-columns: 1fr ;
         grid-template-rows: 1fr 1fr;

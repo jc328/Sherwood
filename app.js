@@ -122,7 +122,11 @@ app.post('/signup', userValidators, asyncHandler(async(req, res) => {
       msg2: `${errs}`
     })
   }
+<<<<<<< HEAD
 }));
+=======
+}))
+>>>>>>> 6b4c12eb3aa17898226dbd6fc8a07e39241c038a
 
 app.get('/news', asyncHandler(async (req, res) => {
   res.render('news-section', { title: 'News' });
@@ -277,6 +281,7 @@ app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
   })
   let data = ''
 
+<<<<<<< HEAD
   // if (res.locals.authenticated) {
     // res.render('stockPage', {
     //   stockSymbol,
@@ -303,6 +308,15 @@ app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
               shares: currentOwnedShares, })
         }
       });
+=======
+  finnhubClient.companyProfile2({'symbol': stockSymbol}, (error, data, response) => {
+    finnhubClient.companyNews(stockSymbol, "2020-06-01", "2020-07-19", (error, news, response) => {
+      if (error) {
+          console.error(error);
+      } else {
+        res.render('stockPage', { stockSymbol, companyName, price, stockData, data, news })
+      }
+>>>>>>> 6b4c12eb3aa17898226dbd6fc8a07e39241c038a
     });
   } else {
     res.render('stockPage', { stockSymbol, companyName, price });

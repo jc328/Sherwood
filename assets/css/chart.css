@@ -1,5 +1,7 @@
 div#chart-wrapper {
     width: 680px;
+    margin-top: 100px;
+    margin-left: 50px;
 }
 
 div#current-price {

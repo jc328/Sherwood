@@ -14,6 +14,8 @@ const { User, Transaction, Stock } = require('./models');
 const { userValidators, transactionValidtor } = require('./validators')
 const finnhub = require('finnhub');
 
+
+
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
 api_key.apiKey = "bs6u9h7rh5rdv3m40reg"
 const finnhubClient = new finnhub.DefaultApi()
@@ -32,14 +34,7 @@ app.get('/', asyncHandler(async (req, res) => {
 
   res.render('landingPage');
 }));
-// app.get('/dashboard', asyncHandler(async (req, res) => {
-//   res.render('dashboardPage');
 
-//   const user = await User.findByPk(userId);
-//   const balance = user.account_balance;
-//   res.render('landingPage', { user, balance});
-
-// }));
 
 app.get('/login-page', asyncHandler(async (req, res) => {
   res.render('login-page', { title: 'Log in: Sherwood Wealth Services'});

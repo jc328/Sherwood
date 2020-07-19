@@ -113,15 +113,14 @@ app.post('/signup', userValidators, asyncHandler(async(req, res) => {
           email: req.body.email,
           password: hash,
           salt: salt,
-          session_token: req.session.token,
+          session_token: req.session.id,
           account_balance: 100000,
           createdAt: new Date(),
           updatedAt: new Date()
         });
-        console.log(user)
         loginUser(req, res, user);
+        res.redirect('/dashboard');
     })});
-    res.redirect('/')
   } else {
     let errs = validationErrors.errors.map(err => err.msg)
     res.render('signup', {
@@ -129,7 +128,6 @@ app.post('/signup', userValidators, asyncHandler(async(req, res) => {
     })
   }
 }));
-
 
 app.get('/news', asyncHandler(async (req, res) => {
   res.render('news-section', { title: 'News' });
@@ -265,7 +263,11 @@ app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
   })
   const price = await priceRequest.json();
 
-  res.render('stockPage', { stockSymbol, companyName, price })
+  if (res.locals.authenticated) {
+    res.render('stockPage', { stockSymbol, companyName, price,  auth: true, user: req.session.auth.userId})
+  } else {
+    res.render('stockPage', { stockSymbol, companyName, price })
+  }
 }));
 
 app.post('/transactions/add', asyncHandler(async (req, res) => {

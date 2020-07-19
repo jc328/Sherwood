@@ -2,16 +2,12 @@ body {
     margin: 0;
     height: 100%x;
     width: 100%;
-    /* overflow-x: hidden; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    /* background-color: turquoise; */
-    /* position: relative; */
 }
 #main {
-    /* background-color: violet; */
     width: 1200px;
     height: 700px;
     display: flex;
@@ -473,19 +469,8 @@ textarea:focus, input:focus{
 #buying-power {
     margin-top: 20px;
 }
-
-
-/* .left-display-c {
-    height: 100%;
-    width: 680px;
-    position: fixed;
-    top: 70px;
-    left: 90px;
-    overflow-y: scroll;
-    background-color: forestgreen;
-} */
 .left-display-c__display {
-    height: 800px;
+    height: 100%;
     width: 750px;
     display: flex;
     flex-direction: column;
@@ -493,12 +478,7 @@ textarea:focus, input:focus{
     align-items: center;
     position: relative;
     left: -350px;
-    overflow: scroll;
-    /* border: 1px solid green; */
-
-    /* flex-shrink: 3; */
-    /* background-color: thistle; */
-    
+    overflow: scroll;  
 }
 .hover-green:hover {
     color: rgb(4, 220, 4);

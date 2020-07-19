@@ -46,10 +46,10 @@ body {
     display: flex;
     flex-direction: row;
     position: fixed;
-    left: 25px;
+    left: 130px;
     background-color: white;
     /* border: black 1px dotted; */
-    width: 56%;
+    width: 59%;
     z-index: 1;
     top: -5px;
     padding-top: 15px;

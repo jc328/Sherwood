@@ -1,5 +1,6 @@
 const { User, Transaction, Stock } = require('./models');
 const { check, validationResult } = require('express-validator');
+
 const userValidators = [
     check('firstName')
         .exists({ checkFalsy: true })
@@ -19,7 +20,7 @@ const userValidators = [
         .isEmail()
         .withMessage('Please enter a valid e-mail address.')
         .custom(value => {
-            return User.findOne({ where: { emailAddress: value }})
+            return User.findOne({ where: { email: value }})
             .then((user) => {
                 if (user) {
                     return Promise.reject("The provided e-mail address is already in use.")
@@ -32,8 +33,19 @@ const userValidators = [
         .isLength({ max: 50 })
         .withMessage('Passwords must not exceed 50 characters.')
         // DOES NOT ALLOW FOR SIMPLE PASSWORDS
-        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, 'g')
-        .withMessage('Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")'),
+        // .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, 'g')
+        // .withMessage('Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")'),
+];
+
+const loginValidator = [
+    check('email')
+        .exists({checkFalsy: true})
+        .withMessage('Please enter an e-mail address.')
+        .isEmail()
+        .withMessage('Please enter a valid e-mail address.'),
+    check('password')
+        .exists({checkFalsy: true})
+        .withMessage('Please provide a password.')
 ];
 
 const transactionValidtor = [
@@ -57,5 +69,6 @@ const transactionValidtor = [
 
 module.exports = {
     userValidators,
-    transactionValidtor
+    transactionValidtor,
+    loginValidator
 };

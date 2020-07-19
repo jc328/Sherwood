@@ -241,6 +241,10 @@
     z-index: 3;
     left: 0px;
 }
+.linethrough:hover {
+    text-decoration: line-through;
+    text-decoration-color: black;
+}
 .nav__options-c {
     width: 100px;
     

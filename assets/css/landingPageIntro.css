@@ -139,6 +139,10 @@
     /* background-color: #afafaf; */
     border-radius: 24px;
 } 
+.early__input:focus {
+    outline: none;
+    
+}
 .early__access {
     min-width: 150px;
     display: flex;

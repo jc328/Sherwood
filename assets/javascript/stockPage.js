@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let costSpan = document.getElementById("estimate-cost__span");
     let creditSpan = document.getElementById("estimate-credit__span");
     let currentPrice = document.getElementsByName("current-price")[0].value;
+    let title = document.querySelector('.titlePrice')
+    title.innerHTML += ` - $${currentPrice}`
     document.getElementById("number-shares__buy")
         .addEventListener('change', e => {
             let estimateCost = (e.target.value * currentPrice).toFixed(2);

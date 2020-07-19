@@ -257,6 +257,8 @@ app.get('/portfolio-chart', asyncHandler(async (req, res) => {
 }));
 
 app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
+
+
   const stockSymbol = req.params.id;
   const companyInfoRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/company?token=${token}`, {
     method: 'get',
@@ -272,8 +274,33 @@ app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
   })
   const price = await priceRequest.json();
 
-  res.render('stockPage', { stockSymbol, companyName, price })
+  const stockData = await Stock.findAll({
+    attributes: ["symbol", "fullName"]
+  })
+  let data = ''
+
+  finnhubClient.companyProfile2({'symbol': stockSymbol}, (error, data, response) => {
+    finnhubClient.companyNews(stockSymbol, "2020-06-01", "2020-07-17", (error, news, response) => {
+      if (error) {
+          console.error(error);
+      } else {
+        res.render('stockPage', { stockSymbol, companyName, price, stockData, data, news })
+      }
+    });
+  });
+
 }));
+
+app.post('/stocks', asyncHandler(async (req, res) => {
+  const sym = await Stock.findOne({
+    attributes: ["symbol"],
+    where: {
+      'fullName' : req.body.search
+    }
+  })
+  let ticker = (sym == null ? req.body.search : sym.symbol)
+  res.redirect(`/stocks/${ticker}`)
+}))
 
 app.post('/transactions/add', asyncHandler(async (req, res) => {
   // TODO things to check for,

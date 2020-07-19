@@ -60,6 +60,10 @@
   border-bottom-color: #e4e9ed;
 }
 
+/* .article2--height{
+  height: 100px;
+} */
+
 .newsContainer__article--second{
   display: grid;
   border-bottom-color: #e4e9ed;
@@ -73,8 +77,8 @@
   order: 5;
 }
 .article__2--heading{
-  /* display: grid;
-  grid-column: 3 / 4; */
+  display: grid;
+  grid-column: 3 / 4;
   font-family: "Capsule Sans Text", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   font-weight: 400;
@@ -84,6 +88,7 @@
   font-style: normal;
   padding-bottom: 15px;
   text-decoration: none;
+  overflow-wrap: break-word;
 }
 
 .articleTwoImage{
@@ -252,6 +257,7 @@
   text-decoration: none;
   overflow-wrap: break-word;
 }
+
 .articleNineImage{
   display: grid;
   grid-column: 3 / 4;

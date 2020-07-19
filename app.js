@@ -17,6 +17,8 @@ const { loginUser, restoreUser, logoutUser, requireAuth } = require('./auth')
 
 const finnhub = require('finnhub');
 
+
+
 const api_key = finnhub.ApiClient.instance.authentications['api_key'];
 api_key.apiKey = "bs6u9h7rh5rdv3m40reg"
 const finnhubClient = new finnhub.DefaultApi()
@@ -45,14 +47,7 @@ app.get('/', asyncHandler(async (req, res, next) => {
     res.redirect('/dashboard')
   }
 }));
-// app.get('/dashboard', asyncHandler(async (req, res) => {
-//   res.render('dashboardPage');
 
-//   const user = await User.findByPk(userId);
-//   const balance = user.account_balance;
-//   res.render('landingPage', { user, balance});
-
-// }));
 
 app.get('/login-page', asyncHandler(async (req, res) => {
   res.render('login-page', { title: 'Log in: Sherwood Wealth Services'});
@@ -147,8 +142,8 @@ app.get('/search', asyncHandler(async (req, res) => {
   const stockData = await Stock.findAll({
     attributes: ["symbol", "fullName"]
   })
-  let data = ''
-  res.render('searchbar', {stockData, data});
+  let data = '';
+  res.render('searchbar', { stockData, data });
 }));
 
 app.post('/search', asyncHandler(async (req, res) => {
@@ -271,13 +266,50 @@ app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
     user_id: userId,
   }});
 
-  const currentOwnedShares = prevTransaction.share_quantity;
+  if (prevTransaction) {
+    let currentOwnedShares = (prevTransaction.share_quantity) ? prevTransaction.share_quantity: 0;
+  } else {
+    currentOwnedShares = 0;
+  }
+
+  const stockData = await Stock.findAll({
+    attributes: ["symbol", "fullName"]
+  })
+  let data = ''
+
+  // if (res.locals.authenticated) {
+    // res.render('stockPage', {
+    //   stockSymbol,
+    //   companyName,
+    //   price,
+    //   auth: true, user:
+    //   req.session.auth.userId,
+    //   shares: currentOwnedShares,
+    //   stockData
+    // })
+  // } else {
+  //   res.render('stockPage', { stockSymbol, companyName, price })
+  // }
 
   if (res.locals.authenticated) {
-    res.render('stockPage', { stockSymbol, companyName, price,  auth: true, user: req.session.auth.userId, shares: currentOwnedShares})
+    finnhubClient.companyProfile2({'symbol': stockSymbol}, (error, data, response) => {
+      finnhubClient.companyNews(stockSymbol, "2020-06-01", "2020-07-17", (error, news, response) => {
+        if (error) {
+            console.error(error);
+        } else {
+          res.render('stockPage', { stockSymbol, companyName, price, stockData, data, news,
+            auth: true, user:
+              req.session.auth.userId,
+              shares: currentOwnedShares, })
+        }
+      });
+    });
   } else {
-    res.render('stockPage', { stockSymbol, companyName, price })
+    res.render('stockPage', { stockSymbol, companyName, price });
   }
+
+
+
 }));
 
 app.post('/transactions/buy', asyncHandler(async (req, res) => {
@@ -321,6 +353,17 @@ app.post('/transactions/buy', asyncHandler(async (req, res) => {
   }
   res.redirect('/dashboard')
 }));
+
+app.post('/stocks', asyncHandler(async (req, res) => {
+  const sym = await Stock.findOne({
+    attributes: ["symbol"],
+    where: {
+      'fullName' : req.body.search
+    }
+  })
+  let ticker = (sym == null ? req.body.search : sym.symbol)
+  res.redirect(`/stocks/${ticker}`)
+}))
 
 app.post('/transactions/sell', asyncHandler(async (req, res) => {
   const userId = Number(req.session.auth.userId);

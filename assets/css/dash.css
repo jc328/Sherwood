@@ -74,9 +74,14 @@ body {
     flex-shrink: -1;
     
 }
+#search-form {
+    width: 100%;
+    height: 35px;
+    /* background-color: violet; */
+}
 .search2 {
-    height: 33px;
-    width: 100px;
+    height: 30px;
+    width: 30vw;
     margin-left: 45px;
     top: -25px;
     border: none;
@@ -84,13 +89,9 @@ body {
     justify-content: start;
     align-items: center;
     flex-shrink: 5;
-    /* background-color: teal; */
-    position: absolute;
+    position: relative;
     overflow: visible;
-    border-style: none;
-    
-
-    
+    border-style: none;  
 }
 textarea:focus, input:focus{
     outline: none;
@@ -105,18 +106,16 @@ textarea:focus, input:focus{
     margin-left: 20px;
     filter: invert(27%) sepia(0%) saturate(2878%) hue-rotate(10deg) brightness(250%) contrast(97%);
     position: absolute;
-    top: 26px;
+    top: 8px;
     z-index: 1;  
 }
 #search-wrap {
-    border: 1px solid grey;
+    border: 1px solid rgb(153, 153, 153);
     width: 100%;
+    border-radius: 2%;
+    position: relative;
 }
-#search-form {
-    width: 100%;
-    height: 35px;
-    /* background-color: violet; */
-}
+
 #search-form__c {
     width: 100%;
     height: 35px;
@@ -219,6 +218,7 @@ textarea:focus, input:focus{
     overflow-y: scroll;
     /* border: 1px solid yellow; */
     background-color: white;
+    border-radius: 1%
 }
 .fixed {
     position: fixed;
@@ -299,6 +299,7 @@ textarea:focus, input:focus{
     flex-direction: column;
     justify-content: flex-start;
     align-content: center;
+    border-radius: 2%;
     
 }
 .right-display-c__drop-down__content {
@@ -329,7 +330,7 @@ textarea:focus, input:focus{
 .drop-down-link span {
     font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
     letter-spacing: -0.25px;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 600;
     color: black;
     flex-shrink: 2;
@@ -374,6 +375,7 @@ textarea:focus, input:focus{
     /* background-color: blueviolet; */
     top: 0px;
     z-index: 6;
+    border-radius: 2%;
 }
 
 .account-display-c {
@@ -389,7 +391,7 @@ textarea:focus, input:focus{
     background-color: white;
     opacity: 100%;
     z-index: 7;
-    /* border: 1px solid black; */
+    border-radius: 1.5%;
     
 }
 .account-display-c__display {
@@ -478,7 +480,7 @@ textarea:focus, input:focus{
 } */
 .left-display-c__display {
     height: 800px;
-    width: 680px;
+    width: 750px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -492,24 +494,16 @@ textarea:focus, input:focus{
     /* background-color: thistle; */
     
 }
-/* .left-display-c__display__content {
-   width: 100%;
-   height: 100px;
-   border-bottom: 1px solid rgb(165, 165, 165);
-} */
+.hover-green:hover {
+    color: rgb(4, 220, 4);
+}
+.hover-grey:hover {
+    background-color: rgb(247, 247, 247);
+}
 .hidden {
     visibility: hidden;
 }
-#empty-space-news1 {
-    height: 400px;
-    width: 100%;
-    background-color: rgb(147, 226, 43);
-}
-#empty-space-news {
-    height: 100px;
-    width: 100%;
-    background-color: blueviolet;
-}
+
 .news-c {
     /* border: 2px solid yellow; */
     width: 100%;
@@ -631,5 +625,5 @@ textarea:focus, input:focus{
         
 /*# sourceMappingURL=awesomplete.css.map */
 
-
+/* ////////search////////// */
 

@@ -102,31 +102,33 @@ app.post('/signup', userValidators, asyncHandler(async(req, res) => {
   if (validationErrors.isEmpty()) {
     const password = req.body.password;
 
+    let user = await User.create({
+      email: req.body.email,
+      password: "tbd",
+      salt: "tbd",
+      session_token: req.session.id,
+      account_balance: 100000,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    });
+
     bcrypt.genSalt(saltRounds, function(err, salt) {
       bcrypt.hash(password, salt, function(err, hash) {
-        let user = User.create({
-          email: req.body.email,
-          password: hash,
-          salt: salt,
-          session_token: req.session.id,
-          account_balance: 100000,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        });
-        loginUser(req, res, user);
-        res.redirect('/dashboard');
+        user.password = password;
+        user.salt = salt;
     })});
+
+    await user.save();
+    loginUser(req, res, user);
   } else {
-    let errs = validationErrors.errors.map(err => err.msg)
+    let errs = validationErrors.errors.map(err => err.msg);
+    errs = errs.join(" ");
     res.render('signup', {
       msg2: `${errs}`
     })
   }
-<<<<<<< HEAD
+  res.redirect('/dashboard')
 }));
-=======
-}))
->>>>>>> 6b4c12eb3aa17898226dbd6fc8a07e39241c038a
 
 app.get('/news', asyncHandler(async (req, res) => {
   res.render('news-section', { title: 'News' });
@@ -281,7 +283,6 @@ app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
   })
   let data = ''
 
-<<<<<<< HEAD
   // if (res.locals.authenticated) {
     // res.render('stockPage', {
     //   stockSymbol,
@@ -308,21 +309,10 @@ app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
               shares: currentOwnedShares, })
         }
       });
-=======
-  finnhubClient.companyProfile2({'symbol': stockSymbol}, (error, data, response) => {
-    finnhubClient.companyNews(stockSymbol, "2020-06-01", "2020-07-19", (error, news, response) => {
-      if (error) {
-          console.error(error);
-      } else {
-        res.render('stockPage', { stockSymbol, companyName, price, stockData, data, news })
-      }
->>>>>>> 6b4c12eb3aa17898226dbd6fc8a07e39241c038a
     });
   } else {
     res.render('stockPage', { stockSymbol, companyName, price });
   }
-
-
 
 }));
 

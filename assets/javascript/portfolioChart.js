@@ -38,13 +38,14 @@ async function drawBasic() {
     const diffDisplay = document.getElementById('percent-diff');
 
     // This is hardcoded to get transactinos for user #2 ""
-    const cashBalanceRequest = await fetch(`/api/balance/2`, {
+    const user = document.getElementsByName("uId")[0];
+    const cashBalanceRequest = await fetch(`/api/balance/${user.value}`, {
         method: 'get',
         headers: { 'Content-Type': 'application/json' }
         })
     const cashBalance = await cashBalanceRequest.json();
 
-    const transactionsRequest = await fetch(`/api/transactions/2`, {
+    const transactionsRequest = await fetch(`/api/transactions/${user.value}`, {
         method: 'get',
         headers: { 'Content-Type': 'application/json' }
         })

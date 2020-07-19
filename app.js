@@ -13,7 +13,7 @@ const saltRounds = 10;
 
 const { User, Transaction, Stock } = require('./models');
 const { userValidators, transactionValidtor, loginValidator } = require('./validators')
-const { loginUser, restoreUser } = require('./auth')
+const { loginUser, restoreUser, logoutUser, requireAuth } = require('./auth')
 
 const finnhub = require('finnhub');
 
@@ -36,13 +36,13 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+app.use(restoreUser)
 
-app.get('/', restoreUser, asyncHandler(async (req, res, next) => {
-  if (res.locals.authenticated) {
-    res.send("loggedin")
-    // res.render('dashboardPage')
-  } else {
+app.get('/', asyncHandler(async (req, res, next) => {
+  if(!res.locals.authenticated) {
     res.render('landingPage');
+  } else {
+    res.redirect('/dashboard')
   }
 }));
 // app.get('/dashboard', asyncHandler(async (req, res) => {
@@ -98,6 +98,7 @@ app.get('/landing-page', asyncHandler(async (req, res) => {
 }));
 
 app.get('/signup', asyncHandler(async(req, res) => {
+  console.log(req.session);
   res.render('signup')
 }))
 
@@ -108,17 +109,19 @@ app.post('/signup', userValidators, asyncHandler(async(req, res) => {
 
     bcrypt.genSalt(saltRounds, function(err, salt) {
       bcrypt.hash(password, salt, function(err, hash) {
-        User.create({
+        let user = User.create({
           email: req.body.email,
           password: hash,
           salt: salt,
+          session_token: req.session.token,
           account_balance: 100000,
           createdAt: new Date(),
           updatedAt: new Date()
         });
+        console.log(user)
+        loginUser(req, res, user);
     })});
-
-    res.redirect('/dashboard')
+    res.redirect('/')
   } else {
     let errs = validationErrors.errors.map(err => err.msg)
     res.render('signup', {
@@ -133,14 +136,13 @@ app.get('/news', asyncHandler(async (req, res) => {
 
 }))
 
-app.get('/dashboard', asyncHandler(async (req, res) => {
-  console.log(res.locals)
-
+app.get('/dashboard', requireAuth, asyncHandler(async (req, res) => {
+  let userId = req.session.auth.userId;
   const stockData = await Stock.findAll({
     attributes: ["symbol", "fullName"]
   })
   let data = ''
-  res.render('dashboardPage', { stockData, data });
+  res.render('dashboardPage', { stockData, data, userId });
 }));
 
 app.get('/search', asyncHandler(async (req, res) => {
@@ -271,9 +273,15 @@ app.post('/transactions/add', asyncHandler(async (req, res) => {
   // BUYS: check if enough funds
   // SELLS: check if enough shares
 
+
   const shares = req.body;
   res.json(shares)
 }));
+
+app.post('/logout', (req, res) => {
+  logoutUser(req, res);
+  res.redirect('login-page');
+});
 
 // app.use((req, res, next) => {
 //   const err = new Error("The requested resource couldn't be found.");

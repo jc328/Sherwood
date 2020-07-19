@@ -27,6 +27,7 @@ html(lang="en")
         link(href="./css/dash.css" rel="stylesheet")
 
     body
+      input(type="hidden", name="uId" value=userId)
       div#main
         div#nav
           div#nav__centering
@@ -78,6 +79,8 @@ html(lang="en")
                 a(href="/dashboard").nav__free-c__free Messages
             div#account.nav__free-c
                 span.nav__free-c__free Account
+                form(action="/logout", method="post")
+                  button(type="submit") LOGOUT
 
                                   //-  div#dash-grid
                                   //-   div.dash-gridz__grid-space

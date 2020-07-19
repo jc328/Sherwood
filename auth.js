@@ -3,11 +3,11 @@ const { User } = require('./models');
 const loginUser = (req, res, user) => {
     req.session.auth = {
         userId: user.id,
-        token: user.session_token
     }
 }
 
 const restoreUser = async (req, res, next) => {
+    console.log(req.session)
     if (req.session.auth) {
         const { userId } = req.session.auth;
 
@@ -29,7 +29,20 @@ const restoreUser = async (req, res, next) => {
     }
 };
 
+const logoutUser = (req, res) => {
+    delete req.session.auth;
+};
+
+const requireAuth = (req, res, next) => {
+    if (!res.locals.authenticated) {
+        return res.redirect('/login-page');
+    }
+    return next();
+}
+
 module.exports = {
     loginUser,
-    restoreUser
+    restoreUser,
+    logoutUser,
+    requireAuth
 };

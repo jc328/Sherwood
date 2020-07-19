@@ -129,7 +129,6 @@ app.post('/signup', userValidators, asyncHandler(async(req, res) => {
   }
 }))
 
-
 app.get('/news', asyncHandler(async (req, res) => {
   res.render('news-section', { title: 'News' });
 
@@ -275,7 +274,7 @@ app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
   let data = ''
 
   finnhubClient.companyProfile2({'symbol': stockSymbol}, (error, data, response) => {
-    finnhubClient.companyNews(stockSymbol, "2020-06-01", "2020-07-17", (error, news, response) => {
+    finnhubClient.companyNews(stockSymbol, "2020-06-01", "2020-07-19", (error, news, response) => {
       if (error) {
           console.error(error);
       } else {

@@ -38,7 +38,7 @@ html(lang="en")
 
               //- span#search-span Search
 
-              form#search-form(action='/search' method='post')
+              form#search-form(action='/stocks' method='post')
                   //- div#search-form__c
                   img#magnifying-glass(src="/images/magnifying-glass.png", alt="", srcset="")
                   input.search2(
@@ -49,7 +49,7 @@ html(lang="en")
                     placeholder='Search'
                     autocomplete='off'
                     list='company'
-                    size='5'         
+                    size='5'
                   )
 
                   datalist(id='company' size='5').searchbarDrop
@@ -66,7 +66,7 @@ html(lang="en")
                 h4= data.ipo
                 h4= data.country
                 h4= data.phone
-        
+
             div#shrink-space-free
             div#free-stocks.nav__free-c
                 a(href="/dashboard").nav__free-c__free Free Stocks
@@ -88,17 +88,17 @@ html(lang="en")
                                   //-   div.dash-gridz__grid-space
                                   //-   div.dash-gridz__grid-space
                                   //-   div.dash-gridz__grid-space
-        //- div.screen-resize-c  
-        //-   div.screen-resize-c__1  
-        //-   div.screen-resize-c__2  
-        //-   div.screen-resize-c__3  
-        //-   div.screen-resize-c__4  
-          
+        //- div.screen-resize-c
+        //-   div.screen-resize-c__1
+        //-   div.screen-resize-c__2
+        //-   div.screen-resize-c__3
+        //-   div.screen-resize-c__4
+
         div.account--fixed
           div.right-display-c
             div.right-display-c__display
               div#right-top.right-display-c__display__content
-                span.right-span.right-span-top Cryptocurrencies 
+                span.right-span.right-span-top Cryptocurrencies
                 span=stockData.fullName
                 div.right-top__cirlces-c
                   div.right-top__circles-c__circles
@@ -113,7 +113,7 @@ html(lang="en")
               div.hover-grey.right-display-c__display__content
                 span.right-span#mini-chart__1 AAPL
                 div#mini-chart__1-display
-                
+
               div.hover-grey.right-display-c__display__content
                 span.right-span TSLA
               div.hover-grey.right-display-c__display__content
@@ -136,24 +136,24 @@ html(lang="en")
                 span.right-span FIT
               div.hover-grey.right-display-c__display__content
                 span.right-span  SNAP
-        div.account--fixed        
+        div.account--fixed
           div.right-display-c__drop-down.hidden
             div.right-display-c__drop-down__content.flex1
-              span.drop-down-link 
+              span.drop-down-link
                 span Display
             div.right-display-c__drop-down__content.flex1
-              a.drop-down-link(href="/dashboard") 
+              a.drop-down-link(href="/dashboard")
                 span.hover-green Last Price
             div.right-display-c__drop-down__content.flex1
               a.drop-down-link(href="/dashboard")
                 span.hover-green Your Equity
-            div.right-display-c__drop-down__content.flex1 
-              a.drop-down-link(href="/dashboard") 
+            div.right-display-c__drop-down__content.flex1
+              a.drop-down-link(href="/dashboard")
                 span.hover-green Today's Return
             div.right-display-c__drop-down__content.flex1
-              a.drop-down-link(href="/dashboard") 
+              a.drop-down-link(href="/dashboard")
                 span.hover-green Total Return
-        div.account--fixed     
+        div.account--fixed
           div.account-display-c.hidden
             div.account-display-c__display
               div#account-top.account-display-c__display__content
@@ -168,7 +168,7 @@ html(lang="en")
                     span#money-span2 $0.00
                     span.account-span Buying Power
 
-              
+
                 div.account-top__cirlces-c
                   div.account-top__circles-c__circles
                   div.account-top__circles-c__circles
@@ -301,5 +301,3 @@ html(lang="en")
                               span.article__10--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
                               a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
                                 img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
-
-

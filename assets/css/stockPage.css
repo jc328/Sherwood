@@ -4,11 +4,8 @@
 
 body {
     display: flex;
-    /* margin-left: 25px; */
     justify-content: center;
-    /* border: 1px black dotted; */
     flex-wrap: wrap;
-
 }
 .line-break {
     width: 100%;
@@ -19,7 +16,14 @@ body {
     width: 63%;
     height: 0;
     margin-top: 20px;
-    border-top: grey solid 1px;
+    border-top: lightgrey solid 1px;
+}
+
+.create-fullline {
+    width: 100%;
+    height: 0;
+    /* margin-top: 20px; */
+    border-top: lightgrey solid 1px;
 }
 
 .about {
@@ -27,8 +31,6 @@ body {
     justify-content: space-between;
     margin-top: 15px;
     width: 63%;
-    /* border-top: grey solid 1px; */
-    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
 }
 
 .hideItem {
@@ -39,6 +41,26 @@ body {
     margin-top: 20px;
     /* max-width: 50px; */
 }
+
+.header_bar {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    left: 137px;
+    background-color: white;
+    /* border: black 1px dotted; */
+    width: 56%;
+    z-index: 1;
+    top: -5px;
+    padding-top: 15px;
+}
+
+.header_flavicon {
+    margin-right: 75px;
+    padding-top: 5px;
+    padding-left:50px;
+}
+
 
 .newsPage {
     width: 63%;
@@ -60,11 +82,12 @@ body {
 
 
 #purchase-form {
+    margin-left: 5px;
     display: flex;
     -webkit-box-shadow: 0px 0px 26px -2px rgba(184,184,184,1);
     -moz-box-shadow: 0px 0px 26px -2px rgba(184,184,184,1);
     box-shadow: 0px 0px 26px -2px rgba(184,184,184,1);
-    /* position: fixed; */
+    position: sticky;
     margin-top: 50px;
     /* justify-content: space-evenly; */
     /* align-items: center; */
@@ -73,12 +96,20 @@ body {
 #buy-stock.tabcontent {
     display: flex;
     flex-direction: column;
+    width: 200px;
     /* justify-content: space-around; */
-    margin: 0px 5px;
 }
 #button-wrapper {
-    align-self: flex-start;
+    /* align-self: flex-start; */
+    margin-bottom: 50px;
 }
+
+.searchBar__stocks {
+    height: 37px;
+    width: 450px;
+    margin: 0px 0 20px 0;
+    /* border-top: 5px; */
+  }
 
 .industry_icon {
 	background:linear-gradient(to bottom, #44c767 5%, #bd2a2a 100%);
@@ -105,51 +136,91 @@ body {
 }
 
 .buyLabels {
-    align-self: center;
-    margin: 25px 0;
+    /* align-self: center; */
+    margin: 25px 0 25px 15px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 13px;
 }
 
 
 #buy-tab__button {
-    /* background-color: #2FC802; */
+    background-color: white;
     color: grey;
     border: 1px solid transparent;
-    border-radius: 4px;
+    /* border-radius: 4px; */
     height: 50px;
-    width: 100px;
+    width: 50%;
     align-items: center;
     cursor: pointer;
-    margin: 0 5px;
+    /* margin: 0 5px; */
     text-transform: uppercase;
     transition-duration: 1000ms;
 }
 
 #transaction-form__buy {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     /* width: auto;
     height: auto; */
-    /* justify-content: center; */
+    justify-content: space-around;
+    align-items: center;
 }
 
+#estimate-cost {
+    align-items: center;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    font-weight: bold;
+}
 
 #buy-tab__button:hover {
     color: whitesmoke;
     background-color: #2FC802;
 }
 
-#buy-button {
-    background-color: orangered;
-    width: 100%;
-    height: 25px;
-    /* align-self: flex-start; */
+.flavorText {
+    margin: 10px;
 }
+
+#buy-button {
+	box-shadow:inset 0px 1px 0px 0px #caefab;
+	background:linear-gradient(to bottom, #77d42a 5%, #5cb811 100%);
+	background-color:#77d42a;
+	border-radius:4px;
+	display:inline-block;
+	cursor:pointer;
+	color:#306108;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+    text-shadow:0px 1px 0px #aade7c;
+    height: 10%;
+}
+#buy-button:hover {
+	background:linear-gradient(to bottom, #5cb811 5%, #77d42a 100%);
+	background-color:#5cb811;
+}
+#buy-button:active {
+	position:relative;
+	top:1px;
+}
+
 #shares-or-dollars {
     display: flex;
     justify-content: center;
+    margin: 0px 5px;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 #number-shares__buy {
+    /* /* margin: 0px 5px; */
+    /* margin-left: 25px;; */
     padding: 5px;
     font-size: 16px;
     border-width: 1px;
@@ -158,18 +229,21 @@ body {
     color: #000000;
     border-style: solid;
     border-radius: 0px;
-    box-shadow: 0px 0px 5px rgba(66,66,66,.75);
-    text-shadow: 0px 0px 5px rgba(66,66,66,.75);
+    box-shadow: 0px 0px 3px rgba(66,66,66,.75);
+    text-shadow: 0px 0px 1px rgba(66,66,66,.75);
     text-align: center;
+    width: 70px;
+    height: 40px;
+
 }
 
 #sell-tab__button {
     /* background-color: red; */
     color: grey;
     border: 1px solid transparent;
-    border-radius: 4px;
+    /* border-radius: 4px; */
     height: 50px;
-    width: 100px;
+    width: 50%;
     align-items: center;
     text-transform: uppercase;
     cursor: pointer;
@@ -193,6 +267,7 @@ body {
 	padding:12px 43px;
     text-decoration:none;
     height: 100%;
+    margin-bottom: 25px;
 }
 .review_order:hover {
 	background-color:#9e675c;

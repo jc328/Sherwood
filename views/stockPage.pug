@@ -14,23 +14,28 @@ html(lang="en")
         link(href="../css/searchbar.css" rel="stylesheet")
         title.titlePrice= stockSymbol
     body
+        div.header_bar
+            div.header_flavicon
+                img(src='../images/favicon_v2.ico')
+            div
+                form(action="/stocks" method='post')
+                    div
+                        input(
+                            class='searchBar__stocks'
+                            class='awesomplete'
+                            type='text'
+                            name='search'
+                            placeholder='  Search By Name'
+                            autocomplete='off'
+                            list='company'
+                            size='5'
+                        )
+                        datalist(id='company' size='5').searchbarDrop
+                            each val in stockData
+                                option=val.fullName
+
         input(type="hidden", name="currentStock" value=stockSymbol)
         div#chart-wrapper
-            form(action="/stocks" method='post')
-                div
-                    input(
-                        class='searchBar'
-                        class='awesomplete'
-                        type='text'
-                        name='search'
-                        placeholder='  Search By Name'
-                        autocomplete='off'
-                        list='company'
-                        size='5'
-                    )
-                    datalist(id='company' size='5').searchbarDrop
-                        each val in stockData
-                            option=val.fullName
             button.industry_icon= data.finnhubIndustry
             div#current-price
                 span(id="current-company-name")= companyName
@@ -45,17 +50,30 @@ html(lang="en")
                 div#button-wrapper
                     button#buy-tab__button= `Buy ${stockSymbol}`
                     button#sell-tab__button= `Sell ${stockSymbol}`
+                    div.create-fullline
                 div#transaction-form__buy
-                label.buyLabels Shares
-                    form(action="/transactions/add", method="post")
-                        input(type="hidden", name="symbol" value=stockSymbol)
-                        div#shares-or-dollars
+                    div
+                        label.buyLabels Shares
+                    div
+                        form(action="/transactions/add", method="post")
+                            input(type="hidden", name="symbol" value=stockSymbol)
+                            div#shares-or-dollars
+                                input#number-shares__buy(type="number", name="number-shares-bought" placeholder="0" min=1)
+                    div.line-break
+                    div
+                        label.buyLabels Market Price
+                    div.marketPrice
+                    div.create-fullline
+                div#estimate-cost
+                    span.buyLabels Estimated Cost
+                    span#estimate-cost__span
+                button#buy-button(type="submit").review_order Review Order
+                div
+                    div.create-fullline
+                div.flavorText
+                    h4 Introducing Fractional Shares
+                    p Invest in thousands of stocks with as little as $1
 
-                            input#number-shares__buy(type="number", name="number-shares-bought" placeholder="0" min=1)
-                        div#estimate-cost
-                            span.buyLabels Estimated Cost
-                            span#estimate-cost__span
-                        button#buy-button(type="submit").review_order Review Order
             div#sell-stock.tabcontent
                 div#transaction-form__sell.hidden
                     form(action="/transactions/add", method="post")

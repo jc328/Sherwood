@@ -18,25 +18,34 @@
   grid-template-columns: 25% 25% 25% 25%;
   /* grid-template-rows: 25% 25% 25% 25%; */
   grid-template-rows: 20% 20% 20% 20% 20%;
+  grid-template-rows: 20% 20% 20% 20% 20%;
 }
 
 .list__image--text{
   display: inline-flex;
   -webkit-box-align: center;
-  align-items: center;
+  /* align-items: center; */
+  align-items: baseline;
   height: 36px;
   padding-right: 16px;
   border-radius: 20px;
   font-family: "Capsule Sans Text", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
+  /* font-size: 13px; */
+  font-size: 16px;
   font-weight: 400;
   letter-spacing: -0.1px;
   line-height: 20px;
 }
 
 .listSection{
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
   /* justify-self: center; */
+}
+
+.listLink{
+  text-decoration: none;
+  font-family: "Capsule Sans Text", -apple-system, BlinkMacSystemFont, sans-serif;
+  color: black;
 }
 
 .icon{
@@ -46,6 +55,7 @@
   object-position: center center;
   display: block;
   border-radius: 12px;
+  padding-right: 2px;
 }
 
 .listOne{
@@ -146,21 +156,21 @@
 .listFourteen{
   display: grid;
   grid-column: 2 / 3;
-  grid-row: 3 / 4;
+  grid-row: 4 / 5;
   border: solid 1px lightgrey;
   border-radius: 12px;
 }
 .listFifteen{
   display: grid;
   grid-column: 3 / 4;
-  grid-row: 3 / 4;
+  grid-row: 4 / 5;
   border: solid 1px lightgrey;
   border-radius: 12px;
 }
 .listSixteen{
   display: grid;
   grid-column: 4 / 5;
-  grid-row: 3 / 4;
+  grid-row: 4 / 5;
   border: solid 1px lightgrey;
   border-radius: 12px;
 }

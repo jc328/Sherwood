@@ -5,13 +5,16 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const csurf = require('csurf');
 const fetch = require('node-fetch');
+const session = require('express-session');
 const { check, validationResult } = require('express-validator');
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 const { User, Transaction, Stock } = require('./models');
-const { userValidators, transactionValidtor } = require('./validators')
+const { userValidators, transactionValidtor, loginValidator } = require('./validators')
+const { loginUser, restoreUser, logoutUser, requireAuth } = require('./auth')
+
 const finnhub = require('finnhub');
 
 
@@ -29,10 +32,20 @@ app.use(express.static(__dirname + '/assets'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended : false }));
 
+app.use(session({
+  name: 'sws.sid',
+  secret: 'robin',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(restoreUser)
 
-app.get('/', asyncHandler(async (req, res) => {
-
-  res.render('landingPage');
+app.get('/', asyncHandler(async (req, res, next) => {
+  if(!res.locals.authenticated) {
+    res.render('landingPage');
+  } else {
+    res.redirect('/dashboard')
+  }
 }));
 
 
@@ -40,51 +53,37 @@ app.get('/login-page', asyncHandler(async (req, res) => {
   res.render('login-page', { title: 'Log in: Sherwood Wealth Services'});
 }));
 
-app.post('/login-page', asyncHandler(async (req, res) => {
-  let password = req.body.password
-  let email = req.body.username
-  let random = Math.random()
-  console.log(req.body)
-  let UserData = await User.findOne({
-    attributes: ["email", "salt", "password"],
-    where: {
-      email: email
-    }
-  })
-  if (UserData === null && req.body.firstName !== undefined) {
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-      bcrypt.hash(password, salt, function(err, hash) {
-        User.create({
-          email: email,
-          password: hash,
-          salt: salt,
-          session_token: random,
-          account_balance: 100000,
-          createdAt: new Date(),
-          updatedAt: new Date()
+app.post('/login-page', loginValidator, asyncHandler(async (req, res) => {
+  let validationErrors = validationResult(req);
+  let errs = new Array();
+
+  if (validationErrors.isEmpty()) {
+    let user = await User.findOne({ where: { email: req.body.email }});
+
+    if (user) {
+      let hash = user.password;
+      bcrypt.compare(req.body.password, hash, function(err, result) {
+        if (result) {
+          loginUser(req, res, user);
+          return res.redirect('/')
+        } else {
+          errs.push("This email or password could not be found.")
+          res.render('login-page', {
+          msg: `${errs}`
+          });
+        }
+      });
+    } else {
+      errs.push("This email or password could not be found.")
+      res.render('login-page', {
+        msg: `${errs}`
       })
-    })
-  })
-    res.render('login-page', {
-      msg: '',
-      msg1: 'A new user has been created!  Please login with your new credentials'
-    })
-  } else if (UserData === null) {
-    res.render('login-page', {
-      msg: 'Username or Password Not Found',
-    })
+    }
   } else {
-    bcrypt.hash(password, UserData.salt, function(err, hash) {
-      if (hash === UserData.password) {
-        //Redirect User to the Dashboard - change to dashboard page
-        //May change UserData.password to provide better security
-        res.redirect(`/dashboard/${UserData.salt}`);
-      } else {
-        //Password is Wrong, redirect to Login Page
-        res.render('login-page', {
-          msg: 'Login Failed.  Please check your Password'
-        })
-      }
+    errs = validationErrors.errors.map(err => err.msg)
+    errs = errs.join(" ");
+    res.render('login-page', {
+      msg: `${errs}`
     })
   }
 }))
@@ -94,56 +93,55 @@ app.get('/landing-page', asyncHandler(async (req, res) => {
 }));
 
 app.get('/signup', asyncHandler(async(req, res) => {
+  console.log(req.session);
   res.render('signup')
 }))
 
 app.post('/signup', userValidators, asyncHandler(async(req, res) => {
-//   let password = req.body.password
-//   let email = req.body.username
-//   let random = Math.random()
-
-//   let UserData = await User.findOne({
-//     attributes: ["email", "salt", "password"],
-//     where: {
-//       email: email
-//     }
-//   })
-
-//   if (UserData !== null) {
-//     res.render('signup', {
-//       msg2: 'Creating User Account Failed.  Email is already Taken'
-//     })
-//  }
-//   res.render('login-page')
-  const email = req.body.username;
-  const password = req.body.password;
-
-  const user = User.build( {
-    email
-  });
-
-  const validationErrors = validationResult(req);
-
+  let validationErrors = validationResult(req);
   if (validationErrors.isEmpty()) {
+    const password = req.body.password;
 
+    let user = await User.create({
+      email: req.body.email,
+      password: "tbd",
+      salt: "tbd",
+      session_token: req.session.id,
+      account_balance: 100000,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    });
+
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+      bcrypt.hash(password, salt, function(err, hash) {
+        user.password = password;
+        user.salt = salt;
+    })});
+
+    await user.save();
+    loginUser(req, res, user);
+  } else {
+    let errs = validationErrors.errors.map(err => err.msg);
+    errs = errs.join(" ");
+    res.render('signup', {
+      msg2: `${errs}`
+    })
   }
-}))
+  res.redirect('/dashboard')
+}));
 
 app.get('/news', asyncHandler(async (req, res) => {
   res.render('news-section', { title: 'News' });
 
 }))
 
-// app.get('/dashboard-page', asyncHandler(async (req, res) => {
-//   res.render('dashboardPage');
-// }));
-
-app.get('/dashboard', asyncHandler(async (req, res) => {
+app.get('/dashboard', requireAuth, asyncHandler(async (req, res) => {
+  let userId = req.session.auth.userId;
   const stockData = await Stock.findAll({
     attributes: ["symbol", "fullName"]
   })
   let data = ''
-  res.render('dashboardPage', { stockData, data });
+  res.render('dashboardPage', { stockData, data, userId });
 }));
 
 app.get('/search', asyncHandler(async (req, res) => {
@@ -251,9 +249,10 @@ app.get('/portfolio-chart', asyncHandler(async (req, res) => {
 }));
 
 app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
-
-
+  const userId = Number(req.session.auth.userId);
   const stockSymbol = req.params.id;
+  const stock = await Stock.findOne({ where: { symbol: stockSymbol } });
+  const stockId = stock.id;
   const companyInfoRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/company?token=${token}`, {
     method: 'get',
     body: JSON.stringify(res.body),
@@ -268,21 +267,95 @@ app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
   })
   const price = await priceRequest.json();
 
+  const prevTransaction = await Transaction.findOne({ where: {
+    stock_id: stockId,
+    user_id: userId,
+  }});
+
+  if (prevTransaction) {
+    let currentOwnedShares = (prevTransaction.share_quantity) ? prevTransaction.share_quantity: 0;
+  } else {
+    currentOwnedShares = 0;
+  }
+
   const stockData = await Stock.findAll({
     attributes: ["symbol", "fullName"]
   })
   let data = ''
 
-  finnhubClient.companyProfile2({'symbol': stockSymbol}, (error, data, response) => {
-    finnhubClient.companyNews(stockSymbol, "2020-06-01", "2020-07-19", (error, news, response) => {
-      if (error) {
-          console.error(error);
-      } else {
-        res.render('stockPage', { stockSymbol, companyName, price, stockData, data, news })
-      }
-    });
-  });
+  // if (res.locals.authenticated) {
+    // res.render('stockPage', {
+    //   stockSymbol,
+    //   companyName,
+    //   price,
+    //   auth: true, user:
+    //   req.session.auth.userId,
+    //   shares: currentOwnedShares,
+    //   stockData
+    // })
+  // } else {
+  //   res.render('stockPage', { stockSymbol, companyName, price })
+  // }
 
+  if (res.locals.authenticated) {
+    finnhubClient.companyProfile2({'symbol': stockSymbol}, (error, data, response) => {
+      finnhubClient.companyNews(stockSymbol, "2020-06-01", "2020-07-17", (error, news, response) => {
+        if (error) {
+            console.error(error);
+        } else {
+          res.render('stockPage', { stockSymbol, companyName, price, stockData, data, news,
+            auth: true, user:
+              req.session.auth.userId,
+              shares: currentOwnedShares, })
+        }
+      });
+    });
+  } else {
+    res.render('stockPage', { stockSymbol, companyName, price });
+  }
+
+}));
+
+app.post('/transactions/buy', asyncHandler(async (req, res) => {
+  const userId = Number(req.session.auth.userId);
+  const shares = req.body
+  const stockSymbol = shares.symbol;
+  const stock = await Stock.findOne({ where: { symbol: stockSymbol } });
+  const stockId = stock.id;
+  const boughtNum = Number(shares.boughtNumber);
+  const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${token}`, {
+    method: 'get',
+    body: JSON.stringify(res.body),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  const price = await priceRequest.json();
+
+  const prevTransaction = await Transaction.findOne({ where: {
+    stock_id: stockId,
+    user_id: userId
+  }})
+
+  let user = await User.findByPk(userId);
+  if (prevTransaction !== null) {
+    let currentShares = prevTransaction.share_quantity;
+    currentShares += boughtNum;
+    prevTransaction.share_quantity = currentShares;
+    user.account_balance -= (boughtNum * price);
+    await user.save();
+    await prevTransaction.save();
+  } else {
+    await Transaction.create({
+      price,
+      share_quantity: boughtNum,
+      stock_id: stockId,
+      user_id: userId,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    });
+    user.account_balance -= (boughtNum * Number(price));
+    await user.save();
+  }
+  res.redirect('/dashboard')
 }));
 
 app.post('/stocks', asyncHandler(async (req, res) => {
@@ -296,20 +369,55 @@ app.post('/stocks', asyncHandler(async (req, res) => {
   res.redirect(`/stocks/${ticker}`)
 }))
 
-app.post('/transactions/add', asyncHandler(async (req, res) => {
-  // TODO things to check for,
-  // BUYS: check if enough funds
-  // SELLS: check if enough shares
-
+app.post('/transactions/sell', asyncHandler(async (req, res) => {
+  const userId = Number(req.session.auth.userId);
   const shares = req.body;
-  res.json(shares)
+  const stockSymbol = shares.symbol;
+  const soldNum = shares.soldNumber;
+  const stock = await Stock.findOne({ where: { symbol: stockSymbol } });
+  const stockId = stock.id;
+  const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${token}`, {
+    method: 'get',
+    body: JSON.stringify(res.body),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  const price = await priceRequest.json();
+  const companyInfoRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/company?token=${token}`, {
+    method: 'get',
+    body: JSON.stringify(res.body),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  const companyInfo = await companyInfoRequest.json();
+  const companyName = companyInfo.companyName;
+  const prevTransaction = await Transaction.findOne({ where: {
+    stock_id: stockId,
+    user_id: userId,
+  }});
+
+  const user = await User.findByPk(userId);
+
+  if (prevTransaction && soldNum <= prevTransaction.share_quantity) {
+    prevTransaction.share_quantity -= soldNum;
+    user.account_balance += Number(price);
+    await prevTransaction.save();
+    await user.save();
+    res.redirect('/dashboard')
+  } else {
+    res.send("owie")
+  }
+
 }));
 
-app.use((req, res, next) => {
-  const err = new Error("The requested resource couldn't be found.");
-  err.status = 404;
-  next(err);
+app.post('/logout', (req, res) => {
+  logoutUser(req, res);
+  res.redirect('login-page');
 });
+
+// app.use((req, res, next) => {
+//   const err = new Error("The requested resource couldn't be found.");
+//   err.status = 404;
+//   next(err);
+// });
 
 const port = Number.parseInt(process.env.PORT, 10) || 8080;
 

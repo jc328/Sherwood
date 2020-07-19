@@ -32,10 +32,10 @@ html(lang="en")
                 p.angle ∟
           div.nav__learn-c
             div.nav__learn-c--fixed
-              a(href="/").nav__learn-c__learn Learn
+              a(href="/").linethrough.nav__learn-c__learn Learn
           div.nav__support-c
             div.nav__support--fixed
-              a(href="/").nav__support-c__support Support
+              a(href="/").linethrough.nav__support-c__support Support
           div#inbetween-space
 
           div.nav__loggin-c
@@ -50,37 +50,37 @@ html(lang="en")
 
         div.poducts-bar.hidden
             div.nav__stocks-c
-                a(href="/").nav__learn-c__learn Stocks & Funds
+                a(href="/signup").nav__learn-c__learn Stocks & Funds
             div.nav__options-c
-                a(href="/").nav__learn-c__learn Options
+                a(href="/").linethrough.nav__learn-c__learn Options
             div.nav__gold-c
-                a(href="/").nav__learn-c__learn Gold
+                a(href="/signup").nav__learn-c__learn Gold
             div.nav__cash-c
-                a(href="/").nav__learn-c__learn Cash Management
+                a(href="/").linethrough.nav__learn-c__learn Cash Management
             div.nav__crypto-c
-                a(href="/").nav__learn-c__learn Crypto
+                a(href="/signup").nav__learn-c__learn Crypto
 
         div.whole-screen.hidden
           div.whole-screen__links
             div.whole-screen__products-c
               div.whole-screen__products-c__text-center
-                a(href="/").whole-screen-c__learn Products
+                a(href="/").whole-screen-c__learn.linethrough Products
             div.whole-screen__stocks-c
-                a(href="/").whole-screen-c__learn Stocks & Funds
+                a(href="/signup").whole-screen-c__learn Stocks & Funds
             div.whole-screen__options-c
-                a(href="/").whole-screen-c__learn Options
+                a(href="/").whole-screen-c__learn.linethrough Options
             div.whole-screen__gold-c
-                a(href="/").whole-screen-c__learn Gold
+                a(href="/signup").whole-screen-c__learn Gold
             div.whole-screen__cash-c
-                a(href="/").whole-screen-c__learn Cash Management
+                a(href="/").whole-screen-c__learn.linethrough Cash Management
             div.whole-screen__crypto-c
-                a(href="/").whole-screen-c__crypto Crypto
+                a(href="/signup").whole-screen-c__crypto Crypto
             div.whole-screen__learn-c
               div.whole-screen__learn-c__text-center
-                a(href="/").whole-screen-c__learn Learn
+                a(href="/").whole-screen-c__learn.linethrough Learn
             div.whole-screen__support-c
               div.whole-screen__support-c__text-center
-                a(href="/").whole-screen-c__learn Support
+                a(href="/").whole-screen-c__learn.linethrough Support
 
 
 
@@ -96,7 +96,7 @@ html(lang="en")
 
               div.sign-b
                 div.nav__sign-nup-b-c
-                  a.nav__sign-nup-b-c__sig-nup Sign Up
+                  a(href="/signup").nav__sign-nup-b-c__sig-nup Sign Up
       div#break-centering          
         div#break-text-c  
           div#break-text-centering
@@ -105,7 +105,7 @@ html(lang="en")
               p.break-text-c__c__text  Make unlimited commission-free trades in stocks, ETFs, and options with Sherwood Wealth Services, as well as buy and sell cryptocurrencies with Sherwood Wealth Services Crypto. See our fee schedule to learn more about cost. 
               div.commission-disclosure          
                 <svg fill="none" height="28" viewBox="0 0 24 24" width="28" class="commission-disclosure__svg"><circle cx="12" cy="12" r="11" stroke="#6f787e" stroke-width="2"></circle><path d="M11.232 18H13.056V9.52H11.232V18ZM11.2 8.128H13.088V6.32H11.2V8.128Z" fill="#6f787e"></path></svg>  
-                span.commission-disclosure__text Commissions Disclosure   
+                span.commission-disclosure__text.linethrough Commissions Disclosure   
       div#intro-centering
         div
           div.intro 
@@ -130,10 +130,10 @@ html(lang="en")
                   input.early__input(type="text" name="earlyAccessSubmit" placeholder="name@email.com" required) 
                   div.early__access
                     div.early__access-c
-                      a.early__access-c__early-access Get Early Access
+                      a.early__access-c__early-access.linethrough Get Early Access
               div.fractional-disclosure          
                 <svg fill="none" height="28" viewBox="0 0 24 24" width="28" class="fractional-disclosure__svg"><circle cx="12" cy="12" r="11" stroke="#6f787e" stroke-width="2"></circle><path d="M11.232 18H13.056V9.52H11.232V18ZM11.2 8.128H13.088V6.32H11.2V8.128Z" fill="#6f787e"></path></svg>  
-                span.fractional-disclosure__text Fractional Shares Disclosure        
+                span.fractional-disclosure__text.linethrough Fractional Shares Disclosure        
           
       div#black
         div.black-c
@@ -221,29 +221,29 @@ html(lang="en")
             div.footer-c__grid-space
             div.footer-c__link1
               div#stocks-funds.footer-c__linkz__holder
-                a Stocks and Funds
+                a(href="/signup") Stocks and Funds
               div.footer-c__linkz__holder
-                a Options
+                a.linethrough Options
               div.footer-c__linkz__holder
-                a Gold
+                a(href="/signup") Gold
               div.footer-c__linkz__holder
-                a Cash Management
+                a.linethrough Cash Management
               div.footer-c__linkz__holder
-                a Crypto
+                a(href="/signup") Crypto
             div.footer-c__link
               div.footer-c__linkz__holder
-                a Learn
+                a.linethrough Learn
               div.footer-c__linkz__holder
-                a Support
+                a.linethrough Support
               div.footer-c__linkz__holder
-                a Snacks
+                a.linethrough Snacks
             div.footer-c__link3
               div.footer-c__linkz__holder3
-                a About Us
+                a.linethrough About Us
               div.footer-c__linkz__holder3
-                a Careers
+                a.linethrough Careers
               div.footer-c__linkz__holder3
-                a Company News
+                a.linethrough Company News
               div#svg-links
                 <svg height="20" width="20" class="svg"><path d="M17.0392 17.0433H14.0775V12.4025C14.0775 11.2958 14.055 9.87167 12.5342 9.87167C10.99 9.87167 10.7542 11.0758 10.7542 12.3208V17.0433H7.7925V7.5H10.6375V8.80083H10.6758C11.0733 8.05083 12.04 7.25917 13.4842 7.25917C16.485 7.25917 17.04 9.23417 17.04 11.805V17.0433H17.0392ZM4.4475 6.19417C3.49417 6.19417 2.72833 5.4225 2.72833 4.47333C2.72833 3.525 3.495 2.75417 4.4475 2.75417C5.3975 2.75417 6.1675 3.525 6.1675 4.47333C6.1675 5.4225 5.39667 6.19417 4.4475 6.19417ZM5.9325 17.0433H2.9625V7.5H5.9325V17.0433ZM18.5208 0H1.47583C0.66 0 0 0.645 0 1.44083V18.5592C0 19.3558 0.66 20 1.47583 20H18.5183C19.3333 20 20 19.3558 20 18.5592V1.44083C20 0.645 19.3333 0 18.5183 0H18.5208Z"></path></svg>
                 <svg height="20" width="20" class="svg"><path d="M19.9984 9.99925C19.9984 4.4768 15.5217 0 9.99925 0C4.4768 0 0 4.4768 0 9.99925C0 14.9902 3.65657 19.1268 8.43683 19.877V12.8897H5.89798V9.99925H8.43683V7.79627C8.43683 5.29022 9.92967 3.90595 12.2137 3.90595C13.3077 3.90595 14.452 4.10124 14.452 4.10124V6.56199H13.1912C11.949 6.56199 11.5616 7.33278 11.5616 8.12353V9.99925H14.3348L13.8915 12.8897H11.5616V19.877C16.3419 19.1268 19.9984 14.9902 19.9984 9.99925Z"></path></svg>
@@ -256,22 +256,22 @@ html(lang="en")
             form.sub-form(action="/", method="post")
                 input(type="hidden" name="_csurf" value="token")
                 div.sub
-                  input.sub__input(type="text" name="earlyAccessSubmit" placeholder="name@email.com" required) 
+                  input.sub__input.linethrough(type="text" name="earlyAccessSubmit" placeholder="name@email.com" required) 
                   div.sub__access
                     div.sub__access-c
-                      a.sub__access-c__sub-access Subscribe
+                      a.sub__access-c__sub-access.linethrough Subscribe
             div.footer-c__link2
               div.footer-c__linkz__holder2
-                a Check the background of the firm on FINRA’s Broker Check
+                a.linethrough Check the background of the firm on FINRA’s Broker Check
               div.footer-c__linkz__holder2
-                a Brokerage Customer Relationship Summary
+                a.linethrough Brokerage Customer Relationship Summary
               div.footer-c__linkz__holder2
-                a Sherwood Wealth Services Terms & Conditions
+                a.linethrough Sherwood Wealth Services Terms & Conditions
               div.footer-c__linkz__holder2
-                a Disclosure Library
+                a.linethrough Disclosure Library
                   span.hide.zero-opacity jslkdjflaskjflsakdjflsdjflasjflksjfklsjlfjflkdsj
               div.footer-c__linkz__holder2
-                a Privacy 
+                a.linethrough Privacy 
                   span.hide.zero-opacity jslkdjflaskjflsakdjflsdjflasjflksjfklsjlfjflkdsj
             div.line
             div.footer-c__bottom
@@ -281,5 +281,5 @@ html(lang="en")
                 span.green  Financial Industry Regulatory Authority (FINRA).
             div.fractional-disclosure2.fractional-disclosure-grid         
               <svg fill="none" height="28" viewBox="0 0 24 24" width="28" class="fractional-disclosure__svg"><circle cx="12" cy="12" r="11" stroke="#6f787e" stroke-width="2"></circle><path d="M11.232 18H13.056V9.52H11.232V18ZM11.2 8.128H13.088V6.32H11.2V8.128Z" fill="#6f787e"></path></svg>  
-                span.fractional-disclosure__text2 View Important Disclosures
+                span.fractional-disclosure__text2.linethrough View Important Disclosures
             

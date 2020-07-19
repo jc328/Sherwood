@@ -151,8 +151,8 @@ app.get('/search', asyncHandler(async (req, res) => {
   const stockData = await Stock.findAll({
     attributes: ["symbol", "fullName"]
   })
-  let data = ''
-  res.render('searchbar', {stockData, data});
+  let data = '';
+  res.render('searchbar', { stockData, data });
 }));
 
 app.post('/search', asyncHandler(async (req, res) => {

@@ -13,6 +13,7 @@ html(lang="en")
       script(type="module" src="./javascript/searchBar.js")
       script(type="module" src="./javascript/dashboard.js")
       link(href="./css/news.css" rel="stylesheet")
+      link(href="./css/news-watchlist.css" rel="stylesheet")
       link(href="./css/news-stocks.css" rel="stylesheet")
       link(href="./css/news-articles.css" rel="stylesheet")
       link(href="./css/news-popular-section.css" rel="stylesheet")
@@ -126,14 +127,30 @@ html(lang="en")
                   span#money-span2 $0.00
                   span.account-span Buying Power
 
+
+        div.right-display-a
+          div.right-display-a__display
+            div#right-top.right-display-a__display__content
+              span.stockHeader.right-span.right-span-topp.listTitle Lists
+              div.addSign
+                span +
+            div#right-top.right-display-a__display__content
+              span.right-span.right-span-topp Sherwood Custom Watchlist
+            div.right-display-a__display__content
+              span.right-span#mini-chart__1.right-span-topp Tech Stocks
+              div#mini-chart__1-display
+            div.right-display-a__display__content
+              span.right-span.right-span-topp Companies Not Doing Well
+            div.right-display-a__display__content
+              span.right-span.right-span-topp Covid-19 Companies
+            div.right-display-a__display__content
+              span.right-span.right-span-topp Tesla Related Companies
+            div.right-display-a__display__content
+              span.right-span.right-span-topp Education Tech List
     
         div.pageContainer
           div#date
             h1 July 16, 2020
-
-          //- div.stock__watchlist
-          //-   div
-          //-     span Aaron's List
                               
           div.list  
             h2.listSection Popular Lists

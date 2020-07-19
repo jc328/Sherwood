@@ -101,22 +101,27 @@ app.post('/signup', userValidators, asyncHandler(async(req, res) => {
   let validationErrors = validationResult(req);
   if (validationErrors.isEmpty()) {
     const password = req.body.password;
+    let hashes = await [];
 
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+      hashes.push(salt)
+      bcrypt.hash(password, salt, function(err, hash) {
+        hashes.push(hash)
+       })
+    });
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hash = bcrypt.hashSync(password, salt)
+
+    // console.log(hashes)
     let user = await User.create({
       email: req.body.email,
-      password: "tbd",
-      salt: "tbd",
+      password: hash,
+      salt: salt,
       session_token: req.session.id,
       account_balance: 100000,
       createdAt: new Date(),
       updatedAt: new Date()
     });
-
-    bcrypt.genSalt(saltRounds, function(err, salt) {
-      bcrypt.hash(password, salt, function(err, hash) {
-        user.password = password;
-        user.salt = salt;
-    })});
 
     await user.save();
     loginUser(req, res, user);

@@ -49,14 +49,14 @@ html(lang="en")
                     placeholder='Search'
                     autocomplete='off'
                     list='company'
-                    size='5'
+                    size='5'         
                   )
                   
                   datalist(id='company' size='5').searchbarDrop
                     each val in stockData
                       option=val.fullName
               div.searchbarDropz
-                img(src=data.logo)
+                img.search-img(src=data.logo)
                 h4= data.name
                 h4= data.weburl
                 h4= data.finnhubIndustry

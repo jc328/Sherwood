@@ -83,7 +83,7 @@ async function drawBasic() {
             }
         });
     });
-
+    console.log(agg)
     let rows = new Array();
     for (let i = 0; i < intradayTime.length; i++) {
         rows.push([intradayTime[i].minute, agg[i], intradayTime[i].label]);

@@ -248,7 +248,10 @@ app.get('/portfolio-chart', asyncHandler(async (req, res) => {
 }));
 
 app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
+  const userId = Number(req.session.auth.userId);
   const stockSymbol = req.params.id;
+  const stock = await Stock.findOne({ where: { symbol: stockSymbol } });
+  const stockId = stock.id;
   const companyInfoRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/company?token=${token}`, {
     method: 'get',
     body: JSON.stringify(res.body),
@@ -263,21 +266,99 @@ app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
   })
   const price = await priceRequest.json();
 
+  const prevTransaction = await Transaction.findOne({ where: {
+    stock_id: stockId,
+    user_id: userId,
+  }});
+
+  const currentOwnedShares = prevTransaction.share_quantity;
+
   if (res.locals.authenticated) {
-    res.render('stockPage', { stockSymbol, companyName, price,  auth: true, user: req.session.auth.userId})
+    res.render('stockPage', { stockSymbol, companyName, price,  auth: true, user: req.session.auth.userId, shares: currentOwnedShares})
   } else {
     res.render('stockPage', { stockSymbol, companyName, price })
   }
 }));
 
-app.post('/transactions/add', asyncHandler(async (req, res) => {
-  // TODO things to check for,
-  // BUYS: check if enough funds
-  // SELLS: check if enough shares
+app.post('/transactions/buy', asyncHandler(async (req, res) => {
+  const userId = Number(req.session.auth.userId);
+  const shares = req.body
+  const stockSymbol = shares.symbol;
+  const stock = await Stock.findOne({ where: { symbol: stockSymbol } });
+  const stockId = stock.id;
+  const boughtNum = Number(shares.boughtNumber);
+  const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${token}`, {
+    method: 'get',
+    body: JSON.stringify(res.body),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  const price = await priceRequest.json();
 
+  const prevTransaction = await Transaction.findOne({ where: {
+    stock_id: stockId,
+    user_id: userId
+  }})
 
+  let user = await User.findByPk(userId);
+  if (prevTransaction !== null) {
+    let currentShares = prevTransaction.share_quantity;
+    currentShares += boughtNum;
+    prevTransaction.share_quantity = currentShares;
+    user.account_balance -= (boughtNum * price);
+    await user.save();
+    await prevTransaction.save();
+  } else {
+    await Transaction.create({
+      price,
+      share_quantity: boughtNum,
+      stock_id: stockId,
+      user_id: userId,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    });
+    user.account_balance -= (boughtNum * Number(price));
+    await user.save();
+  }
+  res.redirect('/dashboard')
+}));
+
+app.post('/transactions/sell', asyncHandler(async (req, res) => {
+  const userId = Number(req.session.auth.userId);
   const shares = req.body;
-  res.json(shares)
+  const stockSymbol = shares.symbol;
+  const soldNum = shares.soldNumber;
+  const stock = await Stock.findOne({ where: { symbol: stockSymbol } });
+  const stockId = stock.id;
+  const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${token}`, {
+    method: 'get',
+    body: JSON.stringify(res.body),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  const price = await priceRequest.json();
+  const companyInfoRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/company?token=${token}`, {
+    method: 'get',
+    body: JSON.stringify(res.body),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  const companyInfo = await companyInfoRequest.json();
+  const companyName = companyInfo.companyName;
+  const prevTransaction = await Transaction.findOne({ where: {
+    stock_id: stockId,
+    user_id: userId,
+  }});
+
+  const user = await User.findByPk(userId);
+
+  if (prevTransaction && soldNum <= prevTransaction.share_quantity) {
+    prevTransaction.share_quantity -= soldNum;
+    user.account_balance += Number(price);
+    await prevTransaction.save();
+    await user.save();
+    res.redirect('/dashboard')
+  } else {
+    res.send("owie")
+  }
+
 }));
 
 app.post('/logout', (req, res) => {

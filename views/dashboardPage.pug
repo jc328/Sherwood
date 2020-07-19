@@ -15,6 +15,10 @@ html(lang="en")
         script(type="text/javascript" src="../javascript/chart.js")
         link(rel="stylesheet" type="text/css" href="../css/chart.css")
         link(rel="stylesheet" type="text/css" href="../css/news.css")
+        link(href="./css/news-watchlist.css" rel="stylesheet")
+        link(href="./css/news-stocks.css" rel="stylesheet")
+        link(href="./css/news-articles.css" rel="stylesheet")
+        link(href="./css/news-popular-section.css" rel="stylesheet")
         script(type="module" src="./javascript/dashboard.js")
         //- link(href="./css/searchbar.css" rel="stylesheet")
 
@@ -211,93 +215,168 @@ html(lang="en")
                   span(id="percent-diff")
                 div#chart_div
               div.news-c
-                div#chart-wrapper
-                  div#current-price
-                    span(id="current-company-name")= companyName
-                    br
-                    span(id="current-price-span")
-                  div#chart_div
-                input(type="hidden", name="currentStock" value=stockSymbol)
-                div#date
-                  h1 July 15, 2020
-                div.stock__watchlist
-                  h2 Stocks List Goes Here
-                div.stocks
-                  h2 Stocks Watchlists Goes Here
-                div.list
-                  h2 Popular Lists
-                  p If implemented, this is a curated list of different categories of assets
-                  div.newsContainer
-                    article.newsContainer__article--main
-                      div.mediaName
-                        span CNBC 2h
-                      div
-                        a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html" class='article__1--heading') Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
-                        img(class='articleOneImage' src="../images/articleOne.png", alt="Guy smiles")
-                    article.newsContainer__article--second
-                      div.mediaName
-                        span Bloomberg 2h
+                div.pageContainer
+                  div#date
+                    h1 July 16, 2020                    
+                  div.list  
+                    h2.listSection Popular Lists
+                      div.popLists__container
+                        div.listOne
+                          a(href='google.com' class='listLink')
+                            div.list__image--text
+                              div.image
+                                img(src="../images/listicon1.png" class='icon')
+                              span Hot 120
+                        div.listTwo      
+                          a(href='google.com' class='listLink')
+                            div.list__image--text
+                              div.image
+                                img(src="../images/listicon2.png" class='icon')
+                              span Real Estate
+                        div.listThree       
+                          a(href='google.com' class='listLink')
+                            div.list__image--text
+                              div.image
+                                img(src="../images/listicon3.png" class='icon')
+                              span Aviation 
+                        div.listFour       
+                          a(href='google.com' class='listLink')
+                            div.list__image--text
+                              div.image
+                                img(src="../images/listicon4.png" class='icon')
+                              span Healthcare 
+                        div.listFive       
+                          a(href='google.com' class='listLink')
+                            div.list__image--text
+                              div.image
+                                img(src="../images/listicon5.png" class='icon')
+                              span Consumer Goods 
+                        div.listSix       
+                          a(href='google.com' class='listLink')
+                            div.list__image--text
+                              div.image
+                                img(src="../images/listicon6.png" class='icon')
+                              span Pharma 
+                        div.listSeven       
+                          a(href='google.com' class='listLink')
+                            div.list__image--text
+                              div.image
+                                img(src="../images/listicon7.png" class='icon')
+                              span Crypto 
+                        div.listEight       
+                          a(href='google.com' class='listLink')
+                            div.list__image--text
+                              div.image
+                                img(src="../images/listicon8.png" class='icon')
+                              span Top Movers
+                        div.listNine       
+                          a(href='google.com' class='listLink')
+                            div.list__image--text
+                              div.image
+                                img(src="../images/listicon9.png" class='icon')
+                              span China
+                        div.listTen     
+                          a(href='google.com' class='listLink')
+                            div.list__image--text
+                              div.image
+                                img(src="../images/listicon10.png" class='icon')
+                              span Energy & Water
+                        div.listEleven       
+                          a(href='google.com' class='listLink')
+                            div.list__image--text
+                              div.image
+                                img(src="../images/listicon11.png" class='icon')
+                              span Food & Drink
+                        div.listTwelve      
+                          a(href='google.com' class='listLink')
+                            div.list__image--text
+                              div.image
+                                img(src="../images/listicon12.png" class='icon')
+                              span Upcoming
+                        div.listThirteen    
+                          a(href='google.com' class='listLink')
+                            div.list__image--text
+                              div.image
+                                img(src="../images/listicon13.png" class='icon')
+                              span Tech Education
+                        div.listFourteen      
+                          a(href='google.com' class='listLink')
+                            div.list__image--text
+                              div.image
+                                img(src="../images/listicon14.png" class='icon')
+                              span Automotive
+                        div.listFifteen      
+                          a(href='google.com' class='listLink')
+                            div.list__image--text
+                              div.image
+                                img(src="../images/listicon15.png" class='icon')
+                              span Aviation
+                        div.listSixteen       
+                          a(href='google.com' class='listLink')
+                            div.list__image--text
+                              div.image
+                                img(src="../images/listicon16.png" class='icon')
+                              span Logistics
+
+                    div.newsContainer
+                      article.newsContainer__article--main
+                        div.mediaName
+                          span CNBC 2h
                         div
-                          a(href="https://finance.yahoo.com/news/apple-tax-ruling-first-win-140020920.html?.tsrc=rss" class='article__2--heading') Apple Clocks Victory in Tax Fight But More EU Battles Loom
-                            img(class='articleTwoImage' src="../images/article2.png", alt="Laptop")
-                            div
-                              p Apple Inc. clinched an important win in a top European Union court Wednesday, but it’s only the first battle in an onslaught of other regulatory threats facing the iPhone maker in Europe
-                    article.newsContainer__article--second
-                      div.mediaName
-                        span Benzinga 2h
-                        div
-                          a(href="https://finance.yahoo.com/news/tesla-shares-breather-historic-run-165056868.html?.tsrc=rss" class='article__3--heading') Tesla Shares Take a Breather After Historic Run
-                            img(class='articleThreeImage' src="../images/article3.png", alt="Guy looks at car")
-                        div
-                          p After a torrid rally that saw shares more than double since early May, Tesla Inc. is taking a pause on Wednesday, even as the broader market rises on the hopes for a coronavirus vaccine.
-                    article.newsContainer__article--second
-                      div.mediaName
-                        span Benzinga 2h
-                        div
-                          a(href="https://www.benzinga.com/analyst-ratings/analyst-color/20/07/16637358/alibaba-analyst-lowers-second-half-estimates-raises-price-target-in-shifting-e-comm" class='article__4--heading') Alibaba Analyst Lowers Second-Half Estimates, Raises Price Target In Shifting E-Commerce Landscape
-                          img(class='articleFourImage' src="../images/article4.png", alt="Hand holds Credit Card")
-                        div
-                          p KeyBanc Capital Markets is lowering its estimates for Alibaba Group Holding Ltd - ADR BABA 0.24% in the second half of the year.
-                    article.newsContainer__article--second
-                      div.mediaName
-                        span MarketWatch 2h
-                        div
-                          a(href="https://finance.yahoo.com/m/5fa8ca36-22af-3a21-8425-4bdedf1b5e36/prominent-twitter-accounts.html?.tsrc=rss") Bitcoin prices unfazed as major Twitter hijacking ripples through social media and digital currency community
-                          img(class='articleFiveImage' src="../images/article5.png", alt="Two laptops")
-                        div
-                          p Bitcoin prices on Wednesday evening were virtually unchanged, even as unknown hackers were perpetuating a massive scam to lure bitcoins away from owners.
-                    article.newsContainer__article--second
-                      div.mediaName
-                        span Benzinga 2h
-                        div
-                          span.article__6--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
-                          a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
-                            img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
-                    article.newsContainer__article--second
-                      div.mediaName
-                        span CNBC 2h
-                        div
-                          span.article__7--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
-                          a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
-                            img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
-                    article.newsContainer__article--second
-                      div.mediaName
-                        span The Wall Street Journal 2h
-                        div
-                          span.article__8--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
-                          a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
-                            img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
+                          a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html" class='article__1--heading') Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
+                            img(class='articleOneImage' src="../images/articleOne.png", alt="Guy smiles")
+                      article.newsContainer__article--second
+                        div.mediaName
+                          span Bloomberg 2h
+                          //- i(class="fas fa-ellipsis-h")
+                          div.article2--height
+                            a(href="https://finance.yahoo.com/news/apple-tax-ruling-first-win-140020920.html?.tsrc=rss" class='article__2--heading') Apple Clocks Victory in Tax Fight But More EU Battles Loom
+                              img(class='articleTwoImage' src="../images/article2.png", alt="Laptop")
                       article.newsContainer__article--second
                         div.mediaName
                           span Benzinga 2h
                           div
-                            span.article__9--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
-                            a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
-                              img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
-                        article.newsContainer__article--second
-                          div.mediaName
-                            span Benzinga 2h
-                            div
-                              span.article__10--heading Dow rallies more than 400 points on Moderna’s vaccine news and Goldman’s blowout quarter
-                              a(href="https://www.cnbc.com/2020/07/14/stock-market-futures-open-to-close-news.html")
-                                img(class='articleFourImage' src="../images/article4.png", alt="Guy smiles")
+                            a(href="https://finance.yahoo.com/news/tesla-shares-breather-historic-run-165056868.html?.tsrc=rss" class='article__3--heading') Tesla Shares Take a Breather After Historic Run
+                              img(class='articleThreeImage' src="../images/article3.png", alt="Guy looks at car")
+                      article.newsContainer__article--second
+                        div.mediaName
+                          span Benzinga 2h
+                          div
+                            a(href="https://www.benzinga.com/analyst-ratings/analyst-color/20/07/16637358/alibaba-analyst-lowers-second-half-estimates-raises-price-target-in-shifting-e-comm" class='article__4--heading') Alibaba Analyst Lowers Second-Half Estimates, Raises Price Target In Shifting E-Commerce Landscape
+                              img(class='articleFourImage' src="../images/article4.png", alt="Hand holds Credit Card")
+                      article.newsContainer__article--second
+                        div.mediaName
+                          span MarketWatch 2h
+                          div
+                            a(href="https://finance.yahoo.com/m/5fa8ca36-22af-3a21-8425-4bdedf1b5e36/prominent-twitter-accounts.html?.tsrc=rss" class='article__5--heading') Bitcoin prices unfazed as major Twitter hijacking ripples through social media and digital currency community
+                              img(class='articleFiveImage' src="../images/article5.png", alt="Two laptops")
+                      article.newsContainer__article--second
+                        div.mediaName
+                          span MarketWatch 2h
+                          div
+                            a(href="https://robinhood.com/news/article/fb0be8d9-11b3-3e2b-a390-f4615eab85a0" class='article__5--heading') Netflix Names Ted Sarandos Co-CEO, Adds 10 Million Subscribers
+                              img(class='articleFiveImage' src="../images/nflx.png", alt="Netflix Sign")
+                      article.newsContainer__article--second
+                        div.mediaName
+                          span MarketWatch 2h
+                          div
+                            a(href="https://finance.yahoo.com/m/127f662d-e0a7-3df4-ae99-71a0ee815df1/tesla-is-like-a-spacex-rocket.html?.tsrc=rss" class='article__6--heading') Tesla is like a SpaceX rocket to stock investors, but the car maker’s bond holders are more down to earth
+                              img(class='articleSixImage' src="../images/article6.png", alt="Tesla Decal")
+                      article.newsContainer__article--second
+                        div.mediaName
+                          span The Wall Street Journal 2h
+                          div
+                            a(href="https://robinhood.com/news/article/4c8c66cd-12be-3eee-80ae-609603157798" class='article__7--heading') Bank of America Sees Reasons For Optimism in a Coronavirus Economy
+                              img(class='articleSevenImage' src="../images/article7.png", alt="Bank of America Sign")
+                      article.newsContainer__article--second
+                        div.mediaName
+                          span Benzinga 2h
+                          div
+                            a(href="https://www.benzinga.com/analyst-ratings/analyst-color/20/07/16655335/disneys-stock-falls-on-downgrade-cowen-says-parks-wont-fully-recover-until-2025" class='article__8--heading') Disney's Stock Falls On Downgrade, Cowen Says Parks Won't Fully Recover Until 2025
+                              img(class='articleEightImage' src="../images/article8.png", alt="Status at Disney World")
+                      article.newsContainer__article--second
+                        div.mediaName
+                          span CNBC 2h
+                          div
+                            a(href="https://www.cnbc.com/2020/07/16/china-stock-market-shares-to-buy-as-economy-rebounds.html" class='article__9--heading') One Chinese stock is the best bet as its economy rebounds, traders say
+                              img(class='articleNineImage' src="../images/article9.png", alt="Sign that says Alibaba")

@@ -3,8 +3,8 @@
   grid-column: 2 / 3;
   grid-row: 3 / 4;
   padding: 0 2px;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
+  /* border-bottom-style: solid;
+  border-bottom-width: 1px; */
   justify-self: center;
 
   /* justify-items: center; */
@@ -63,7 +63,7 @@
   display: grid;
   grid-column: 1 / 2;
   grid-row: 1 / 2;
-  border: solid 1px lightgrey;
+  border: solid 1px #e4e9ed;
   border-radius: 12px;
 }
 
@@ -71,49 +71,49 @@
   display: grid;
   grid-column: 2 / 3;
   grid-row: 1 / 2;
-  border: solid 1px lightgrey;
+  border: solid 1px #e4e9ed;
   border-radius: 12px;
 }
 .listThree{
   display: grid;
   grid-column: 3 / 4;
   grid-row: 1 / 2;
-  border: solid 1px lightgrey;
+  border: solid 1px #e4e9ed;
   border-radius: 12px;
 }
 .listFour{
   display: grid;
   grid-column: 4 / 5;
   grid-row: 1 / 2;
-  border: solid 1px lightgrey;
+  border: solid 1px #e4e9ed;
   border-radius: 12px;
 }
 .listFive{
   display: grid;
   grid-column: 1 / 2;
   grid-row: 2 / 3;
-  border: solid 1px lightgrey;
+  border: solid 1px #e4e9ed;
   border-radius: 12px;
 }
 .listSix{
   display: grid;
   grid-column: 2 / 3;
   grid-row: 2 / 3;
-  border: solid 1px lightgrey;
+  border: solid 1px #e4e9ed;
   border-radius: 12px;
 }
 .listSeven{
   display: grid;
   grid-column: 3 / 4;
   grid-row: 2 / 3;
-  border: solid 1px lightgrey;
+  border: solid 1px #e4e9ed;
   border-radius: 12px;
 }
 .listEight{
   display: grid;
   grid-column: 4 / 5;
   grid-row: 2 / 3;
-  border: solid 1px lightgrey;
+  border: solid 1px #e4e9ed;
   border-radius: 12px;
 }
 
@@ -121,7 +121,7 @@
   display: grid;
   grid-column: 1 / 2;
   grid-row: 3 / 4;
-  border: solid 1px lightgrey;
+  border: solid 1px #e4e9ed;
   border-radius: 12px;
 }
 
@@ -129,7 +129,7 @@
   display: grid;
   grid-column: 2 / 3;
   grid-row: 3 / 4;
-  border: solid 1px lightgrey;
+  border: solid 1px #e4e9ed;
   border-radius: 12px;
 }
 
@@ -137,41 +137,41 @@
   display: grid;
   grid-column: 3 / 4;
   grid-row: 3 / 4;
-  border: solid 1px lightgrey;
+  border: solid 1px #e4e9ed;
   border-radius: 12px;
 }
 .listTwelve{
   display: grid;
   grid-column: 4 / 5;
   grid-row: 3 / 4;
-  border: solid 1px lightgrey;
+  border: solid 1px #e4e9ed;
   border-radius: 12px;
 }
 .listThirteen{
   display: grid;
   grid-column: 1 / 2;
   grid-row: 4 / 5;
-  border: solid 1px lightgrey;
+  border: solid 1px #e4e9ed;
   border-radius: 12px;
 }
 .listFourteen{
   display: grid;
   grid-column: 2 / 3;
   grid-row: 4 / 5;
-  border: solid 1px lightgrey;
+  border: solid 1px #e4e9ed;
   border-radius: 12px;
 }
 .listFifteen{
   display: grid;
   grid-column: 3 / 4;
   grid-row: 4 / 5;
-  border: solid 1px lightgrey;
+  border: solid 1px #e4e9ed;
   border-radius: 12px;
 }
 .listSixteen{
   display: grid;
   grid-column: 4 / 5;
   grid-row: 4 / 5;
-  border: solid 1px lightgrey;
+  border: solid 1px #e4e9ed;
   border-radius: 12px;
 }

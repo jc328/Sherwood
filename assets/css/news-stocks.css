@@ -6,7 +6,6 @@
     left: 1335px;
     box-shadow: 0px 0px 13px  rgb(169, 169, 169);
     overflow-y: scroll;
-    /* border: 1px solid yellow; */
     background-color: white;
 }
 .right-display-b__display {
@@ -25,9 +24,13 @@
    justify-content: flex-start;
    align-items: center;
 }
-.right-span-top:hover {
-    color: rgb(250, 0, 129);
+.right-span-top__a:hover {
+    color: rgb(58, 200, 3);
 }
+.right-span-top__a{
+    font-size: 25px;
+}
+
 .right-span {
     font-family: "Capsule Sans Display",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
     letter-spacing: -0.25px;
@@ -97,3 +100,4 @@
   font-size: 17px;
   font-weight: 600;
 }
+

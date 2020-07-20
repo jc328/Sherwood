@@ -15,7 +15,6 @@ body{
   margin-left: 40px;
 }
 
-
 header{
   grid-row: 1 / 2;
   grid-column: 1 / 6;

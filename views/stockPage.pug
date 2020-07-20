@@ -103,12 +103,12 @@ html(lang="en")
 
                     span.buyLabels Estimated Cost
                     span#estimate-cost__span
-                button#buy-button(type="submit" form="buy").review_order Review Order
+                button#buy-button(type="submit" form="buy").review_order Submit Buy
                 div
                     div.create-fullline
-                //- div.flavorText
-                //-     h4 Introducing Fractional Shares
-                //-     p Invest in thousands of stocks with as little as $1
+                div.flavorText
+                    h4 Introducing Fractional Shares
+                    p Invest in thousands of stocks with as little as $1
             div#sell-stock.tabcontent
                 div#transaction-form__sell.hidden
                     form(action="/transactions/sell", method="post")
@@ -130,7 +130,7 @@ html(lang="en")
                 h4= data.weburl
                 h4= `Market Cap: ${data.marketCapitalization} million`
             div
-                h2= `Contact`
+                h2= ` `
                 h4= data.country
                 h4= data.phone
                 h4= `IPO: ${data.ipo}`

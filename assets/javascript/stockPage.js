@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     title.innerHTML += ` - $${currentPrice} | Sherwood`
     marketPrice.appendChild(marketPriceValue)
 
-
     document.getElementById("number-shares__buy")
         .addEventListener('change', e => {
             let estimateCost = (e.target.value * currentPrice).toFixed(2);

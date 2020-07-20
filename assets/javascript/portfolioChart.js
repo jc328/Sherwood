@@ -2,9 +2,9 @@ google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawBasic);
 
 // Re-draw the chart every 5 minutes
-setInterval(async function() {
-    await drawBasic();
-}, 300000);
+// setInterval(async function() {
+//     await drawBasic();
+// }, 300000);
 
 function calcPercentDiff(first, current) {
     let trueDiff = (current - first).toFixed(2);
@@ -50,7 +50,7 @@ async function drawBasic() {
         headers: { 'Content-Type': 'application/json' }
         })
     const transactionsTestUser = await transactionsRequest.json();
-
+    // console.log(transactionsTestUser)
     const intradayTimeRequest = await fetch(`/api/chart/intraday-prices/AAPL`, {
         method: 'get',
         headers: { 'Content-Type': 'application/json' }
@@ -74,16 +74,17 @@ async function drawBasic() {
             let shar = ele.shift();
             for (let i = 0; i < ele.length; i++) {
                 let current = ele[i];
-
                 if (i >= agg.length) {
                     agg.push((current * shar) + Number(cashBalance));
                 } else {
-                    agg[i] += ((current * shar) + Number(cashBalance));
+                    if (userStocks.length > 1) {
+                        agg[i] += (current * shar);
+                    }
                 }
             }
         });
     });
-    console.log(agg)
+
     let rows = new Array();
     for (let i = 0; i < intradayTime.length; i++) {
         rows.push([intradayTime[i].minute, agg[i], intradayTime[i].label]);

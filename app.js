@@ -1,5 +1,6 @@
 #! /usr/bin/env node
-const token = 'Tsk_52c6de67190f4fb7aa10ae91d4c9dd5c';
+const token = 'sk_1fb6b7fde025474eb0dc97be193d2eb2';
+const sandboxToken = 'Tsk_52c6de67190f4fb7aa10ae91d4c9dd5c'
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -12,7 +13,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 const { User, Transaction, Stock } = require('./models');
-const { userValidators, transactionValidtor, loginValidator } = require('./validators')
+const { userValidators, loginValidator, sellTransaction } = require('./validators')
 const { loginUser, restoreUser, logoutUser, requireAuth } = require('./auth')
 
 const finnhub = require('finnhub');
@@ -93,7 +94,6 @@ app.get('/landing-page', asyncHandler(async (req, res) => {
 }));
 
 app.get('/signup', asyncHandler(async(req, res) => {
-  console.log(req.session);
   res.render('signup')
 }))
 
@@ -112,7 +112,6 @@ app.post('/signup', userValidators, asyncHandler(async(req, res) => {
     const salt = bcrypt.genSaltSync(saltRounds);
     const hash = bcrypt.hashSync(password, salt)
 
-    // console.log(hashes)
     let user = await User.create({
       email: req.body.email,
       password: hash,
@@ -125,6 +124,7 @@ app.post('/signup', userValidators, asyncHandler(async(req, res) => {
 
     await user.save();
     loginUser(req, res, user);
+    res.redirect('/dashboard')
   } else {
     let errs = validationErrors.errors.map(err => err.msg);
     errs = errs.join(" ");
@@ -132,7 +132,6 @@ app.post('/signup', userValidators, asyncHandler(async(req, res) => {
       msg2: `${errs}`
     })
   }
-  res.redirect('/dashboard')
 }));
 
 app.get('/news', asyncHandler(async (req, res) => {
@@ -183,7 +182,7 @@ app.post('/search', asyncHandler(async (req, res) => {
 
 app.get('/api/price/:id(\\w+)', asyncHandler(async (req, res) => {
   const stockSymbol = req.params.id;
-  const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${token}`, {
+  const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${sandboxToken}`, {
     method: 'get',
     body: JSON.stringify(res.body),
     headers: { 'Content-Type': 'application/json' }
@@ -194,7 +193,7 @@ app.get('/api/price/:id(\\w+)', asyncHandler(async (req, res) => {
 
 app.get('/api/chart/intraday-prices/:id(\\w+)', asyncHandler(async (req, res) => {
   const stockSymbol = req.params.id;
-  const intradayPriceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/intraday-prices?token=${token}`, {
+  const intradayPriceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/intraday-prices?token=${sandboxToken}`, {
     method: 'get',
     body: JSON.stringify(res.body),
     headers: { 'Content-Type': 'application/json' }
@@ -206,7 +205,7 @@ app.get('/api/chart/intraday-prices/:id(\\w+)', asyncHandler(async (req, res) =>
 
 app.get('/chart/:id(\\w+)', asyncHandler(async (req, res) => {
   const stockSymbol = req.params.id;
-  const companyInfoRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/company?token=${token}`, {
+  const companyInfoRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/company?token=${sandboxToken}`, {
     method: 'get',
     body: JSON.stringify(res.body),
     headers: { 'Content-Type': 'application/json' }
@@ -217,7 +216,6 @@ app.get('/chart/:id(\\w+)', asyncHandler(async (req, res) => {
   res.render('chart', { stockSymbol, companyName })
 }));
 
-// This should only work if user is logged in
 app.get('/api/transactions/:id(\\d+)', asyncHandler(async (req, res) => {
   const userId = req.params.id;
   Stock.hasMany(Transaction, {foreignKey: 'stock_id'});
@@ -246,27 +244,20 @@ app.get('/api/balance/:id(\\d+)', asyncHandler(async (req, res) => {
   res.json(balance);
 }));
 
-// This should only work if user is logged in
-app.get('/portfolio-chart', asyncHandler(async (req, res) => {
-  // TODO Get user from session ID and render appropriate portfolio info
-  // Currently testing User.id 2
-  res.render('portfolioChart');
-}));
-
 app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
   const userId = Number(req.session.auth.userId);
   const stockSymbol = req.params.id;
   const stock = await Stock.findOne({ where: { symbol: stockSymbol } });
 
   const stockId = stock.id;
-  const companyInfoRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/company?token=${token}`, {
+  const companyInfoRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/company?token=${sandboxToken}`, {
     method: 'get',
     body: JSON.stringify(res.body),
     headers: { 'Content-Type': 'application/json' }
   })
   const companyInfo = await companyInfoRequest.json();
   const companyName = companyInfo.companyName;
-  const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${token}`, {
+  const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${sandboxToken}`, {
     method: 'get',
     body: JSON.stringify(res.body),
     headers: { 'Content-Type': 'application/json' }
@@ -278,9 +269,11 @@ app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
     user_id: userId,
   }});
 
+  let currentOwnedShares;
   if (prevTransaction) {
-    let currentOwnedShares = (prevTransaction.share_quantity) ? prevTransaction.share_quantity: 0;
-  } else {
+    currentOwnedShares = prevTransaction.share_quantity;
+  }
+  if (!prevTransaction) {
     currentOwnedShares = 0;
   }
 
@@ -312,7 +305,8 @@ app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
           res.render('stockPage', { stockSymbol, companyName, price, stockData, data, news,
             auth: true, user:
               req.session.auth.userId,
-              shares: currentOwnedShares, })
+              shares: currentOwnedShares,
+            })
         }
       });
     });
@@ -324,44 +318,40 @@ app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
 
 app.post('/transactions/buy', asyncHandler(async (req, res) => {
   const userId = Number(req.session.auth.userId);
-  const shares = req.body
+  const shares = req.body;
   const stockSymbol = shares.symbol;
   const stock = await Stock.findOne({ where: { symbol: stockSymbol } });
   const stockId = stock.id;
-  const boughtNum = Number(shares.boughtNumber);
-  const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${token}`, {
+  let boughtNum = Number(shares.boughtNumber);
+
+  if (shares.buysell === 'sell') {
+    boughtNum = boughtNum*-1
+  }
+
+  const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${sandboxToken}`, {
     method: 'get',
     body: JSON.stringify(res.body),
     headers: { 'Content-Type': 'application/json' }
   })
   const price = await priceRequest.json();
 
-  const prevTransaction = await Transaction.findOne({ where: {
-    stock_id: stockId,
-    user_id: userId
-  }})
+  const user = await User.findByPk(userId);
 
-  let user = await User.findByPk(userId);
-  if (prevTransaction !== null) {
-    let currentShares = prevTransaction.share_quantity;
-    currentShares += boughtNum;
-    prevTransaction.share_quantity = currentShares;
-    user.account_balance -= (boughtNum * price);
+  if (Number(user.account_balance) > ((Number(boughtNum) * price))) {
+    user.account_balance = `${Number(user.account_balance) - (Number(boughtNum) * price)}`;
     await user.save();
-    await prevTransaction.save();
-  } else {
     await Transaction.create({
-      price,
+      price: price,
       share_quantity: boughtNum,
       stock_id: stockId,
       user_id: userId,
       createdAt: new Date(),
       updatedAt: new Date()
-    });
-    user.account_balance -= (boughtNum * Number(price));
-    await user.save();
+    })
+    res.redirect('/dashboard')
+  } else {
+    res.redirect(`/stocks/${stockSymbol}`)
   }
-  res.redirect('/dashboard')
 }));
 
 app.post('/stocks', asyncHandler(async (req, res) => {
@@ -382,19 +372,18 @@ app.post('/transactions/sell', asyncHandler(async (req, res) => {
   const soldNum = shares.soldNumber;
   const stock = await Stock.findOne({ where: { symbol: stockSymbol } });
   const stockId = stock.id;
-  const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${token}`, {
+  const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${sandboxToken}`, {
     method: 'get',
     body: JSON.stringify(res.body),
     headers: { 'Content-Type': 'application/json' }
   })
   const price = await priceRequest.json();
-  const companyInfoRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/company?token=${token}`, {
+  const companyInfoRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/company?token=${sandboxToken}`, {
     method: 'get',
     body: JSON.stringify(res.body),
     headers: { 'Content-Type': 'application/json' }
   })
   const companyInfo = await companyInfoRequest.json();
-  const companyName = companyInfo.companyName;
   const prevTransaction = await Transaction.findOne({ where: {
     stock_id: stockId,
     user_id: userId,
@@ -402,16 +391,21 @@ app.post('/transactions/sell', asyncHandler(async (req, res) => {
 
   const user = await User.findByPk(userId);
 
-  if (prevTransaction && soldNum <= prevTransaction.share_quantity) {
-    prevTransaction.share_quantity -= soldNum;
-    user.account_balance += Number(price);
-    await prevTransaction.save();
+  if (Number(user.account_balance) > ((Number(soldNum) * price))) {
+    user.account_balance = `${Number(user.account_balance) + (Number(soldNum) * price)}`;
     await user.save();
+    await Transaction.create({
+      price: price,
+      share_quantity: -soldNum,
+      stock_id: stockId,
+      user_id: userId,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    })
     res.redirect('/dashboard')
   } else {
-    res.send("owie")
+    res.redirect(`/stocks/${stockSymbol}`)
   }
-
 }));
 
 app.post('/logout', (req, res) => {

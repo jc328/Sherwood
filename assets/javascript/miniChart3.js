@@ -4,7 +4,7 @@ google.charts.setOnLoadCallback(drawBasic);
 async function drawBasic() {
     // TODO Change to get the stock from each stock owned
     // USE THIS TO GET THE STOCK SYMBOL
-    let currentStock = document.getElementById("mini-chart__1");
+    let currentStock = document.getElementById("mini-chart__3");
 
     const intradayPriceRequest = await fetch(`/api/chart/intraday-prices/${currentStock.innerHTML}`, {
         method: 'get',
@@ -77,6 +77,6 @@ async function drawBasic() {
     };
 
     // THIS IS THE ID FOR THE CHART DISPLAY
-    let chart = new google.visualization.LineChart(document.getElementById('mini-chart__1-display'));
+    let chart = new google.visualization.LineChart(document.getElementById('mini-chart__3-display'));
     chart.draw(data, options);
 }

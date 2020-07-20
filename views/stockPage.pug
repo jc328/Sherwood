@@ -10,7 +10,7 @@ html(lang="en")
         link(rel="stylesheet" type="text/css" href="../css/stockPage.css")
         title #{stockSymbol} - $#{price} | Sherwood Wealth
         script(src="../javascript/awesomplete.js" async)
-        script(type="module" src="./javascript/searchBar.js")
+        //- script(type="module" src="./javascript/searchBar.js")
         link(href="../css/awesomplete.css" rel="stylesheet")
         link(href="../css/searchbar.css" rel="stylesheet")
         //- title.titlePrice= stockSymbol
@@ -21,7 +21,7 @@ html(lang="en")
                 a(href="/dashboard")
                   img(src='../images/favicon_v2.ico')
             div
-                form(action="/stocks" method='post')
+                form(action="/stocks" method='post' onchange='this.form.submit()')
                     div
                         input(
                             class='searchBar__stocks'
@@ -33,7 +33,7 @@ html(lang="en")
                             list='company'
                             size='5'
                         )
-                        datalist(id='company' size='5').searchbarDrop
+                        datalist(id='company' size='5' ).searchbarDrop
                             each val in stockData
                                 option=val.fullName
 
@@ -94,11 +94,12 @@ html(lang="en")
                                 input#number-shares__buy(type="number", name="boughtNumber" placeholder="0" min=1)
                     div.line-break
                     div
-                        label.buyLabels Market Price
+                        label.buyLabels.marketPriceLabel Market Price
                     div.marketPrice
 
                     div.create-fullline
                 div#estimate-cost
+
                     span.buyLabels Estimated Cost
                     span#estimate-cost__span
                 button#buy-button(type="submit" form="buy").review_order Review Order

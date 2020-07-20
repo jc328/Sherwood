@@ -4,8 +4,8 @@ window.addEventListener('DOMContentLoaded', event => {
     const accountButton = document.querySelectorAll('#account');
     const accountDropDown = document.querySelectorAll('.account-display-c');
 
- 
-  
+
+
     document.addEventListener("click", event => {
         console.log(event.target)
     })

@@ -268,8 +268,15 @@
 .nav__options-c *:hover,
 .nav__stocks-c *:hover,
 .nav__gold-c *:hover,
-.nav__cash-c *:hover {
+.nav__cash-c *:hover,
+.nav__support-c__support:hover,
+.nav__learn-c__learn:hover,
+.nav__products__span:hover,
+.nav__log-in-c__log-in:hover {
     color: rgb(0,200,5);
+}
+.nav__sign-nup-c__sign-nup:hover {
+    background-color: rgb(0, 177, 6);
 }
 .hidden {
     visibility: hidden;

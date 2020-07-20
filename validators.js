@@ -48,27 +48,15 @@ const loginValidator = [
         .withMessage('Please provide a password.')
 ];
 
-const transactionValidtor = [
-    check('number-shares-bought')
-        .custom(value => {
-            // check current session id
-            // get user id
-            // find user's total balance
-            // if less than balance ok to post transaction
-        }),
-    check('number-shares-sold')
-        .custom(value => {
-            // check current session id
-            // get user id
-            // get current stock
-            // get # of shares user owns for current stock
-            // if # of shares > request
-            // post transaction
-        }),
+const buyValidation = [
+
 ]
+
+const sellValidation = [
+
+];
 
 module.exports = {
     userValidators,
-    transactionValidtor,
-    loginValidator
+    loginValidator,
 };

@@ -257,6 +257,7 @@ app.get('/stocks/:id(\\w+)', asyncHandler(async (req, res) => {
   const userId = Number(req.session.auth.userId);
   const stockSymbol = req.params.id;
   const stock = await Stock.findOne({ where: { symbol: stockSymbol } });
+
   const stockId = stock.id;
   const companyInfoRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/company?token=${token}`, {
     method: 'get',
@@ -423,6 +424,10 @@ app.post('/logout', (req, res) => {
 //   err.status = 404;
 //   next(err);
 // });
+
+app.get('/instructions', asyncHandler(async (req, res) => {
+  res.render('website-navigation');
+}));
 
 const port = Number.parseInt(process.env.PORT, 10) || 8080;
 

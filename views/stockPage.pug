@@ -1,3 +1,4 @@
+
 doctype html
 html(lang="en")
     head
@@ -8,19 +9,20 @@ html(lang="en")
         script(type="module" src="../javascript/stockPage.js")
         link(rel="stylesheet" type="text/css" href="../css/chart.css")
         link(rel="stylesheet" type="text/css" href="../css/stockPage.css")
+        title #{stockSymbol} - $#{price} | Sherwood Wealth
         script(src="../javascript/awesomplete.js" async)
-        script(type="module" src="./javascript/searchBar.js")
+        //- script(type="module" src="./javascript/searchBar.js")
         link(href="../css/awesomplete.css" rel="stylesheet")
         link(href="../css/searchbar.css" rel="stylesheet")
+        //- title.titlePrice= stockSymbol
         link(rel="icon", href="../images/favicon_v2.ico")
-        title.titlePrice= stockSymbol
     body
         div.header_bar
             div.header_flavicon
                 a(href="/dashboard")
                   img(src='../images/favicon_v2.ico')
             div
-                form(action="/stocks" method='post')
+                form(action="/stocks" method='post' onchange='this.form.submit()')
                     div
                         input(
                             class='searchBar__stocks'
@@ -32,7 +34,7 @@ html(lang="en")
                             list='company'
                             size='5'
                         )
-                        datalist(id='company' size='5').searchbarDrop
+                        datalist(id='company' size='5' ).searchbarDrop
                             each val in stockData
                                 option=val.fullName
 
@@ -47,6 +49,36 @@ html(lang="en")
                 span(id="percent-diff")
             div#chart_div
 
+        //- unless !auth
+        //-     div#purchase-form FOR #{user}, YOU HAVE # #{shares} SHARES
+        //-         div#buy-stock.tabcontent
+        //-             div#button-wrapper
+        //-                 button#buy-tab__button BUY TAB
+        //-                 if (shares > 0)
+        //-                     button#sell-tab__button SELL TAB
+        //-             div#transaction-form__buy
+        //-                 form(action="/transactions/buy", method="post")
+        //-                     input(type="hidden", name="symbol" value=stockSymbol)
+        //-                     div#shares-or-dollars
+        //-                         label Shares
+        //-                         input#number-shares__buy(type="number", name="boughtNumber" placeholder="0" min=1)
+        //-                     div#estimate-cost
+        //-                         span Estimated Cost
+        //-                         span#estimate-cost__span
+        //-                     button#buy-button(type="submit") SUBMIT BUY
+        //-     if (shares > 0)
+        //-         div#sell-stock.tabcontent
+        //-             div#transaction-form__sell.hidden
+        //-                 form(action="/transactions/sell", method="post")
+        //-                     input(type="hidden", name="symbol" value=stockSymbol)
+        //-                     div#shares-or-dollars
+        //-                         label Shares
+        //-                         input#number-shares__sell(type="number", name="soldNumber" placeholder="0" min=1)
+        //-                     div#estimate-credit
+        //-                         span Estimated Credit
+        //-                         span#estimate-credit__span
+        //-                     button#sell-button(type="submit") SUBMIT SELL
+        input(type="hidden", name="current-price" value=price)
         div#purchase-form
             div#buy-stock.tabcontent
                 div#button-wrapper
@@ -60,16 +92,19 @@ html(lang="en")
                         form(action="/transactions/add", method="post")
                             input(type="hidden", name="symbol" value=stockSymbol)
                             div#shares-or-dollars
-                                input#number-shares__buy(type="number", name="number-shares-bought" placeholder="0" min=1)
+                                input#number-shares__buy(type="number", name="boughtNumber" placeholder="0" min=1)
                     div.line-break
                     div
-                        label.buyLabels Market Price
+                        label.buyLabels.marketPriceLabel Market Price
                     div.marketPrice
+                        span $ #{price}
                     div.create-fullline
                 div#estimate-cost
+
                     span.buyLabels Estimated Cost
                     span#estimate-cost__span
-                button#buy-button(type="submit").review_order Review Order
+                        h4.estimatedCost
+                button#buy-button(type="submit") Review Order
                 div
                     div.create-fullline
                 div.flavorText
@@ -82,7 +117,7 @@ html(lang="en")
                         input(type="hidden", name="symbol" value=stockSymbol)
                         div#shares-or-dollars
                             label Shares
-                            input#number-shares__sell(type="number", name="number-shares-sold" placeholder="0" min=1)
+                            input#number-shares__sell(type="number", name="soldNumber" placeholder="0" min=1)
                         div#estimate-credit
                             span Estimated Credit
                             span#estimate-credit__span

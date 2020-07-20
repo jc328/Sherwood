@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("number-shares__buy")
         .addEventListener('change', e => {
             let estimateCost = (e.target.value * currentPrice).toFixed(2);
+            console.log(e.target.value)
             costSpan.innerHTML = `$${estimateCost}`;
         });
 

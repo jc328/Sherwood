@@ -10,7 +10,7 @@ html(lang="en")
         link(rel="stylesheet" type="text/css" href="../css/stockPage.css")
         title #{stockSymbol} - $#{price} | Sherwood Wealth
         script(src="../javascript/awesomplete.js" async)
-        script(type="module" src="./javascript/searchBar.js")
+        //- script(type="module" src="./javascript/searchBar.js")
         link(href="../css/awesomplete.css" rel="stylesheet")
         link(href="../css/searchbar.css" rel="stylesheet")
         //- title.titlePrice= stockSymbol
@@ -94,14 +94,14 @@ html(lang="en")
                                 input#number-shares__buy(type="number", name="boughtNumber" placeholder="0" min=1)
                     div.line-break
                     div
-                        label.buyLabels Market Price
+                        label.buyLabels.marketPriceLabel Market Price
                     div.marketPrice
                         span $ #{price}
                     div.create-fullline
                 div#estimate-cost
 
                     span.buyLabels Estimated Cost
-                    h4#estimate-cost__span
+                    span#estimate-cost__span
                 button#buy-button(type="submit") Review Order
                 div
                     div.create-fullline

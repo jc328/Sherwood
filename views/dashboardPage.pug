@@ -83,8 +83,9 @@ html(lang="en")
                 a(href="/dashboard").nav__free-c__free Messages
             div#account.nav__free-c
                 span.nav__free-c__free Account
+            div#account.nav__free-c
                 form(action="/logout", method="post")
-                  button(type="submit") LOGOUT
+                  button#logout-button.nav__free-c__free(type="submit") Logout
 
                                   //-  div#dash-grid
                                   //-   div.dash-gridz__grid-space
@@ -124,7 +125,7 @@ html(lang="en")
 
               div.hover-grey.right-display-c__display__content
                 span.right-span TSLA
-                a(href="/stocks/TSLA") LINK TO STOCK PAGE
+                  a(href="/stocks/TSLA") LINK TO STOCK PAGE
               div.hover-grey.right-display-c__display__content
                 span.right-span FLWS
                 a(href="/stocks/FLWS") LINK TO STOCK PAGE

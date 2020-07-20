@@ -23,6 +23,7 @@ html(lang="en")
       title= title
 
     body
+      input(type="hidden", name="uId" value=userId)
       div#main
         div#nav
           div#nav__centering
@@ -46,8 +47,7 @@ html(lang="en")
                     autocomplete='off'
                     list='company'
                     size='5'
-                  )
-                  
+                  )                 
             
             div#shrink-space-free
             div#free-stocks.nav__free-c

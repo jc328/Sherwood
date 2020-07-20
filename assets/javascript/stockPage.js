@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let sellTabButton = document.getElementById("sell-tab__button");
     let buyForm = document.getElementById("transaction-form__buy");
     let sellForm = document.getElementById("transaction-form__sell");
+    let estimatedCost = document.querySelector('.estimatedCost')
 
     sellTabButton.addEventListener('click', e => {
         // if(!buyForm.classList.contains("hidden") && sellForm.classList.contains("hidden")) {
@@ -35,11 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
         // }
         buyButton.innerHTML = 'Submit Sell'
         buyButton.style.background = 'red'
+        estimatedCost.innerHTML = 'Estimated Credit:'
     })
 
     buyTabButton.addEventListener("click", e => {
         buyButton.innerHTML = 'Submit Buy'
         buyButton.style.background = '#77d42a'
+        estimatedCost.innerHTML = 'Estimated Cost:'
+
         if(!sellForm.classList.contains("hidden") && buyForm.classList.contains("hidden")) {
             sellForm.classList.add("hidden");
             buyForm.classList.remove("hidden");

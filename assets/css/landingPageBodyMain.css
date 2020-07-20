@@ -21,3 +21,13 @@ body {
     align-items: center;
 
 }
+#instructions,
+#instructions a {
+    position: fixed;
+    top: 2px;
+    left: 5px;
+    color: rgb(0, 0, 0);
+    z-index: 40;
+    color: rgb(109, 109, 109);
+    text-decoration: none;
+}

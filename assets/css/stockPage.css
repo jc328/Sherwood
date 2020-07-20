@@ -137,7 +137,7 @@ body {
 
 .buyLabels {
     /* align-self: center; */
-    margin: 25px 0 25px 15px;
+    margin: 25px 0 50px 15px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 13px;
 }
@@ -188,7 +188,6 @@ body {
 	background:linear-gradient(to bottom, #77d42a 5%, #5cb811 100%);
 	background-color:#77d42a;
 	border-radius:4px;
-	display:inline-block;
 	cursor:pointer;
 	color:#306108;
 	font-family:Arial;
@@ -198,6 +197,7 @@ body {
 	text-decoration:none;
     text-shadow:0px 1px 0px #aade7c;
     height: 10%;
+
 }
 #buy-button:hover {
 	background:linear-gradient(to bottom, #5cb811 5%, #77d42a 100%);
@@ -231,10 +231,17 @@ body {
     border-radius: 0px;
     box-shadow: 0px 0px 3px rgba(66,66,66,.75);
     text-shadow: 0px 0px 1px rgba(66,66,66,.75);
-    text-align: center;
-    width: 70px;
-    height: 40px;
+    text-align: right;
+    width: 50px;
+    height: 25px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 #sell-tab__button {
@@ -254,30 +261,6 @@ body {
     color: whitesmoke;
     background-color:#fa7249;
 }
-
-.review_order {
-	background-color:#fa7249;
-	border-radius:3px;
-	border:1px solid #dbbab3;
-	display:inline-block;
-	cursor:pointer;
-	color:#f5f5f5;
-	font-family:Arial;
-	font-size:13px;
-	padding:12px 43px;
-    text-decoration:none;
-    height: 100%;
-    margin-bottom: 25px;
-}
-.review_order:hover {
-	background-color:#9e675c;
-}
-.review_order:active {
-	position:relative;
-	top:1px;
-}
-
-
 
 title {
     text-transform: uppercase;

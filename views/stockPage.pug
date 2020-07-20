@@ -21,7 +21,7 @@ html(lang="en")
                 a(href="/dashboard")
                   img(src='../images/favicon_v2.ico')
             div
-                form(action="/stocks" method='post')
+                form(action="/stocks" method='post' onchange='this.form.submit()')
                     div
                         input(
                             class='searchBar__stocks'
@@ -33,7 +33,7 @@ html(lang="en")
                             list='company'
                             size='5'
                         )
-                        datalist(id='company' size='5').searchbarDrop
+                        datalist(id='company' size='5' ).searchbarDrop
                             each val in stockData
                                 option=val.fullName
 
@@ -97,16 +97,17 @@ html(lang="en")
                         label.buyLabels Market Price
                     div.marketPrice
                         span $ #{price}
-                    div.create-fullline
+
                 div#estimate-cost
+                    div.create-fullline
                     span.buyLabels Estimated Cost
                     span#estimate-cost__span
-                button#buy-button(type="submit").review_order Review Order
+                button#buy-button(type="submit") Review Order
                 div
                     div.create-fullline
-                //- div.flavorText
-                //-     h4 Introducing Fractional Shares
-                //-     p Invest in thousands of stocks with as little as $1
+                div.flavorText
+                    h4 Introducing Fractional Shares
+                    p Invest in thousands of stocks with as little as $1
 
             div#sell-stock.tabcontent
                 div#transaction-form__sell.hidden

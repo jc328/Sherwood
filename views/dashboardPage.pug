@@ -12,7 +12,7 @@ html(lang="en")
         script(type="module" src="./javascript/searchBar.js")
         link(href="./css/searchbar.css" rel="stylesheet")
         script(type="text/javascript" src="https://www.gstatic.com/charts/loader.js")
-        script(type="text/javascript" src="../javascript/chart.js")
+        //- script(type="text/javascript" src="../javascript/chart.js")
         link(rel="stylesheet" type="text/css" href="../css/chart.css")
         link(rel="stylesheet" type="text/css" href="../css/news.css")
         link(href="./css/news-watchlist.css" rel="stylesheet")
@@ -26,6 +26,8 @@ html(lang="en")
         script(type="text/javascript" src="https://www.gstatic.com/charts/loader.js")
         script(type="text/javascript" src="../javascript/portfolioChart.js")
         script(type="text/javascript" src="../javascript/miniChart.js")
+        script(type="text/javascript" src="../javascript/miniChart2.js")
+        script(type="text/javascript" src="../javascript/miniChart3.js")
         link(rel="stylesheet" type="text/css" href="../css/portfolioChart.css")
 
         link(href="./css/dash.css" rel="stylesheet")
@@ -124,15 +126,13 @@ html(lang="en")
                 div#mini-chart__1-display
 
               div.hover-grey.right-display-c__display__content
-                span.right-span TSLA
-                  a(href="/stocks/TSLA") LINK TO STOCK PAGE
+                a(href="/stocks/TSLA")
+                  span.right-span#mini-chart__2 TSLA
+                div#mini-chart__2-display
               div.hover-grey.right-display-c__display__content
-                span.right-span FLWS
-                a(href="/stocks/FLWS") LINK TO STOCK PAGE
-              div.hover-grey.right-display-c__display__content
-                span.right-span GPRO
-                a(href="/stocks/GPRO") LINK TO STOCK PAGE
-
+                a(href="/stocks/FLWS")
+                  span.right-span#mini-chart__3 FLWS
+                div#mini-chart__3-display
         div.account--fixed
           div.right-display-c__drop-down.hidden
             div.right-display-c__drop-down__content.flex1
@@ -210,8 +210,8 @@ html(lang="en")
               div.news-c
                 div.pageContainer
                   div#date
-                    h1 July 16, 2020                    
-                  div.list  
+                    h1 July 16, 2020
+                  div.list
                     h2.listSection Popular Lists
                       div.popLists__container
                         div.listOne
@@ -220,91 +220,91 @@ html(lang="en")
                               div.image
                                 img(src="../images/listicon1.png" class='icon')
                               span Hot 120
-                        div.listTwo      
+                        div.listTwo
                           a(href='google.com' class='listLink')
                             div.list__image--text
                               div.image
                                 img(src="../images/listicon2.png" class='icon')
                               span Real Estate
-                        div.listThree       
+                        div.listThree
                           a(href='google.com' class='listLink')
                             div.list__image--text
                               div.image
                                 img(src="../images/listicon3.png" class='icon')
-                              span Aviation 
-                        div.listFour       
+                              span Aviation
+                        div.listFour
                           a(href='google.com' class='listLink')
                             div.list__image--text
                               div.image
                                 img(src="../images/listicon4.png" class='icon')
-                              span Healthcare 
-                        div.listFive       
+                              span Healthcare
+                        div.listFive
                           a(href='google.com' class='listLink')
                             div.list__image--text
                               div.image
                                 img(src="../images/listicon5.png" class='icon')
-                              span Consumer Goods 
-                        div.listSix       
+                              span Consumer Goods
+                        div.listSix
                           a(href='google.com' class='listLink')
                             div.list__image--text
                               div.image
                                 img(src="../images/listicon6.png" class='icon')
-                              span Pharma 
-                        div.listSeven       
+                              span Pharma
+                        div.listSeven
                           a(href='google.com' class='listLink')
                             div.list__image--text
                               div.image
                                 img(src="../images/listicon7.png" class='icon')
-                              span Crypto 
-                        div.listEight       
+                              span Crypto
+                        div.listEight
                           a(href='google.com' class='listLink')
                             div.list__image--text
                               div.image
                                 img(src="../images/listicon8.png" class='icon')
                               span Top Movers
-                        div.listNine       
+                        div.listNine
                           a(href='google.com' class='listLink')
                             div.list__image--text
                               div.image
                                 img(src="../images/listicon9.png" class='icon')
                               span China
-                        div.listTen     
+                        div.listTen
                           a(href='google.com' class='listLink')
                             div.list__image--text
                               div.image
                                 img(src="../images/listicon10.png" class='icon')
                               span Energy & Water
-                        div.listEleven       
+                        div.listEleven
                           a(href='google.com' class='listLink')
                             div.list__image--text
                               div.image
                                 img(src="../images/listicon11.png" class='icon')
                               span Food & Drink
-                        div.listTwelve      
+                        div.listTwelve
                           a(href='google.com' class='listLink')
                             div.list__image--text
                               div.image
                                 img(src="../images/listicon12.png" class='icon')
                               span Upcoming
-                        div.listThirteen    
+                        div.listThirteen
                           a(href='google.com' class='listLink')
                             div.list__image--text
                               div.image
                                 img(src="../images/listicon13.png" class='icon')
                               span Tech Education
-                        div.listFourteen      
+                        div.listFourteen
                           a(href='google.com' class='listLink')
                             div.list__image--text
                               div.image
                                 img(src="../images/listicon14.png" class='icon')
                               span Automotive
-                        div.listFifteen      
+                        div.listFifteen
                           a(href='google.com' class='listLink')
                             div.list__image--text
                               div.image
                                 img(src="../images/listicon15.png" class='icon')
                               span Aviation
-                        div.listSixteen       
+                        div.listSixteen
                           a(href='google.com' class='listLink')
                             div.list__image--text
                               div.image

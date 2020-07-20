@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let marketPrice = document.querySelector('.marketPrice')
     let marketPriceValue = document.createElement('h4')
     marketPriceValue.innerHTML = currentPrice
-    title.innerHTML += ` - $${currentPrice} | Sherwood`
+    // title.innerHTML += ` - $${currentPrice} | Sherwood`
     marketPrice.appendChild(marketPriceValue)
 
     document.getElementById("number-shares__buy")

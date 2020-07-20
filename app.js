@@ -322,7 +322,12 @@ app.post('/transactions/buy', asyncHandler(async (req, res) => {
   const stockSymbol = shares.symbol;
   const stock = await Stock.findOne({ where: { symbol: stockSymbol } });
   const stockId = stock.id;
-  const boughtNum = Number(shares.boughtNumber);
+  let boughtNum = Number(shares.boughtNumber);
+
+  if (shares.buysell === 'sell') {
+    boughtNum = boughtNum*-1
+  }
+
   const priceRequest = await fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${sandboxToken}`, {
     method: 'get',
     body: JSON.stringify(res.body),

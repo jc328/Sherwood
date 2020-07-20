@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let title = document.querySelector('.titlePrice')
     let marketPrice = document.querySelector('.marketPrice')
     let marketPriceValue = document.createElement('h4')
+    let buysell = document.querySelector('.buysell')
     marketPriceValue.innerHTML = currentPrice
     marketPrice.appendChild(marketPriceValue)
 
@@ -13,12 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
             let estimateCost = (e.target.value * currentPrice).toFixed(2);
             console.log(e.target.value)
             costSpan.innerHTML = `   $${estimateCost}`;
+
         });
 
     document.getElementById("number-shares__sell")
         .addEventListener('change', e => {
             let estimateCredit = (e.target.value * currentPrice).toFixed(2);
             creditSpan.innerHTML = `$${estimateCredit}`;
+
         });
 
     let buyButton = document.getElementById("buy-button")
@@ -37,13 +40,14 @@ document.addEventListener("DOMContentLoaded", () => {
         buyButton.innerHTML = 'Submit Sell'
         buyButton.style.background = 'red'
         estimatedCost.innerHTML = 'Estimated Credit:'
+        buysell.value = 'sell'
     })
 
     buyTabButton.addEventListener("click", e => {
         buyButton.innerHTML = 'Submit Buy'
         buyButton.style.background = '#77d42a'
         estimatedCost.innerHTML = 'Estimated Cost:'
-
+        buysell.value = 'buy'
         if(!sellForm.classList.contains("hidden") && buyForm.classList.contains("hidden")) {
             sellForm.classList.add("hidden");
             buyForm.classList.remove("hidden");

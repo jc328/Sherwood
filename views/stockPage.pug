@@ -91,6 +91,7 @@ html(lang="en")
                     div
                         form(id="buy" action="/transactions/buy", method="post")
                             input(type="hidden", name="symbol" value=stockSymbol)
+                            input(type="hidden", name="buysell" value="buy" class="buysell")
                             div#shares-or-dollars
                                 input#number-shares__buy(type="number", name="boughtNumber" placeholder="0" min=1)
                     div.line-break

@@ -149,6 +149,10 @@ textarea:focus, input:focus{
     min-width: 90px; 
       
 }
+.linethrough:hover {
+    text-decoration: line-through;
+    text-decoration-color: black;  
+}
 #free-stocks a:hover,
 #cash a:hover,
 #messages a:hover {
@@ -313,12 +317,8 @@ textarea:focus, input:focus{
     
 }
 .right-display-c__drop-down__content {
-    /* position: relative; */
     width: 100%;
     height: 50px;
-    border-bottom: 1px solid slategray;
-    /* background-color: yellowgreen; */
-    /* z-index: 10; */
 }
 .right-display-c__drop-down a {
     color: rgb(4,13,20);
@@ -375,13 +375,19 @@ textarea:focus, input:focus{
     
 }
 .account-display-c__display {
-    height: 765px;
+    height: 550px;
     width: 250px;
     
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+}
+#drop-down-login {
+    text-decoration: none;
+}
+#dropdown-display {
+    border-bottom: 1px solid slategray; 
 }
 .account-display-c__display__content {
    width: 100%;
@@ -443,10 +449,9 @@ textarea:focus, input:focus{
     flex-direction: column;
     /* background-color: yellowgreen; */
     margin-left: 20px;
-}
-#buying-power {
     margin-top: 20px;
 }
+
 .left-display-c__display {
     height: 100%;
     width: 750px;
@@ -589,5 +594,6 @@ textarea:focus, input:focus{
         
 /*# sourceMappingURL=awesomplete.css.map */
 
-/* ////////search////////// */
-
+        .margin-left {
+            margin-left: 20px;
+        }

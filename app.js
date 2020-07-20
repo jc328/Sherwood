@@ -425,6 +425,10 @@ app.post('/logout', (req, res) => {
 //   next(err);
 // });
 
+app.get('/instructions', asyncHandler(async (req, res) => {
+  res.render('website-navigation');
+}));
+
 const port = Number.parseInt(process.env.PORT, 10) || 8080;
 
 app.listen(port, () => {

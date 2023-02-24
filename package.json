@@ -28,7 +28,7 @@
     "per-env": "^1.0.2",
     "pg": "^8.3.0",
     "pug": "^3.0.0",
-    "sequelize": "^5.22.3",
+    "sequelize": "^6.29.0",
     "sequelize-cli": "^5.5.1"
   },
   "devDependencies": {
